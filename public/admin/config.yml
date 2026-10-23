@@ -1,0 +1,187 @@
+# Cấu hình CMS tại /admin (Sveltia CMS). Mỗi lần "Lưu" = 1 commit vào nhánh main → host tự build lại (~1–2 phút).
+# Build kiểm tra nội dung (src/lib/content.ts): sai trường nào thì build dừng, bản đang chạy vẫn giữ nguyên.
+# Chạy thử trên máy: npm run dev → mở http://localhost:3000/admin bằng Chrome → "Work with Local Repository" → chọn thư mục dự án.
+# Hướng dẫn đầy đủ: docs/HUONG-DAN-CMS.md
+backend:
+  name: github
+  repo: Anhduc2k/thuning-web
+  branch: main
+  # Đăng nhập bằng nút "Sign In with GitHub" cần một dịch vụ OAuth. Mặc định nó dùng của Netlify (không dùng).
+  # Khi đã deploy Cloudflare Worker sveltia-cms-auth (xem docs/HUONG-DAN-CMS.md), bỏ dấu # dòng dưới và thay bằng URL của Worker.
+  # Chưa có Worker thì đăng nhập bằng Personal Access Token ("Sign In Using Access Token").
+  # base_url: https://sveltia-cms-auth.<tai-khoan>.workers.dev
+
+media_folder: public/uploads
+public_folder: /uploads
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      # Tên file ảnh bỏ dấu, chữ thường; ảnh được thu về tối đa 1600px và đổi sang WebP cho nhẹ.
+      slugify_filename: true
+      transformations:
+        raster_image: { format: webp, quality: 85, width: 1600, height: 1600 }
+
+# Tên file = đường dẫn trên web: bỏ dấu (cả "đ"), chữ thường (build sẽ báo lỗi nếu tên file còn dấu).
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: products
+    label: Sản phẩm
+    label_singular: Sản phẩm
+    folder: content/products
+    extension: json
+    format: json
+    create: true
+    identifier_field: name
+    # Đường dẫn tạo một lần từ tên lúc thêm mới, sau đó không đổi (đổi = mất link cũ trên Google).
+    slug: { template: "{{slug}}", editable: false }
+    summary: "{{model}} · {{name}}"
+    sortable_fields: [date, name, model]
+    fields:
+      - { name: name, label: Tên sản phẩm, widget: string }
+      - { name: model, label: Mã sản phẩm, widget: string, hint: "Ví dụ THA-120. Không được trùng với sản phẩm khác." }
+      - { name: category, label: Danh mục, widget: relation, collection: categories, value_field: slug, display_fields: [name], search_fields: [name] }
+      - name: sub
+        label: Danh mục con
+        widget: relation
+        required: false
+        collection: categories
+        value_field: "subs.*.slug"
+        display_fields: ["{{name}} › {{subs.*.name}}"]
+        search_fields: ["subs.*.name"]
+        hint: Phải thuộc danh mục đã chọn ở trên (sai thì build báo lỗi).
+      - { name: date, label: Ngày đăng, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, default: "{{now}}", hint: "Mới hơn thì hiện trước ở mục Mới nhất." }
+      - { name: isNew, label: Gắn nhãn Mới, widget: boolean, default: false }
+      - { name: featured, label: Sản phẩm nổi bật, widget: boolean, default: false }
+      - { name: bestseller, label: Bán chạy, widget: boolean, default: false }
+      - { name: images, label: Ảnh sản phẩm, widget: image, multiple: true, required: false, choose_url: false, hint: "Ảnh đầu tiên là ảnh đại diện. Nên dùng ảnh vuông, nền trắng, rộng 1200–1600px (JPG/PNG/WebP)." }
+      - { name: summary, label: Mô tả ngắn, widget: text, required: false, hint: "1–2 câu, hiện dưới tên sản phẩm và trên Google." }
+      - { name: description, label: Mô tả chi tiết, widget: markdown, required: false, hint: "Để trống thì hiện đoạn giới thiệu chung của danh mục." }
+      - name: specs
+        label: Thông số kỹ thuật
+        label_singular: thông số
+        widget: list
+        required: false
+        summary: "{{fields.label}}: {{fields.value}}"
+        hint: Thêm vào bảng "Thông số chung", sau các dòng có sẵn (mã, danh mục, xuất xứ…).
+        fields:
+          - { name: label, label: Tên thông số, widget: string, hint: "Ví dụ: Điện áp" }
+          - { name: value, label: Giá trị, widget: string, hint: "Ví dụ: 220V/50Hz" }
+      - { name: relatedProducts, label: Sản phẩm liên quan, widget: relation, collection: products, multiple: true, required: false, value_field: "{{slug}}", display_fields: ["{{model}} · {{name}}"], search_fields: [name, model], hint: "Để trống thì tự lấy sản phẩm cùng danh mục." }
+      - { name: relatedPosts, label: Bài viết liên quan, widget: relation, collection: posts, multiple: true, required: false, value_field: "{{slug}}", display_fields: [title], search_fields: [title] }
+
+  - name: posts
+    label: Bài viết
+    label_singular: Bài viết
+    folder: content/posts
+    extension: json
+    format: json
+    create: true
+    identifier_field: title
+    slug: { template: "{{slug}}", editable: false }
+    summary: "{{date}} · {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Tiêu đề, widget: string }
+      - { name: date, label: Ngày đăng, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, default: "{{now}}" }
+      - { name: topic, label: Chủ đề, widget: string, hint: "Ví dụ: Đào tạo nghề, Hướng dẫn, Băng tải" }
+      - { name: image, label: Ảnh bìa, widget: image, required: false, choose_url: false, hint: "Ảnh ngang 16:9, rộng khoảng 1600px." }
+      - { name: excerpt, label: Tóm tắt, widget: text, hint: "1–2 câu, hiện ở danh sách bài và trên Google." }
+      - { name: body, label: Nội dung, widget: markdown, hint: "Mỗi đoạn cách nhau một dòng trống. Dùng Tiêu đề 2/3 để chia mục." }
+      - { name: relatedProducts, label: Sản phẩm liên quan, widget: relation, collection: products, multiple: true, required: false, value_field: "{{slug}}", display_fields: ["{{model}} · {{name}}"], search_fields: [name, model] }
+
+  # Toàn bộ danh mục nằm trong một file (content/categories.json); thứ tự ở đây = thứ tự trên menu.
+  - name: categories
+    label: Danh mục
+    label_singular: Danh mục
+    file: content/categories.json
+    format: json
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+      - name: slug
+        label: Đường dẫn
+        widget: string
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang, ví dụ bang-tai-cong-nghiep"]
+        hint: "Chỉ đặt khi tạo mới, KHÔNG sửa sau đó: đổi đường dẫn là đổi URL của danh mục và mọi sản phẩm trong nó (link cũ trên Google sẽ hỏng, sản phẩm đang chọn danh mục này phải chọn lại)."
+      - { name: name, label: Tên danh mục, widget: string }
+      - name: icon
+        label: Biểu tượng
+        widget: select
+        options:
+          - { label: "Vi mạch", value: chip }
+          - { label: "Băng tải", value: conveyor }
+          - { label: "Bánh răng", value: gear }
+          - { label: "Tủ điện", value: cabinet }
+          - { label: "Hộp", value: box }
+          - { label: "Sóng điện tử", value: wave }
+          - { label: "Robot", value: robot }
+          - { label: "Đồng hồ áp suất", value: gauge }
+          - { label: "Động cơ", value: motor }
+          - { label: "Ô tô", value: car }
+          - { label: "Tia điện", value: bolt }
+          - { label: "Bóng đèn", value: bulb }
+          - { label: "Bông tuyết", value: snow }
+          - { label: "Giọt nước", value: drop }
+      - { name: intro, label: Giới thiệu, widget: text, hint: "Hiện đầu trang danh mục và trong mô tả sản phẩm." }
+      - { name: highlights, label: Điểm nổi bật, label_singular: điểm nổi bật, widget: list, field: { name: text, label: Nội dung, widget: string } }
+      - name: subs
+        label: Danh mục con
+        label_singular: danh mục con
+        widget: list
+        required: false
+        summary: "{{fields.name}}"
+        fields:
+          - { name: slug, label: Đường dẫn, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang"], hint: "Chỉ đặt khi tạo mới, KHÔNG sửa sau đó (đổi = đổi URL). Không được trùng đường dẫn sản phẩm cùng danh mục." }
+          - { name: name, label: Tên, widget: string }
+          - name: icon
+            label: Biểu tượng
+            widget: select
+            required: false
+            hint: Để trống thì dùng biểu tượng của danh mục.
+            options: [chip, conveyor, gear, cabinet, box, wave, robot, gauge, motor, car, bolt, bulb, snow, drop]
+
+  - name: settings
+    label: Cài đặt
+    format: json
+    files:
+      - name: site
+        label: Thông tin công ty
+        file: content/site.json
+        fields:
+          - { name: name, label: Tên ngắn, widget: string, hint: "Hiện ở logo, tiêu đề trang." }
+          - { name: legalName, label: Tên pháp lý, widget: string }
+          - { name: tagline, label: Khẩu hiệu, widget: string }
+          - { name: address, label: Địa chỉ, widget: string }
+          - { name: phone, label: Số điện thoại (để gọi), widget: string, pattern: ['^[0-9]{9,11}$', "Chỉ chữ số, ví dụ 0986666839"] }
+          - { name: phoneDisplay, label: Số điện thoại (hiển thị), widget: string, hint: "Ví dụ 098.6666.839" }
+          - { name: email, label: Email, widget: string, pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Email không hợp lệ"] }
+          - { name: url, label: Địa chỉ website, widget: string, pattern: ['^https://[^/]+$', "Dạng https://ten-mien, không có / ở cuối"], hint: "Dùng cho Google (sitemap, link chuẩn). Chỉ sửa khi đổi tên miền." }
+          - { name: facebook, label: Facebook, widget: string }
+          - { name: youtube, label: YouTube, widget: string }
+          - { name: zalo, label: Zalo, widget: string, hint: "Ví dụ https://zalo.me/0986666839" }
+          - name: bank
+            label: Tài khoản ngân hàng
+            widget: object
+            fields:
+              - { name: owner, label: Chủ tài khoản, widget: string }
+              - { name: name, label: Ngân hàng, widget: string }
+              - { name: account, label: Số tài khoản, widget: string }
+          - { name: mapQuery, label: Địa điểm trên bản đồ, widget: string, hint: "Từ khóa tìm trên Google Maps cho trang Liên hệ." }
+      - name: policies
+        label: Chính sách
+        file: content/policies.json
+        fields:
+          - name: policies
+            label: Chính sách
+            label_singular: chính sách
+            widget: list
+            root: true
+            summary: "{{fields.title}}"
+            fields:
+              - { name: slug, label: Đường dẫn, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang"], hint: "Trang sẽ là /chinh-sach/<đường dẫn>. Không sửa sau khi tạo." }
+              - { name: title, label: Tiêu đề, widget: string }
+              - { name: body, label: Nội dung, widget: markdown, hint: "Đoạn đầu tiên dùng làm mô tả trên Google." }

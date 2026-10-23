@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Quản trị nội dung</title>
+  </head>
+  <body>
+    <!-- Sveltia CMS: chạy hoàn toàn trên trình duyệt, đọc/ghi content/*.json trong repo GitHub. Cấu hình ở config.yml cùng thư mục. -->
+    <script>
+      // Giao diện tiếng Việt: Sveltia không có tùy chọn trong config.yml, nó theo ngôn ngữ trình duyệt hoặc mục Cài đặt (lưu ở khóa này).
+      try {
+        const k = "sveltia-cms.prefs", p = JSON.parse(localStorage.getItem(k) || "{}");
+        if (!p.locale) localStorage.setItem(k, JSON.stringify({ ...p, locale: "vi" }));
+      } catch {}
+    </script>
+    <script src="https://unpkg.com/@sveltia/cms@0.247.0/dist/sveltia-cms.js"></script>
+  </body>
+</html>

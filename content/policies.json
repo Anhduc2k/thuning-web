@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "huong-dan-mua-hang",
+    "title": "Hướng dẫn mua hàng",
+    "body": "Chọn thiết bị cần mua, bấm “Nhận báo giá” và để lại họ tên, số điện thoại. Bộ phận kinh doanh gọi lại trong giờ làm việc để xác nhận cấu hình, số lượng và thời gian giao.\n\nVới dự án trang bị cả phòng thực hành hoặc dây chuyền, bạn có thể gửi danh mục hoặc bản vẽ mặt bằng qua email để nhận báo giá trọn gói."
+  },
+  {
+    "slug": "huong-dan-thanh-toan",
+    "title": "Hướng dẫn thanh toán",
+    "body": "Thanh toán bằng chuyển khoản theo hợp đồng hoặc đơn đặt hàng. Thông tin tài khoản ghi ở chân trang và trên hợp đồng.\n\nGhi rõ tên đơn vị và số hợp đồng trong nội dung chuyển khoản để kế toán đối soát nhanh."
+  },
+  {
+    "slug": "chinh-sach-van-chuyen",
+    "title": "Chính sách vận chuyển",
+    "body": "Giao hàng toàn quốc. Thiết bị cồng kềnh được đóng kiện gỗ và vận chuyển bằng xe chuyên dụng.\n\nVới thiết bị cần lắp đặt, kỹ thuật viên đi cùng để lắp, chạy thử và hướng dẫn vận hành tại chỗ."
+  },
+  {
+    "slug": "quy-dinh-doi-tra",
+    "title": "Quy định đổi trả hàng",
+    "body": "Thiết bị lỗi do sản xuất được sửa chữa hoặc thay mới theo điều khoản bảo hành trong hợp đồng.\n\nThiết bị chế tạo theo yêu cầu riêng không áp dụng đổi trả, trừ khi sai lệch so với thông số đã thống nhất."
+  },
+  {
+    "slug": "cam-ket-va-quy-dinh-chung",
+    "title": "Cam kết và quy định chung",
+    "body": "Thiết bị mới 100%, sản xuất theo hệ thống quản lý chất lượng ISO 9001:2015 và quản lý môi trường ISO 14001:2015.\n\nMọi thông số kỹ thuật, thời gian giao và bảo hành được ghi rõ trong hợp đồng trước khi sản xuất."
+  },
+  {
+    "slug": "bao-mat-thong-tin",
+    "title": "Bảo mật thông tin",
+    "body": "Thông tin bạn gửi qua biểu mẫu chỉ dùng để liên hệ tư vấn và báo giá, không chia sẻ cho bên thứ ba.\n\nBạn có thể yêu cầu xóa thông tin liên hệ của mình bằng cách gửi email cho chúng tôi."
+  }
+]

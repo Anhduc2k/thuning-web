@@ -1,0 +1,7 @@
+{
+  "title": "Hướng dẫn kết nối bộ thực hành PLC với phần mềm giám sát IoT",
+  "date": "2026-07-14",
+  "topic": "Hướng dẫn",
+  "excerpt": "Các bước cơ bản để bộ thực hành PLC gửi dữ liệu lên phần mềm giám sát, lấy ví dụ bài điều khiển đèn giao thông.",
+  "body": "Bước 1: Đặt địa chỉ IP cho PLC và máy tính cùng một dải mạng, kiểm tra kết nối bằng lệnh ping trước khi mở phần mềm lập trình.\n\nBước 2: Viết chương trình điều khiển đèn giao thông với ba trạng thái xanh, vàng, đỏ và các bộ định thời tương ứng. Khai báo các biến cần giám sát vào vùng nhớ có thể đọc từ bên ngoài.\n\nBước 3: Trên phần mềm giám sát, tạo kết nối tới PLC theo giao thức được hỗ trợ, ánh xạ các biến đèn và thời gian còn lại lên giao diện.\n\nBước 4: Chạy chương trình và đối chiếu trạng thái đèn trên mô hình với giao diện giám sát. Khi đã ổn định, học viên có thể thêm nút điều khiển từ xa hoặc ghi lịch sử chu kỳ đèn."
+}

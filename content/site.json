@@ -1,0 +1,19 @@
+{
+  "name": "Tự Động Hóa Thư Ning fake",
+  "legalName": "Công ty Cổ phần Tự động hóa Thư Ning",
+  "tagline": "Thiết bị dạy nghề, cơ khí chế tạo máy và băng tải công nghiệp",
+  "address": "Ngõ Lày, Bôn City, 36 Raumanian",
+  "phone": "0986666839",
+  "phoneDisplay": "098.6666.839",
+  "email": "thuning@gmail.com",
+  "url": "https://thuning.edu.vn",
+  "facebook": "https://www.facebook.com/thanhhungauto/",
+  "youtube": "https://www.youtube.com/channel/UCcT2ePDTDvAuPcdMR2fEeIw",
+  "zalo": "https://zalo.me/0986666839",
+  "bank": {
+    "owner": "Lê Bá Anh Đức",
+    "name": "Vietinbank",
+    "account": "108869255397"
+  },
+  "mapQuery": "Chợ Bôn, Đông Thanh, Thanh Hóa"
+}

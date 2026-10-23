@@ -16,6 +16,7 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
   }, [paused, slides.length]);
 
   const s = slides[i];
+  if (!s) return null;
   return (
     <div
       className="relative border border-white/15 bg-ink/60 backdrop-blur-sm"

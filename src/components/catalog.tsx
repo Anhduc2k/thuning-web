@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { categories, listProducts, productIcon, SORTS, type Product } from "@/lib/catalog";
+import { categories, SORTS, type Product } from "@/lib/catalog";
+import { listProducts, productIcon } from "@/lib/products";
 import { site } from "@/lib/site";
 import { Icon } from "./icons";
 

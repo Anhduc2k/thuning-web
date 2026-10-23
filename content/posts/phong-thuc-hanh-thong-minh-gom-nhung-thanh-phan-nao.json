@@ -1,0 +1,7 @@
+{
+  "title": "Phòng thực hành thông minh gồm những thành phần nào",
+  "date": "2026-08-27",
+  "topic": "Giải pháp",
+  "excerpt": "Một phòng thực hành thông minh không chỉ là bàn thiết bị: còn có bàn giáo viên, mạng kết nối và phần mềm quản lý buổi học.",
+  "body": "Thành phần đầu tiên là bàn thực hành của học viên, nơi gắn các module thiết bị thật như aptomat, contactor, PLC, biến tần hay cảm biến, tùy theo nghề đào tạo.\n\nThành phần thứ hai là bàn điều khiển giáo viên. Từ đây giáo viên cấp hoặc cắt nguồn từng bàn, giao bài và theo dõi trạng thái thực hành của cả lớp.\n\nThứ ba là hạ tầng kết nối giữa các bàn, thường là mạng công nghiệp có dây để ổn định trong môi trường xưởng.\n\nCuối cùng là phần mềm: quản lý bài thực hành, lưu kết quả và xuất báo cáo. Khi lựa chọn, nhà trường nên hỏi rõ phần mềm có cập nhật được bài mới hay không, để phòng thực hành không bị lạc hậu sau vài năm."
+}

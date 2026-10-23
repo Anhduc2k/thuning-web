@@ -1,0 +1,132 @@
+[
+  {
+    "slug": "thiet-bi-day-nghe",
+    "name": "Thiết bị dạy nghề",
+    "icon": "chip",
+    "intro": "Bàn thực hành, mô hình và bộ kit cho trường nghề, cao đẳng và đại học kỹ thuật. Học viên đấu nối, lập trình và vận hành trên thiết bị thật thay vì chỉ xem mô phỏng.",
+    "highlights": [
+      "Kèm bài thực hành và tài liệu hướng dẫn giảng dạy",
+      "Linh kiện công nghiệp, thay thế được khi hỏng",
+      "Lắp đặt và tập huấn giáo viên tại trường"
+    ],
+    "subs": [
+      {
+        "slug": "phong-thuc-hanh-dien-tu",
+        "name": "Phòng thực hành điện tử",
+        "icon": "wave"
+      },
+      {
+        "slug": "phong-thuc-hanh-vi-mach-tich-hop",
+        "name": "Phòng thực hành vi mạch tích hợp",
+        "icon": "chip"
+      },
+      {
+        "slug": "phong-thuc-hanh-khi-nen-thuy-luc",
+        "name": "Phòng thực hành khí nén – thủy lực",
+        "icon": "gauge"
+      },
+      {
+        "slug": "phong-thuc-hanh-may-dien",
+        "name": "Phòng thực hành máy điện",
+        "icon": "motor"
+      },
+      {
+        "slug": "phong-thuc-hanh-o-to",
+        "name": "Phòng thực hành ô tô",
+        "icon": "car"
+      },
+      {
+        "slug": "phong-thuc-hanh-tu-dong-hoa",
+        "name": "Phòng thực hành tự động hóa",
+        "icon": "robot"
+      },
+      {
+        "slug": "phong-thuc-hanh-dien-cong-nghiep",
+        "name": "Phòng thực hành điện công nghiệp",
+        "icon": "bolt"
+      },
+      {
+        "slug": "phong-thuc-hanh-dien-dan-dung",
+        "name": "Phòng thực hành điện dân dụng",
+        "icon": "bulb"
+      },
+      {
+        "slug": "phong-thuc-hanh-dien-lanh",
+        "name": "Phòng thực hành điện lạnh",
+        "icon": "snow"
+      },
+      {
+        "slug": "phong-thuc-hanh-dien-nuoc",
+        "name": "Phòng thực hành điện nước",
+        "icon": "drop"
+      }
+    ]
+  },
+  {
+    "slug": "bang-tai-cong-nghiep",
+    "name": "Băng tải công nghiệp",
+    "icon": "conveyor",
+    "intro": "Băng tải thiết kế theo mặt bằng, tải trọng và tốc độ của từng dây chuyền. Khung, dây băng và động cơ chọn theo môi trường làm việc: thực phẩm, linh kiện, đóng gói hay kho vận.",
+    "highlights": [
+      "Khảo sát mặt bằng và lên bản vẽ trước khi chế tạo",
+      "Khung nhôm định hình, thép sơn tĩnh điện hoặc inox 304",
+      "Điều khiển tốc độ bằng biến tần, tích hợp cảm biến theo yêu cầu"
+    ],
+    "subs": [
+      {
+        "slug": "bang-tai-cao-su",
+        "name": "Băng tải cao su"
+      },
+      {
+        "slug": "bang-tai-con-lan",
+        "name": "Băng tải con lăn"
+      },
+      {
+        "slug": "bang-tai-luoi-inox",
+        "name": "Băng tải lưới inox"
+      },
+      {
+        "slug": "bang-tai-pvc",
+        "name": "Băng tải PVC"
+      },
+      {
+        "slug": "bang-tai-xich",
+        "name": "Băng tải xích"
+      }
+    ]
+  },
+  {
+    "slug": "co-khi-che-tao-may",
+    "name": "Cơ khí chế tạo máy",
+    "icon": "gear",
+    "intro": "Máy và dây chuyền chế tạo theo bài toán sản xuất cụ thể, từ bản vẽ, gia công, lắp ráp đến chạy thử và chuyển giao vận hành tại xưởng khách hàng.",
+    "highlights": [
+      "Thiết kế 3D và duyệt bản vẽ cùng khách hàng",
+      "Gia công CNC, hàn, lắp ráp tại xưởng Bát Tràng",
+      "Chạy thử với sản phẩm thật trước khi bàn giao"
+    ],
+    "subs": []
+  },
+  {
+    "slug": "tu-dien-bang-dien",
+    "name": "Tủ điện – bảng điện",
+    "icon": "cabinet",
+    "intro": "Tủ điện động lực, tủ điều khiển và bảng điện thực hành được lắp ráp, đi dây và kiểm tra tại xưởng trước khi giao, kèm bản vẽ nguyên lý.",
+    "highlights": [
+      "Đi dây có đánh số, đầu cos và máng dây gọn gàng",
+      "Kiểm tra cách điện và chạy thử không tải trước khi giao",
+      "Bàn giao bản vẽ nguyên lý và sơ đồ đấu nối"
+    ],
+    "subs": []
+  },
+  {
+    "slug": "thiet-bi-khac",
+    "name": "Thiết bị khác",
+    "icon": "box",
+    "intro": "Thiết bị phụ trợ cho phòng học và xưởng thực hành.",
+    "highlights": [
+      "Đồng bộ với bàn thực hành và nội thất phòng học"
+    ],
+    "subs": []
+  }
+]

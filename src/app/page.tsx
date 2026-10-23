@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ProductGrid } from "@/components/catalog";
 import { HeroSlider } from "@/components/hero-slider";
 import { Icon } from "@/components/icons";
-import { categories, getCategory, getProduct, products, subName } from "@/lib/catalog";
-import { formatDate, posts } from "@/lib/posts";
+import { categories, getCategory, subName } from "@/lib/catalog";
+import { getProduct, getProducts } from "@/lib/products";
+import { formatDate, getPosts } from "@/lib/posts";
 import { pageMeta, site } from "@/lib/site";
 
 export const metadata = {
@@ -24,8 +25,10 @@ const heroSlides = [
     slug: "bo-thuc-hanh-plc-s7-1200",
     specs: ["PLC S7-1200 kèm module vào ra số và tương tự", "Kết nối HMI và phần mềm giám sát qua Ethernet", "Phù hợp nghề điện công nghiệp và tự động hóa"],
   },
-].map(({ slug, specs }) => {
-  const p = getProduct(slug)!;
+].flatMap(({ slug, specs }) => {
+  // Sản phẩm đã bị xóa trong CMS thì bỏ khỏi slider thay vì làm hỏng build.
+  const p = getProduct(slug);
+  if (!p) return [];
   const c = getCategory(p.category)!;
   return { href: `/${p.category}/${p.slug}`, name: p.name, model: p.model, category: subName(c, p.sub) ?? c.name, specs };
 });
@@ -37,9 +40,18 @@ const promises = [
   { icon: "shield", title: "Bảo hành dài hạn", text: "Linh kiện công nghiệp, có sẵn vật tư thay thế" },
 ] as const;
 
+// Sản phẩm của slider bị xóa hết trong CMS → dùng sản phẩm nổi bật, thông số lấy từ bảng thông số.
+function slides() {
+  if (heroSlides.length) return heroSlides;
+  return getProducts().filter((p) => p.featured).slice(0, 3).map((p) => {
+    const c = getCategory(p.category)!;
+    return { href: `/${p.category}/${p.slug}`, name: p.name, model: p.model, category: subName(c, p.sub) ?? c.name, specs: (p.specs ?? []).slice(0, 3).map((s) => `${s.label}: ${s.value}`) };
+  });
+}
+
 export default function Home() {
-  const newest = products.filter((p) => p.isNew).slice(0, 8);
-  const featured = products.filter((p) => (p.featured || p.bestseller) && !p.isNew).slice(0, 8);
+  const newest = getProducts().filter((p) => p.isNew).slice(0, 8);
+  const featured = getProducts().filter((p) => (p.featured || p.bestseller) && !p.isNew).slice(0, 8);
   const vocational = categories[0];
 
   return (
@@ -63,7 +75,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <HeroSlider slides={heroSlides} />
+          <HeroSlider slides={slides()} />
         </div>
       </section>
 
@@ -74,7 +86,7 @@ export default function Home() {
               <Icon name={c.icon} className="size-8 shrink-0 text-brand" />
               <span>
                 <span className="block font-semibold leading-tight group-hover:text-brand">{c.name}</span>
-                <span className="text-sm text-steel">{products.filter((p) => p.category === c.slug).length} sản phẩm</span>
+                <span className="text-sm text-steel">{getProducts().filter((p) => p.category === c.slug).length} sản phẩm</span>
               </span>
             </Link>
           ))}
@@ -97,10 +109,10 @@ export default function Home() {
             {vocational.subs.map((s) => (
               <li key={s.slug}>
                 <Link href={`/${vocational.slug}/${s.slug}`} className="group flex h-full flex-col gap-4 bg-white p-5 hover:bg-ink hover:text-white">
-                  <Icon name={s.icon ?? "chip"} className="size-9 stroke-[1.3] text-brand" />
+                  <Icon name={s.icon || "chip"} className="size-9 stroke-[1.3] text-brand" />
                   <span>
                     <span className="block font-semibold leading-snug first-letter:uppercase">{s.name.replace("Phòng thực hành ", "")}</span>
-                    <span className="text-sm text-steel group-hover:text-white/60">{products.filter((p) => p.sub === s.slug).length} thiết bị</span>
+                    <span className="text-sm text-steel group-hover:text-white/60">{getProducts().filter((p) => p.sub === s.slug).length} thiết bị</span>
                   </span>
                 </Link>
               </li>
@@ -129,7 +141,7 @@ export default function Home() {
 
       <Section title="Tin tức và hướng dẫn" href="/tin-tuc" more="Xem tất cả bài viết">
         <div className="grid gap-8 md:grid-cols-3">
-          {posts.slice(0, 3).map((p) => (
+          {getPosts().slice(0, 3).map((p) => (
             <article key={p.slug}>
               <Link href={`/tin-tuc/${p.slug}`} className="group block">
                 <p className="text-sm text-steel"><time dateTime={p.date}>{formatDate(p.date)}</time> · {p.topic}</p>

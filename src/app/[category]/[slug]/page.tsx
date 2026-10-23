@@ -6,14 +6,17 @@ import { Listing, ListingFallback, PageHead, ProductGrid, ProductVisual, Sidebar
 import { Gallery } from "@/components/gallery";
 import { Icon } from "@/components/icons";
 import { LeadForm } from "@/components/lead-form";
-import { categories, getCategory, getProduct, products, relatedProducts, subName } from "@/lib/catalog";
+import { categories, getCategory, subName } from "@/lib/catalog";
+import { renderMarkdown } from "@/lib/markdown";
+import { formatDate, getPost } from "@/lib/posts";
+import { getProduct, getProducts, relatedProducts } from "@/lib/products";
 import { JsonLd } from "@/components/json-ld";
 import { breadcrumbLd, pageMeta, site } from "@/lib/site";
 
 // Một route cho cả danh mục con (/thiet-bi-day-nghe/phong-thuc-hanh-dien-tu) và sản phẩm (/thiet-bi-day-nghe/<san-pham>), giống URL site gốc.
 export const generateStaticParams = () => [
   ...categories.flatMap((c) => c.subs.map((s) => ({ category: c.slug, slug: s.slug }))),
-  ...products.map((p) => ({ category: p.category, slug: p.slug })),
+  ...getProducts().map((p) => ({ category: p.category, slug: p.slug })),
 ];
 
 function resolve(category: string, slug: string) {
@@ -30,12 +33,13 @@ export async function generateMetadata({ params }: PageProps<"/[category]/[slug]
   if (!r) return {};
   const path = `/${category}/${slug}`;
   if (r.sub) {
-    const n = products.filter((p) => p.sub === r.sub!.slug).length;
+    const n = getProducts().filter((p) => p.sub === r.sub!.slug).length;
     return pageMeta(r.sub.name, `${r.sub.name}: ${n} thiết bị thực hành do xưởng tự thiết kế, sản xuất. Lắp đặt, tập huấn giáo viên và bảo hành toàn quốc.`, path);
   }
   const p = r.product!;
   return pageMeta(
     p.name,
+    p.summary ||
     `${p.name} (mã ${p.model}) – ${subName(r.c, p.sub) ?? r.c.name}. Sản xuất tại Việt Nam, giao hàng và lắp đặt toàn quốc. Gọi ${site.phoneDisplay} để nhận báo giá.`,
     path,
   );
@@ -71,7 +75,9 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
     ["Xuất xứ", "Việt Nam"],
     ["Tình trạng", "Mới 100%"],
     ["Tiêu chuẩn", "ISO 9001:2015, ISO 14001:2015"],
+    ...(p.specs ?? []).map((s): [string, string] => [s.label, s.value]),
   ];
+  const posts = (p.relatedPosts ?? []).map((s) => getPost(s)!);
 
   return (
     <>
@@ -93,7 +99,7 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
         name: p.name,
         sku: p.model,
         category: subLabel ?? c.name,
-        description: `${p.name} – ${c.intro}`,
+        description: p.summary || `${p.name} – ${c.intro}`,
         url: `${site.url}/${c.slug}/${p.slug}`,
         ...(p.images?.length && { image: p.images.map((i) => site.url + i) }),
         brand: { "@type": "Brand", name: site.name },
@@ -115,6 +121,7 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
           <div>
             <p className="font-mono text-sm text-steel">{p.model}</p>
             <h1 className="mt-2 text-3xl font-bold leading-tight tracking-tight md:text-[2.25rem]">{p.name}</h1>
+            {p.summary && <p className="mt-3 leading-relaxed text-steel">{p.summary}</p>}
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
               <p>Giá: <span className="text-xl font-bold text-brand">Liên hệ</span></p>
               <p className="flex items-center gap-1.5 text-sm text-green-700"><span className="size-2 rounded-full bg-green-600" />Còn hàng</p>
@@ -152,11 +159,16 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
         <div className="mt-14 grid gap-10 lg:grid-cols-[1fr_400px]">
           <section>
             <h2 className="border-b-2 border-ink pb-3 text-xl font-bold">Mô tả sản phẩm</h2>
+            {p.description ? (
+              // Markdown do biên tập viên nhập trong CMS (người có quyền ghi repo), không phải dữ liệu khách.
+              <div className="prose-vi mt-5" dangerouslySetInnerHTML={{ __html: renderMarkdown(p.description) }} />
+            ) : (
             <div className="prose-vi mt-5">
               <p>{p.name} do {site.legalName} thiết kế và sản xuất tại xưởng Bát Tràng, Hà Nội.</p>
               <p>{c.intro}</p>
               <p>Cấu hình chi tiết, tài liệu kỹ thuật và bài thực hành kèm theo được gửi cùng báo giá. Liên hệ để được tư vấn phương án phù hợp với nhu cầu của đơn vị bạn.</p>
             </div>
+            )}
           </section>
 
           <section id="bao-gia" className="scroll-mt-32 bg-ink p-6 text-white md:p-8">
@@ -167,6 +179,22 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
             </div>
           </section>
         </div>
+
+        {posts.length > 0 && (
+          <section className="mt-16">
+            <h2 className="mb-6 border-b-2 border-ink pb-3 text-xl font-bold">Bài viết liên quan</h2>
+            <ul className="grid gap-6 md:grid-cols-3">
+              {posts.map((o) => (
+                <li key={o.slug}>
+                  <Link href={`/tin-tuc/${o.slug}`} className="group block">
+                    <p className="text-sm text-steel"><time dateTime={o.date}>{formatDate(o.date)}</time> · {o.topic}</p>
+                    <h3 className="mt-1 font-semibold leading-snug group-hover:text-brand">{o.title}</h3>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="mt-16">
           <h2 className="mb-6 border-b-2 border-ink pb-3 text-xl font-bold">Sản phẩm tương tự</h2>

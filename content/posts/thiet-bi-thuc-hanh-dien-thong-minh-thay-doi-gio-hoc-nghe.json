@@ -1,0 +1,7 @@
+{
+  "title": "Thiết bị thực hành điện thông minh thay đổi giờ học nghề như thế nào",
+  "date": "2026-09-18",
+  "topic": "Đào tạo nghề",
+  "excerpt": "Khi bàn thực hành ghi lại từng thao tác đấu nối, giáo viên biết ngay học viên sai ở đâu thay vì chờ đến lúc chấm bài.",
+  "body": "Giờ thực hành điện truyền thống thường diễn ra theo một nhịp quen thuộc: giáo viên làm mẫu, học viên đấu nối, rồi giáo viên đi từng bàn kiểm tra. Với lớp 30 học viên, phần lớn thời gian của giáo viên dành cho việc đi kiểm tra chứ không phải giải thích.\n\nBàn thực hành thông minh đặt cảm biến tại các điểm đấu nối và gửi trạng thái về máy tính của giáo viên. Mạch nào đấu sai, thiếu dây hay chưa cấp nguồn đều hiển thị trên màn hình tổng, nên giáo viên đến đúng bàn cần hỗ trợ.\n\nHệ thống cũng khóa nguồn khi phát hiện đấu nối nguy hiểm, giúp học viên mới làm quen với điện công nghiệp được thử sai mà không gây chập cháy.\n\nDữ liệu từng buổi được lưu lại, nên nhà trường có căn cứ để đánh giá kỹ năng của từng học viên thay vì chỉ dựa vào bài kiểm tra cuối khóa."
+}
