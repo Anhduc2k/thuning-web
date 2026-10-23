@@ -128,5 +128,21 @@
       "Đồng bộ với bàn thực hành và nội thất phòng học"
     ],
     "subs": []
+  },
+  {
+    "slug": "test-thu-ning",
+    "name": "Test Thư Ning",
+    "icon": "drop",
+    "intro": "Test thôi",
+    "highlights": [
+      "Đẳng cấp vl"
+    ],
+    "subs": [
+      {
+        "slug": "test-thu-muc-con",
+        "name": "Test thư mục con",
+        "icon": "chip"
+      }
+    ]
   }
 ]
