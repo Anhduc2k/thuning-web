@@ -9,7 +9,7 @@ backend:
   # Đăng nhập bằng nút "Sign In with GitHub" cần một dịch vụ OAuth. Mặc định nó dùng của Netlify (không dùng).
   # Khi đã deploy Cloudflare Worker sveltia-cms-auth (xem docs/HUONG-DAN-CMS.md), bỏ dấu # dòng dưới và thay bằng URL của Worker.
   # Chưa có Worker thì đăng nhập bằng Personal Access Token ("Sign In Using Access Token").
-  # base_url: https://sveltia-cms-auth.<tai-khoan>.workers.dev
+  base_url: https://sveltia-cms-auth-check.khungkhip.workers.dev
 
 media_folder: public/uploads
 public_folder: /uploads
