@@ -1,9 +1,9 @@
 [
   {
     "slug": "thiet-bi-day-nghe",
-    "name": "Thiết bị dạy nghề",
-    "icon": "chip",
-    "intro": "Bàn thực hành, mô hình và bộ kit cho trường nghề, cao đẳng và đại học kỹ thuật. Học viên đấu nối, lập trình và vận hành trên thiết bị thật thay vì chỉ xem mô phỏng.",
+    "name": "Robot Xếp dỡ - Xếp pallet và Cấp liệu từ Pallet",
+    "icon": "robot",
+    "intro": "Cánh tay Robot xếp bao - xếp thùng từ dây chuyền xuống pallet - Cấp liệu từ Pallet (Dỡ bao)",
     "highlights": [
       "Kèm bài thực hành và tài liệu hướng dẫn giảng dạy",
       "Linh kiện công nghiệp, thay thế được khi hỏng",
@@ -12,53 +12,23 @@
     "subs": [
       {
         "slug": "phong-thuc-hanh-dien-tu",
-        "name": "Phòng thực hành điện tử",
-        "icon": "wave"
-      },
-      {
-        "slug": "phong-thuc-hanh-vi-mach-tich-hop",
-        "name": "Phòng thực hành vi mạch tích hợp",
-        "icon": "chip"
-      },
-      {
-        "slug": "phong-thuc-hanh-khi-nen-thuy-luc",
-        "name": "Phòng thực hành khí nén – thủy lực",
-        "icon": "gauge"
-      },
-      {
-        "slug": "phong-thuc-hanh-may-dien",
-        "name": "Phòng thực hành máy điện",
-        "icon": "motor"
-      },
-      {
-        "slug": "phong-thuc-hanh-o-to",
-        "name": "Phòng thực hành ô tô",
-        "icon": "car"
-      },
-      {
-        "slug": "phong-thuc-hanh-tu-dong-hoa",
-        "name": "Phòng thực hành tự động hóa",
+        "name": "Robot Xếp Bao xuống Pallet - Tải 150kg - 300kg",
         "icon": "robot"
       },
       {
-        "slug": "phong-thuc-hanh-dien-cong-nghiep",
-        "name": "Phòng thực hành điện công nghiệp",
-        "icon": "bolt"
+        "slug": "phong-thuc-hanh-vi-mach-tich-hop",
+        "name": "Robot Xếp Bao xuống Pallet - Tải 75kg",
+        "icon": "robot"
       },
       {
-        "slug": "phong-thuc-hanh-dien-dan-dung",
-        "name": "Phòng thực hành điện dân dụng",
-        "icon": "bulb"
+        "slug": "phong-thuc-hanh-khi-nen-thuy-luc",
+        "name": "Robot Xếp Thùng Carton xuống Pallet - Tải 75kg",
+        "icon": "robot"
       },
       {
-        "slug": "phong-thuc-hanh-dien-lanh",
-        "name": "Phòng thực hành điện lạnh",
-        "icon": "snow"
-      },
-      {
-        "slug": "phong-thuc-hanh-dien-nuoc",
-        "name": "Phòng thực hành điện nước",
-        "icon": "drop"
+        "slug": "phong-thuc-hanh-may-dien",
+        "name": "Robot dỡ bao cấp liệu từ Pallet",
+        "icon": "robot"
       }
     ]
   },
