@@ -1,9 +1,16 @@
 {
   "name": "Bộ bàn ghế học sinh",
   "model": "TB-156",
-  "category": "thiet-bi-khac",
+  "category": "thiet-bi-day-nghe",
+  "sub": "phong-thuc-hanh-vi-mach-tich-hop",
   "date": "2026-08-27",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "",
+  "description": "",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
