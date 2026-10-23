@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { dict, type Locale } from "@/lib/i18n";
 
-export function Gallery({ images, alt, locale }: { images: string[]; alt: string; locale: Locale }) {
+export function Gallery({ images, alt }: { images: string[]; alt: string }) {
   const [i, setI] = useState(0);
   return (
     <div>
@@ -13,7 +12,7 @@ export function Gallery({ images, alt, locale }: { images: string[]; alt: string
       </div>
       <div className="mt-3 grid grid-cols-5 gap-2">
         {images.map((src, n) => (
-          <button key={src} onClick={() => setI(n)} aria-label={dict[locale].photo(n + 1)} aria-current={n === i} className="relative aspect-square border border-line aria-[current=true]:border-ink">
+          <button key={src} onClick={() => setI(n)} aria-label={`Ảnh ${n + 1}`} aria-current={n === i} className="relative aspect-square border border-line aria-[current=true]:border-ink">
             <Image src={src} alt="" fill sizes="120px" className="object-contain" />
           </button>
         ))}

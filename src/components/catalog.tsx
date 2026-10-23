@@ -1,41 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
 import { categories, listProducts, productIcon, SORTS, type Product } from "@/lib/catalog";
-import { href } from "@/lib/i18n";
-import { getT } from "@/lib/locale";
 import { site } from "@/lib/site";
 import { Icon } from "./icons";
 
 /** Ảnh sản phẩm; chưa có ảnh thì hiện khung bản vẽ với biểu tượng danh mục. */
-export async function ProductVisual({ product, className = "", sizes = "300px", priority = false }: { product: Product; className?: string; sizes?: string; priority?: boolean }) {
-  const { l } = await getT();
+export function ProductVisual({ product, className = "", sizes = "300px", priority = false }: { product: Product; className?: string; sizes?: string; priority?: boolean }) {
   const img = product.images?.[0];
   if (img) {
     return (
       <div className={`relative overflow-hidden bg-white ${className}`}>
-        <Image src={img} alt={product.name[l]} fill sizes={sizes} priority={priority} className="object-contain" />
+        <Image src={img} alt={product.name} fill sizes={sizes} priority={priority} className="object-contain" />
       </div>
     );
   }
   return (
-    <div className={`bg-blueprint plate relative grid place-items-center text-steel ${className}`} role="img" aria-label={product.name[l]}>
+    <div className={`bg-blueprint plate relative grid place-items-center text-steel ${className}`} role="img" aria-label={product.name}>
       <Icon name={productIcon(product)} className="relative size-2/5 max-h-32 stroke-[0.9] transition-colors duration-300 group-hover:text-brand" />
     </div>
   );
 }
 
-export async function ProductCard({ product }: { product: Product }) {
-  const { l, t } = await getT();
+export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={href(l, `/${product.category}/${product.slug}`)} className="group flex flex-col border border-line bg-white hover:border-ink">
+    <Link href={`/${product.category}/${product.slug}`} className="group flex flex-col border border-line bg-white hover:border-ink">
       <div className="relative">
         <ProductVisual product={product} className="aspect-[4/3]" />
         <span className="absolute left-0 top-0 bg-white px-2 py-1 font-mono text-xs text-steel">{product.model}</span>
-        {product.isNew && <span className="absolute right-2 top-2 bg-brand px-1.5 py-0.5 text-xs font-semibold text-white">{t.isNew}</span>}
+        {product.isNew && <span className="absolute right-2 top-2 bg-brand px-1.5 py-0.5 text-xs font-semibold text-white">Mới</span>}
       </div>
       <div className="flex flex-1 flex-col gap-3 border-t border-line p-4">
-        <h3 className="line-clamp-3 text-[15px] sm:line-clamp-2 font-semibold leading-snug group-hover:text-brand">{product.name[l]}</h3>
-        <span className="mt-auto text-sm text-steel">{t.price} <span className="font-semibold text-brand">{t.contactPrice}</span></span>
+        <h3 className="line-clamp-3 text-[15px] sm:line-clamp-2 font-semibold leading-snug group-hover:text-brand">{product.name}</h3>
+        <span className="mt-auto text-sm text-steel">Giá: <span className="font-semibold text-brand">Liên hệ</span></span>
       </div>
     </Link>
   );
@@ -49,16 +45,15 @@ export function ProductGrid({ items, cols = 4 }: { items: Product[]; cols?: 3 | 
   );
 }
 
-export async function Breadcrumb({ items }: { items: { href?: string; label: string }[] }) {
-  const { l, t } = await getT();
+export function Breadcrumb({ items }: { items: { href?: string; label: string }[] }) {
   return (
-    <nav aria-label={t.breadcrumb} className="text-sm text-white/60">
+    <nav aria-label="Đường dẫn" className="text-sm text-white/60">
       <ol className="flex flex-wrap items-center gap-1.5">
-        <li><Link href={href(l, "/")} className="hover:text-white">{t.homeLabel}</Link></li>
+        <li><Link href="/" className="hover:text-white">Trang chủ</Link></li>
         {items.map((it) => (
           <li key={it.label} className="flex items-center gap-1.5">
             <Icon name="chevron" className="size-3" />
-            {it.href ? <Link href={href(l, it.href)} className="hover:text-white">{it.label}</Link> : <span aria-current="page" className="text-white">{it.label}</span>}
+            {it.href ? <Link href={it.href} className="hover:text-white">{it.label}</Link> : <span aria-current="page" className="text-white">{it.label}</span>}
           </li>
         ))}
       </ol>
@@ -78,18 +73,17 @@ export function PageHead({ title, crumbs, children }: { title: string; crumbs: {
   );
 }
 
-export async function CategoryTree({ active, activeSub }: { active?: string; activeSub?: string }) {
-  const { l, t } = await getT();
+export function CategoryTree({ active, activeSub }: { active?: string; activeSub?: string }) {
   return (
-    <nav aria-label={t.catalog.title} className="border border-line">
-      <h2 className="bg-ink px-4 py-3 font-semibold text-white">{t.catalog.title}</h2>
+    <nav aria-label="Danh mục sản phẩm" className="border border-line">
+      <h2 className="bg-ink px-4 py-3 font-semibold text-white">Danh mục sản phẩm</h2>
       <ul className="divide-y divide-line">
         {categories.map((c) => (
           <li key={c.slug}>
             <details open={c.slug === active} className="group">
               <summary className={`flex cursor-pointer list-none items-center gap-3 px-4 py-3 text-[15px] font-medium hover:text-brand [&::-webkit-details-marker]:hidden ${c.slug === active && !activeSub ? "text-brand" : ""}`}>
                 <Icon name={c.icon} className="size-5 text-steel" />
-                <Link href={href(l, `/${c.slug}`)} className="-my-3 flex-1 py-3">{c.name[l]}</Link>
+                <Link href={`/${c.slug}`} className="-my-3 flex-1 py-3">{c.name}</Link>
                 {c.subs.length > 0 && <Icon name="chevron" className="size-4 text-steel transition group-open:rotate-90" />}
               </summary>
               {c.subs.length > 0 && (
@@ -97,11 +91,11 @@ export async function CategoryTree({ active, activeSub }: { active?: string; act
                   {c.subs.map((s) => (
                     <li key={s.slug}>
                       <Link
-                        href={href(l, `/${c.slug}/${s.slug}`)}
+                        href={`/${c.slug}/${s.slug}`}
                         aria-current={s.slug === activeSub ? "page" : undefined}
                         className="block py-2.5 text-sm text-steel hover:text-brand lg:py-1.5 aria-[current=page]:font-semibold aria-[current=page]:text-brand"
                       >
-                        {s.name[l]}
+                        {s.name}
                       </Link>
                     </li>
                   ))}
@@ -115,13 +109,12 @@ export async function CategoryTree({ active, activeSub }: { active?: string; act
   );
 }
 
-export async function HotlineBox() {
-  const { t } = await getT();
+export function HotlineBox() {
   return (
     <div className="bg-brand p-5 text-white">
-      <p className="text-sm text-white/80">{t.catalog.hotlineAsk}</p>
+      <p className="text-sm text-white/80">Cần tư vấn cấu hình hoặc báo giá?</p>
       <a href={`tel:${site.phone}`} className="mt-1 block text-2xl font-bold tracking-tight hover:underline">{site.phoneDisplay}</a>
-      <p className="mt-1 text-sm text-white/80">{t.catalog.hotlineNote}</p>
+      <p className="mt-1 text-sm text-white/80">Gọi hoặc nhắn Zalo, kể cả ngoài giờ hành chính.</p>
     </div>
   );
 }
@@ -137,25 +130,24 @@ export function Sidebar({ active, activeSub }: { active?: string; activeSub?: st
 
 /** Lưới sản phẩm có sắp xếp + phân trang qua query string (?sort=&page=). */
 export async function Listing({ basePath, category, sub, searchParams }: { basePath: string; category?: string; sub?: string; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
-  const { l, t } = await getT();
   const sp = await searchParams;
   const sort = sp.sort === "ten-a-z" ? "ten-a-z" : "moi-nhat";
   const search = typeof sp.q === "string" ? sp.q.trim().slice(0, 100) : "";
-  const { items, total, page, pages } = listProducts({ category, sub, sort, q: search, page: Number(sp.page) || 1, l });
-  const link = (s: string, p = 1) => {
+  const { items, total, page, pages } = listProducts({ category, sub, sort, q: search, page: Number(sp.page) || 1 });
+  const href = (s: string, p = 1) => {
     const q = new URLSearchParams();
     if (search) q.set("q", search);
     if (s !== "moi-nhat") q.set("sort", s);
     if (p > 1) q.set("page", String(p));
     const qs = q.toString();
-    return href(l, qs ? `${basePath}?${qs}` : basePath);
+    return qs ? `${basePath}?${qs}` : basePath;
   };
 
   if (!total) {
     return (
       <div className="border border-dashed border-line p-10 text-center">
-        <p className="font-semibold">{search ? t.catalog.noMatch(search) : t.catalog.empty}</p>
-        <p className="mt-1 text-steel">{t.catalog.advice(site.phoneDisplay)}</p>
+        <p className="font-semibold">{search ? `Không tìm thấy thiết bị khớp “${search}”.` : "Danh mục này đang cập nhật sản phẩm."}</p>
+        <p className="mt-1 text-steel">Gọi {site.phoneDisplay} để được tư vấn thiết bị theo yêu cầu.</p>
       </div>
     );
   }
@@ -163,20 +155,20 @@ export async function Listing({ basePath, category, sub, searchParams }: { baseP
   return (
     <div>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-steel">{t.catalog.count(total)}</p>
-        <div className="flex rounded-md border border-line p-0.5 text-sm" role="group" aria-label={t.catalog.sort}>
-          {SORTS.map((k) => (
-            <Link key={k} href={link(k)} aria-current={k === sort ? "true" : undefined} className="rounded px-3 py-1.5 text-steel aria-[current=true]:bg-ink aria-[current=true]:text-white">
-              {t.catalog.sorts[k]}
+        <p className="text-sm text-steel">{total} sản phẩm</p>
+        <div className="flex rounded-md border border-line p-0.5 text-sm" role="group" aria-label="Sắp xếp">
+          {Object.entries(SORTS).map(([k, label]) => (
+            <Link key={k} href={href(k)} aria-current={k === sort ? "true" : undefined} className="rounded px-3 py-1.5 text-steel aria-[current=true]:bg-ink aria-[current=true]:text-white">
+              {label}
             </Link>
           ))}
         </div>
       </div>
       <ProductGrid items={items} cols={3} />
       {pages > 1 && (
-        <nav aria-label={t.catalog.pages} className="mt-8 flex justify-center gap-1.5">
+        <nav aria-label="Phân trang" className="mt-8 flex justify-center gap-1.5">
           {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
-            <Link key={n} href={link(sort, n)} aria-current={n === page ? "page" : undefined} className="grid size-10 place-items-center border border-line text-sm hover:border-ink aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white">
+            <Link key={n} href={href(sort, n)} aria-current={n === page ? "page" : undefined} className="grid size-10 place-items-center border border-line text-sm hover:border-ink aria-[current=page]:border-ink aria-[current=page]:bg-ink aria-[current=page]:text-white">
               {n}
             </Link>
           ))}
