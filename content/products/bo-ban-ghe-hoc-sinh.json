@@ -12,7 +12,12 @@
   ],
   "summary": "",
   "description": "",
-  "specs": [],
+  "specs": [
+    {
+      "label": "Test thông số",
+      "value": "220V/50Hz"
+    }
+  ],
   "relatedProducts": [],
   "relatedPosts": []
 }
