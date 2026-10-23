@@ -34,34 +34,39 @@
   },
   {
     "slug": "bang-tai-cong-nghiep",
-    "name": "Băng tải công nghiệp",
-    "icon": "conveyor",
-    "intro": "Băng tải thiết kế theo mặt bằng, tải trọng và tốc độ của từng dây chuyền. Khung, dây băng và động cơ chọn theo môi trường làm việc: thực phẩm, linh kiện, đóng gói hay kho vận.",
+    "name": "Biến Tần EasyPower",
+    "icon": "chip",
+    "intro": "Biến Tần EasyPower đầy đủ các cấp công suất, Bảo hành 2 năm mọi lỗi, tải nặng hoạt động bền bỉ trong môi trường khắc nghiệt",
     "highlights": [
-      "Khảo sát mặt bằng và lên bản vẽ trước khi chế tạo",
-      "Khung nhôm định hình, thép sơn tĩnh điện hoặc inox 304",
-      "Điều khiển tốc độ bằng biến tần, tích hợp cảm biến theo yêu cầu"
+      "Tải nặng bền bỉ",
+      "2 màn hình theo dõi thông số",
+      "Màn hình có thể tháo rời, tặng kèm cáp kết nối và khay lắp mặt tủ điện"
     ],
     "subs": [
       {
         "slug": "bang-tai-cao-su",
-        "name": "Băng tải cao su"
+        "name": "Biến tần EasyPower EP800 - 1.5kW",
+        "icon": ""
       },
       {
         "slug": "bang-tai-con-lan",
-        "name": "Băng tải con lăn"
+        "name": "Biến tần EasyPower EP800 - 2.2kW",
+        "icon": ""
       },
       {
         "slug": "bang-tai-luoi-inox",
-        "name": "Băng tải lưới inox"
+        "name": "Biến tần EasyPower EP800 - 4kW",
+        "icon": ""
       },
       {
         "slug": "bang-tai-pvc",
-        "name": "Băng tải PVC"
+        "name": "Biến tần EasyPower EP800 - 11kW",
+        "icon": ""
       },
       {
         "slug": "bang-tai-xich",
-        "name": "Băng tải xích"
+        "name": "Biến tần EasyPower EP800 - 55kW",
+        "icon": ""
       }
     ]
   },
