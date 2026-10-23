@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { dict, href, type Locale } from "@/lib/i18n";
 
+// href là đường dẫn logic (vi); tiền tố ngôn ngữ thêm lúc render.
 export type Slide = { href: string; name: string; model: string; category: string; specs: string[] };
 
-export function HeroSlider({ slides }: { slides: Slide[] }) {
+export function HeroSlider({ slides, locale }: { slides: Slide[]; locale: Locale }) {
+  const t = dict[locale].hero;
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
@@ -24,7 +27,7 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
       aria-roledescription="carousel"
-      aria-label="Thiết bị tiêu biểu"
+      aria-label={t.label}
     >
       {/* Tem thông số thiết bị */}
       <div key={i} className="animate-[fade_.5s_ease] p-6 md:p-8" aria-live="polite">
@@ -36,14 +39,14 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
         <dl className="mt-5 grid gap-2.5 text-[15px]">
           {s.specs.map((sp) => (
             <div key={sp} className="flex gap-3 text-white/80">
-              <dt className="sr-only">Đặc điểm</dt>
+              <dt className="sr-only">{t.feature}</dt>
               <span aria-hidden className="mt-2 h-px w-4 shrink-0 bg-signal" />
               <dd>{sp}</dd>
             </div>
           ))}
         </dl>
-        <Link href={s.href} className="mt-7 inline-flex h-11 items-center rounded-md bg-white px-5 font-semibold text-ink hover:bg-signal">
-          Xem chi tiết thiết bị
+        <Link href={href(locale, s.href)} className="mt-7 inline-flex h-11 items-center rounded-md bg-white px-5 font-semibold text-ink hover:bg-signal">
+          {t.details}
         </Link>
       </div>
       <div className="flex items-center justify-between border-t border-white/15 px-6 py-1.5 md:px-8">
@@ -52,15 +55,15 @@ export function HeroSlider({ slides }: { slides: Slide[] }) {
             <button
               key={sl.href}
               onClick={() => setI(n)}
-              aria-label={`Thiết bị ${n + 1}: ${sl.name}`}
+              aria-label={t.slide(n + 1, sl.name)}
               aria-current={n === i}
               className="relative h-9 w-6 before:absolute before:inset-x-0 before:top-1/2 before:h-1.5 before:-translate-y-1/2 before:bg-white/25 aria-[current=true]:w-10 aria-[current=true]:before:bg-signal"
             />
           ))}
         </div>
         <div className="flex gap-1 text-white">
-          <button onClick={() => setI((i - 1 + slides.length) % slides.length)} className="grid size-9 place-items-center hover:bg-white/10" aria-label="Thiết bị trước">‹</button>
-          <button onClick={() => setI((i + 1) % slides.length)} className="grid size-9 place-items-center hover:bg-white/10" aria-label="Thiết bị tiếp theo">›</button>
+          <button onClick={() => setI((i - 1 + slides.length) % slides.length)} className="grid size-9 place-items-center hover:bg-white/10" aria-label={t.prev}>‹</button>
+          <button onClick={() => setI((i + 1) % slides.length)} className="grid size-9 place-items-center hover:bg-white/10" aria-label={t.next}>›</button>
         </div>
       </div>
       <style>{`@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}`}</style>

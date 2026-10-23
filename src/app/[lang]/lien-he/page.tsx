@@ -2,21 +2,26 @@ import type { Metadata } from "next";
 import { PageHead } from "@/components/catalog";
 import { Icon } from "@/components/icons";
 import { LeadForm } from "@/components/lead-form";
+import { getT } from "@/lib/locale";
 import { pageMeta, site } from "@/lib/site";
 
-export const metadata: Metadata = pageMeta("Liên hệ", `Địa chỉ, hotline ${site.phoneDisplay}, email và bản đồ đến ${site.legalName}.`, "/lien-he");
+export async function generateMetadata(): Promise<Metadata> {
+  const { l, t } = await getT();
+  return pageMeta(l, t.contact.title, t.contact.desc(site.phoneDisplay, site.legalName), "/lien-he");
+}
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { l, t } = await getT();
   const rows = [
-    { icon: "pin", label: "Địa chỉ", value: site.address },
-    { icon: "phone", label: "Hotline / Zalo", value: site.phoneDisplay, href: `tel:${site.phone}` },
-    { icon: "mail", label: "Email", value: site.email, href: `mailto:${site.email}` },
-    { icon: "clock", label: "Giờ làm việc", value: "Thứ 2 – Thứ 7, 8:00 – 17:30" },
+    { icon: "pin", label: t.contact.address, value: site.address },
+    { icon: "phone", label: t.contact.hotline, value: site.phoneDisplay, href: `tel:${site.phone}` },
+    { icon: "mail", label: t.contact.email, value: site.email, href: `mailto:${site.email}` },
+    { icon: "clock", label: t.contact.hours, value: t.contact.hoursValue },
   ] as const;
 
   return (
     <>
-      <PageHead title="Liên hệ" crumbs={[{ label: "Liên hệ" }]} />
+      <PageHead title={t.contact.title} crumbs={[{ label: t.contact.title }]} />
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-12 lg:grid-cols-2">
         <div>
           <h2 className="text-xl font-bold">{site.legalName}</h2>
@@ -32,7 +37,7 @@ export default function ContactPage() {
             ))}
           </dl>
           <iframe
-            title={`Bản đồ: ${site.address}`}
+            title={`${t.contact.map}: ${site.address}`}
             src={`https://maps.google.com/maps?q=${encodeURIComponent(site.mapQuery)}&z=15&output=embed`}
             className="mt-8 aspect-[4/3] w-full border border-line"
             loading="lazy"
@@ -40,9 +45,9 @@ export default function ContactPage() {
           />
         </div>
         <section className="self-start border border-line p-6 md:p-8">
-          <h2 className="text-xl font-bold">Gửi tin nhắn</h2>
-          <p className="mt-1 text-sm text-steel">Chúng tôi trả lời qua email trong ngày làm việc.</p>
-          <div className="mt-5"><LeadForm kind="contact" submitLabel="Gửi tin nhắn" /></div>
+          <h2 className="text-xl font-bold">{t.contact.formTitle}</h2>
+          <p className="mt-1 text-sm text-steel">{t.contact.formNote}</p>
+          <div className="mt-5"><LeadForm kind="contact" submitLabel={t.contact.submit} locale={l} /></div>
         </section>
       </div>
     </>

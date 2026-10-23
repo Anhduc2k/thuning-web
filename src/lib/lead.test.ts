@@ -19,6 +19,12 @@ test("order: thiếu tên, sai số", () => {
   assert.ok(errors.name && errors.phone);
 });
 
+test("en: lỗi và thông báo tiếng Anh", () => {
+  const { errors } = parseLead(fd({ kind: "order", locale: "en", name: "", phone: "12345" }));
+  assert.equal(errors.name, "Please enter your name.");
+  assert.match(parseLead(fd({ kind: "order", locale: "en", name: "An", phone: "0986666839" })).sent, /^Request sent/);
+});
+
 test("contact: cần email và nội dung, không cần số điện thoại", () => {
   assert.deepEqual(parseLead(fd({ kind: "contact", name: "An", email: "a@b.vn", message: "Báo giá" })).errors, {});
   const { errors } = parseLead(fd({ kind: "contact", name: "An", email: "ab", message: "" }));
