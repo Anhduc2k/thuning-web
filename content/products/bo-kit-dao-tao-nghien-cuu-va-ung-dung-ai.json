@@ -1,15 +1,17 @@
 {
-  "name": "Bộ kit đào tạo, nghiên cứu và ứng dụng AI",
-  "model": "THA-101",
-  "category": "robot-xep-do",
-  "sub": "phong-thuc-hanh-tu-dong-hoa",
+  "name": "Robot xếp dỡ- Xếp pallet Test sản phẩm nhé",
+  "model": "KIT-001",
+  "category": "thiet-bi-day-nghe",
+  "sub": "phong-thuc-hanh-dien-tu",
   "date": "2026-10-21",
   "isNew": true,
   "featured": true,
   "bestseller": false,
-  "images": [],
-  "summary": "",
-  "description": "",
+  "images": [
+    "/uploads/lan-ho-diep-20260811074118-4bbj2.webp"
+  ],
+  "summary": "Thu Ning test",
+  "description": "Hehehehehehehe",
   "specs": [],
   "relatedProducts": [],
   "relatedPosts": []
