@@ -1,20 +1,16 @@
 import type { Metadata } from "next";
 import policiesData from "../../content/policies.json";
 import siteData from "../../content/site.json";
-import { getCategoryById } from "./catalog";
+import { categories } from "./catalog";
 
 // Thông tin công ty: sửa trong CMS (/admin → Cài đặt → Thông tin công ty) là đổi trên toàn site.
 export const site = siteData;
 
-// Menu trên cùng. Mục danh mục lấy tên từ CMS; danh mục bị xóa thì tự ẩn. Muốn thêm danh mục mới lên menu: thêm slug vào đây.
-const menuCategories = ["thiet-bi-day-nghe", "co-khi-che-tao-may", "bang-tai-cong-nghiep", "tu-dien-bang-dien"];
+// Menu: danh mục lấy từ CMS theo đúng thứ tự trong CMS (desktop gom vào mục "Sản phẩm", mobile liệt kê từng danh mục).
 export const nav: { href: string; label: string; category?: string }[] = [
   { href: "/", label: "Trang chủ" },
   { href: "/gioi-thieu", label: "Giới thiệu" },
-  ...menuCategories.flatMap((slug) => {
-    const c = getCategoryById(slug);
-    return c ? [{ href: `/${c.slug}`, label: c.name, ...(c.subs.length && { category: c.slug }) }] : [];
-  }),
+  ...categories.map((c) => ({ href: `/${c.slug}`, label: c.name, ...(c.subs.length && { category: c.slug }) })),
   { href: "/tin-tuc", label: "Tin tức" },
   { href: "/tuyen-dung", label: "Tuyển dụng" },
   { href: "/lien-he", label: "Liên hệ" },

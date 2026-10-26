@@ -93,7 +93,7 @@ Menu bên trái → **Danh mục**. Mỗi danh mục gồm: đường dẫn, tê
 - **Đường dẫn** (của danh mục và danh mục con): phần địa chỉ trang, dạng chữ thường không dấu nối bằng gạch ngang, ví dụ `bang-tai-xich`. **Sửa được**: địa chỉ của danh mục và mọi sản phẩm trong nó tự đổi theo, link cũ tự chuyển sang link mới. Mỗi danh mục còn có ô **Mã** tự sinh, không đổi; sản phẩm gắn với danh mục qua mã này nên đổi tên hay đường dẫn đều không làm mất sản phẩm.
 - Thứ tự danh mục trong danh sách = thứ tự trên menu website.
 - Xóa một danh mục còn sản phẩm → website sẽ không cập nhật cho đến khi chuyển hết sản phẩm sang danh mục khác.
-- Thanh menu chính: đổi tên danh mục thì tên trên menu đổi theo; xóa danh mục thì mục đó tự ẩn khỏi menu. Danh mục **mới** sẽ hiện ở cây danh mục, chân trang và trang chủ; muốn có thêm trên thanh menu thì nhờ lập trình viên (thêm 1 dòng trong `src/lib/site.ts`).
+- Menu đầu trang tự lấy danh mục theo đúng thứ tự trong CMS: thêm mới thì tự hiện, đổi tên thì đổi theo, xóa thì tự ẩn. Trên máy tính, các danh mục nằm trong bảng **Sản phẩm** thả xuống (kèm danh mục con); trên điện thoại nằm trong menu ☰. Danh mục mới cũng hiện ở cây danh mục, chân trang và ngay dưới bản vẽ mặt bằng ở trang chủ.
 
 ---
 

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ProductGrid } from "@/components/catalog";
-import { HeroSlider } from "@/components/hero-slider";
+import { WorkshopPlan } from "@/components/workshop-plan";
 import { Icon } from "@/components/icons";
-import { categories, getCategory, subName } from "@/lib/catalog";
-import { getProduct, getProducts } from "@/lib/products";
+import { categories } from "@/lib/catalog";
+import { getProducts } from "@/lib/products";
 import { formatDate, getPosts } from "@/lib/posts";
 import { pageMeta, site } from "@/lib/site";
 
@@ -12,42 +12,12 @@ export const metadata = {
   title: { absolute: `${site.name} – ${site.tagline}` },
 };
 
-const heroSlides = [
-  {
-    slug: "he-thong-thuc-hanh-robot-cong-nghiep-xe-tu-hanh-camera-3d-vision-ai",
-    specs: ["Robot cộng tác 6 trục kết hợp xe tự hành", "Camera 3D nhận dạng và định vị vật thể", "Bài thực hành từ lập trình cơ bản đến ứng dụng AI"],
-  },
-  {
-    slug: "bo-thuc-hanh-phan-loai-san-pham-theo-chieu-cao-mau-sac-vat-lieu",
-    specs: ["Phân loại theo chiều cao, màu sắc và vật liệu", "Điều khiển bằng PLC, cảm biến công nghiệp", "Học viên lập trình và chỉnh sửa trọn quy trình"],
-  },
-  {
-    slug: "bo-thuc-hanh-plc-s7-1200",
-    specs: ["PLC S7-1200 kèm module vào ra số và tương tự", "Kết nối HMI và phần mềm giám sát qua Ethernet", "Phù hợp nghề điện công nghiệp và tự động hóa"],
-  },
-].flatMap(({ slug, specs }) => {
-  // Sản phẩm đã bị xóa trong CMS thì bỏ khỏi slider thay vì làm hỏng build.
-  const p = getProduct(slug);
-  if (!p) return [];
-  const c = getCategory(p.category)!;
-  return { href: `/${p.category}/${p.slug}`, name: p.name, model: p.model, category: subName(c, p.sub) ?? c.name, specs };
-});
-
 const promises = [
   { icon: "truck", title: "Giao hàng toàn quốc", text: "Đóng kiện, vận chuyển và lắp đặt tại chỗ" },
   { icon: "chat", title: "Tư vấn cấu hình miễn phí", text: "Theo chương trình đào tạo hoặc dây chuyền thực tế" },
   { icon: "tag", title: "Giá trực tiếp từ xưởng", text: "Tự thiết kế, tự sản xuất, không qua trung gian" },
   { icon: "shield", title: "Bảo hành dài hạn", text: "Linh kiện công nghiệp, có sẵn vật tư thay thế" },
 ] as const;
-
-// Sản phẩm của slider bị xóa hết trong CMS → dùng sản phẩm nổi bật, thông số lấy từ bảng thông số.
-function slides() {
-  if (heroSlides.length) return heroSlides;
-  return getProducts().filter((p) => p.featured).slice(0, 3).map((p) => {
-    const c = getCategory(p.category)!;
-    return { href: `/${p.category}/${p.slug}`, name: p.name, model: p.model, category: subName(c, p.sub) ?? c.name, specs: (p.specs ?? []).slice(0, 3).map((s) => `${s.label}: ${s.value}`) };
-  });
-}
 
 export default function Home() {
   const newest = getProducts().filter((p) => p.isNew).slice(0, 8);
@@ -56,40 +26,25 @@ export default function Home() {
 
   return (
     <>
-      <section className="bg-blueprint-dark text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:py-20 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+      <section className="bg-drafting border-b border-drafting/20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:py-16 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-14">
           <div>
-            <p className="text-white/60">{site.legalName}</p>
-            <h1 className="mt-4 text-[2.25rem] font-extrabold leading-[1.1] tracking-tight md:text-[3.25rem]">
+            <h1 className="text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-ink md:text-[3rem]">
               Thiết bị thực hành do chính xưởng của chúng tôi thiết kế và chế tạo
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-white/75">
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-steel">
               Bàn thực hành, mô hình đào tạo cho trường nghề và máy móc, băng tải theo yêu cầu cho nhà máy. Sản xuất tại Bát Tràng, Hà Nội, lắp đặt toàn quốc.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold hover:bg-brand-dark">
+              <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white hover:bg-brand-dark">
                 Xem thiết bị dạy nghề
               </Link>
-              <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-white/30 px-6 font-semibold hover:border-white">
+              <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-ink/25 bg-white/60 px-6 font-semibold text-ink hover:border-ink">
                 <Icon name="phone" className="size-4" />Gọi {site.phoneDisplay}
               </a>
             </div>
           </div>
-          <HeroSlider slides={slides()} />
-        </div>
-      </section>
-
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 px-4 md:grid-cols-5">
-          {categories.map((c) => (
-            <Link key={c.slug} href={`/${c.slug}`} className="group flex items-center gap-3 border-line py-5 pr-4 max-md:odd:border-r max-md:[&:nth-child(n+3)]:border-t md:border-r md:px-5 md:first:pl-0 md:last:border-r-0">
-              <Icon name={c.icon} className="size-8 shrink-0 text-brand" />
-              <span>
-                <span className="block font-semibold leading-tight group-hover:text-brand">{c.name}</span>
-                <span className="text-sm text-steel">{getProducts().filter((p) => p.category === c.slug).length} sản phẩm</span>
-              </span>
-            </Link>
-          ))}
+          <WorkshopPlan />
         </div>
       </section>
 

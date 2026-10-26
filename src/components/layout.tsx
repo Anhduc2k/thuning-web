@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { categories } from "@/lib/catalog";
 import { nav, policies, site } from "@/lib/site";
 import { Icon } from "./icons";
@@ -17,12 +18,12 @@ export function Logo({ light = false }: { light?: boolean }) {
   );
 }
 
-function SearchForm({ className = "" }: { className?: string }) {
+function SearchForm({ id, className = "" }: { id: string; className?: string }) {
   return (
     <form action="/tim-kiem" role="search" className={`relative ${className}`}>
-      <label htmlFor="q" className="sr-only">Tìm thiết bị</label>
+      <label htmlFor={id} className="sr-only">Tìm thiết bị</label>
       <input
-        id="q"
+        id={id}
         name="q"
         type="search"
         placeholder="Tìm thiết bị, mã model…"
@@ -36,6 +37,8 @@ function SearchForm({ className = "" }: { className?: string }) {
 }
 
 export function Header() {
+  const catHrefs = new Set(categories.map((c) => `/${c.slug}`));
+  const pages = nav.filter((item) => item.href !== "/" && !catHrefs.has(item.href));
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white">
       <div className="hidden bg-ink text-[13px] text-white/75 md:block">
@@ -51,35 +54,56 @@ export function Header() {
       </div>
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-4">
         <Logo />
-        <nav className="ml-auto hidden xl:block" aria-label="Menu chính">
+        {/* Danh mục gom vào "Sản phẩm" để thêm bao nhiêu danh mục trong CMS menu vẫn vừa một hàng. */}
+        <nav className="relative ml-auto hidden xl:block" aria-label="Menu chính">
           <ul className="flex items-center">
-            {nav.filter((item) => item.href !== "/").map((item) => {
-              const cat = item.category && categories.find((c) => c.slug === item.category);
-              return (
-                <li key={item.href} className="group relative">
-                  <Link href={item.href} className="flex items-center gap-1 whitespace-nowrap px-2.5 py-5 text-[14px] font-medium text-ink/80 hover:text-brand">
-                    {item.label}
-                    {cat && <Icon name="chevron" className="size-3 rotate-90 opacity-60" />}
-                  </Link>
-                  {cat && (
-                    <ul className="invisible absolute left-0 top-full w-72 border border-line bg-white py-2 opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                      {cat.subs.map((s) => (
-                        <li key={s.slug}>
-                          <Link href={`/${cat.slug}/${s.slug}`} className="block px-4 py-2 text-sm text-ink/80 hover:bg-panel hover:text-brand">
-                            {s.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+            {pages.map((item, i) => (
+              <Fragment key={item.href}>
+                <li>
+                  <Link href={item.href} className="block whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 hover:text-brand">{item.label}</Link>
                 </li>
-              );
-            })}
+                {i === 0 && (
+                  <li className="group">
+                    <button type="button" aria-haspopup="true" className="flex items-center gap-1 whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 group-focus-within:text-brand group-hover:text-brand">
+                      Sản phẩm<Icon name="chevron" className="size-3 rotate-90 opacity-60" />
+                    </button>
+                    <div className="invisible absolute right-0 top-full w-[38rem] columns-2 gap-10 border border-line bg-white p-6 opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                      {categories.map((c) => (
+                        <div key={c.slug} className="mb-5 break-inside-avoid">
+                          <Link href={`/${c.slug}`} className="flex items-center gap-2 font-semibold hover:text-brand">
+                            <Icon name={c.icon} className="size-5 shrink-0 text-brand" />{c.name}
+                          </Link>
+                          {c.subs.length > 0 && (
+                            <ul className="mt-2 space-y-0.5 border-l border-line pl-7">
+                              {c.subs.map((s) => (
+                                <li key={s.slug}>
+                                  <Link href={`/${c.slug}/${s.slug}`} className="block py-1 text-sm text-steel first-letter:uppercase hover:text-brand">{s.name.replace(/^Phòng thực hành /, "")}</Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </li>
+                )}
+              </Fragment>
+            ))}
           </ul>
         </nav>
-        <SearchForm className="hidden w-56 lg:block xl:hidden 2xl:block" />
+        {/* 1024–1279px: menu chính ẩn nên còn chỗ cho ô tìm kiếm. Từ 1280px menu chiếm hết hàng → nút kính lúp mở ô tìm kiếm thả xuống. */}
+        <SearchForm id="q-header" className="hidden w-56 shrink-0 lg:block xl:hidden" />
+        <details className="group/search relative hidden shrink-0 xl:block">
+          <summary className="grid size-10 cursor-pointer list-none place-items-center rounded-md text-ink/70 hover:bg-panel hover:text-brand group-open/search:bg-panel [&::-webkit-details-marker]:hidden" aria-label="Tìm thiết bị">
+            <Icon name="search" className="size-5 group-open/search:hidden" />
+            <Icon name="close" className="hidden size-5 group-open/search:block" />
+          </summary>
+          <div className="absolute right-0 top-full mt-3 w-96 border border-line bg-white p-3 shadow-lg">
+            <SearchForm id="q-desktop" />
+          </div>
+        </details>
         <MobileNav>
-          <SearchForm className="mb-4" />
+          <SearchForm id="q-mobile" className="mb-4" />
         </MobileNav>
       </div>
     </header>
