@@ -1,12 +1,13 @@
 import categoriesData from "../../content/categories.json";
 
 export type Category = {
+  id?: string; // mã cố định do CMS tự sinh; sản phẩm liên kết qua mã này nên đổi tên/đường dẫn không làm đứt liên kết
   slug: string;
   name: string;
   icon: IconName;
   intro: string;
   highlights: string[];
-  subs: { slug: string; name: string; icon?: IconName }[];
+  subs: { id?: string; slug: string; name: string; icon?: IconName }[];
 };
 
 export type IconName = "chip" | "conveyor" | "gear" | "cabinet" | "box" | "wave" | "robot" | "gauge" | "motor" | "car" | "bolt" | "bulb" | "snow" | "drop";
@@ -43,6 +44,8 @@ export function slugify(s: string) {
 }
 
 export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);
+// Danh mục cũ có id = đường dẫn gốc, nên link cũ sau khi đổi đường dẫn vẫn tìm ra được để chuyển hướng.
+export const getCategoryById = (id: string) => categories.find((c) => (c.id ?? c.slug) === id);
 
 export function subName(category: Category, sub?: string) {
   return category.subs.find((s) => s.slug === sub)?.name;

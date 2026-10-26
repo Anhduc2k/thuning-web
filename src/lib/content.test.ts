@@ -10,7 +10,7 @@ const product = { name: "Bộ thực hành PLC", model: "TH-1", category: "bang-
 const post = { title: "Bài", date: "2026-01-02", topic: "Tin", excerpt: "Tóm tắt", body: "Đoạn 1\n\nĐoạn 2" };
 
 // Tạo thư mục dự án tạm với vài file nội dung, trả về hàm load.
-function site(products: Record<string, object>, posts: Record<string, object> = { bai: post }) {
+function site(products: Record<string, object>, posts: Record<string, object> = { bai: post }, cats = categories) {
   const root = mkdtempSync(join(tmpdir(), "content-"));
   for (const [dir, files] of Object.entries({ products, posts })) {
     mkdirSync(join(root, "content", dir), { recursive: true });
@@ -18,7 +18,7 @@ function site(products: Record<string, object>, posts: Record<string, object> = 
   }
   mkdirSync(join(root, "public/uploads"), { recursive: true });
   writeFileSync(join(root, "public/uploads/a.jpg"), "");
-  return () => loadContent(categories, root);
+  return () => loadContent(cats, root);
 }
 
 test("nội dung thật trong content/ hợp lệ", () => {
@@ -38,8 +38,6 @@ test("hợp lệ: trường tùy chọn, ảnh, liên kết", () => {
 
 const bad: [string, () => unknown, RegExp][] = [
   ["tên file có dấu/chữ hoa", site({ "Đồng-hồ": product }), /tên file phải không dấu/],
-  ["danh mục không tồn tại", site({ sp: { ...product, category: "khong-co" } }), /"category" "khong-co" không có/],
-  ["danh mục con không thuộc danh mục", site({ sp: { ...product, sub: "phong-thuc-hanh-o-to" } }), /"sub" .* không thuộc/],
   ["slug sản phẩm trùng danh mục con", site({ "bang-tai-pvc": product }), /trùng đường dẫn danh mục con/],
   ["liên kết sản phẩm không tồn tại", site({ sp: { ...product, relatedProducts: ["khong-co"] } }), /"relatedProducts" trỏ tới sản phẩm không tồn tại/],
   ["liên kết bài viết không tồn tại", site({ sp: { ...product, relatedPosts: ["khong-co"] } }), /"relatedPosts" trỏ tới bài viết/],
@@ -66,4 +64,23 @@ test("chính sách: slug, trùng, trống", () => {
   assert.throws(() => checkPolicies([{ ...ok, slug: "Bảo mật" }]), /không dấu/);
   assert.throws(() => checkPolicies([ok, ok]), /bị trùng/);
   assert.throws(() => checkPolicies([{ ...ok, body: " " }]), /"body" đang để trống/);
+});
+
+test("danh mục / danh mục con bị xóa trong CMS: không dừng build", () => {
+  const { products } = site({
+    a: { ...product, category: "khong-co" },
+    b: { ...product, model: "TH-2", sub: "khong-co" },
+    c: { ...product, model: "TH-3", relatedProducts: ["a", "b"] },
+  })();
+  assert.deepEqual(products.map((p) => p.slug).sort(), ["b", "c"]); // a tạm ẩn
+  assert.equal(products.find((p) => p.slug === "b")!.sub, undefined); // b hiện thẳng dưới danh mục
+  assert.deepEqual(products.find((p) => p.slug === "c")!.relatedProducts, ["b"]); // bỏ liên kết tới sản phẩm đang ẩn
+});
+
+test("đổi đường dẫn danh mục: sản phẩm tra theo id, nhận đường dẫn mới", () => {
+  const cats = [{ id: "cu", slug: "moi", name: "Mới", icon: "box", intro: "x", highlights: [], subs: [{ id: "con-cu", slug: "con-moi", name: "Con" }] }];
+  const { products } = site({ sp: { ...product, category: "cu", sub: "con-cu" } }, { bai: post }, cats)();
+  assert.equal(products[0].category, "moi");
+  assert.equal(products[0].sub, "con-moi");
+  assert.throws(site({ sp: product }, { bai: post }, [...cats, { ...cats[0], slug: "khac" }]), /"id" "cu" bị trùng/);
 });

@@ -1,5 +1,6 @@
 [
   {
+    "id": "thiet-bi-day-nghe",
     "slug": "robot-xep-do",
     "name": "Robot Xếp dỡ - Xếp pallet và Cấp liệu từ Pallet",
     "icon": "robot",
@@ -11,21 +12,25 @@
     ],
     "subs": [
       {
+        "id": "phong-thuc-hanh-dien-tu",
         "slug": "phong-thuc-hanh-dien-tu",
         "name": "Robot Xếp Bao xuống Pallet - Tải 150kg - 300kg",
         "icon": "robot"
       },
       {
+        "id": "phong-thuc-hanh-vi-mach-tich-hop",
         "slug": "phong-thuc-hanh-vi-mach-tich-hop",
         "name": "Robot Xếp Bao xuống Pallet - Tải 75kg",
         "icon": "robot"
       },
       {
+        "id": "phong-thuc-hanh-khi-nen-thuy-luc",
         "slug": "phong-thuc-hanh-khi-nen-thuy-luc",
         "name": "Robot Xếp Thùng Carton xuống Pallet - Tải 75kg",
         "icon": "robot"
       },
       {
+        "id": "phong-thuc-hanh-may-dien",
         "slug": "phong-thuc-hanh-may-dien",
         "name": "Robot dỡ bao cấp liệu từ Pallet",
         "icon": "robot"
@@ -33,6 +38,7 @@
     ]
   },
   {
+    "id": "bang-tai-cong-nghiep",
     "slug": "bang-tai-cong-nghiep",
     "name": "Biến Tần EasyPower",
     "icon": "chip",
@@ -44,26 +50,31 @@
     ],
     "subs": [
       {
+        "id": "bang-tai-cao-su",
         "slug": "bang-tai-cao-su",
         "name": "Biến tần EasyPower EP800 - 1.5kW",
         "icon": ""
       },
       {
+        "id": "bang-tai-con-lan",
         "slug": "bang-tai-con-lan",
         "name": "Biến tần EasyPower EP800 - 2.2kW",
         "icon": ""
       },
       {
+        "id": "bang-tai-luoi-inox",
         "slug": "bang-tai-luoi-inox",
         "name": "Biến tần EasyPower EP800 - 4kW",
         "icon": ""
       },
       {
+        "id": "bang-tai-pvc",
         "slug": "bang-tai-pvc",
         "name": "Biến tần EasyPower EP800 - 11kW",
         "icon": ""
       },
       {
+        "id": "bang-tai-xich",
         "slug": "bang-tai-xich",
         "name": "Biến tần EasyPower EP800 - 55kW",
         "icon": ""
@@ -71,6 +82,7 @@
     ]
   },
   {
+    "id": "co-khi-che-tao-may",
     "slug": "co-khi-che-tao-may",
     "name": "Cơ khí chế tạo máy",
     "icon": "gear",
@@ -83,6 +95,7 @@
     "subs": []
   },
   {
+    "id": "tu-dien-bang-dien",
     "slug": "tu-dien-bang-dien",
     "name": "Tủ điện – bảng điện",
     "icon": "cabinet",
@@ -95,6 +108,7 @@
     "subs": []
   },
   {
+    "id": "thiet-bi-khac",
     "slug": "thiet-bi-khac",
     "name": "Thiết bị khác",
     "icon": "box",

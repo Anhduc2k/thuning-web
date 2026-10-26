@@ -90,7 +90,7 @@ Menu bên trái → **Bài viết**. Thêm / sửa / xóa giống sản phẩm.
 Menu bên trái → **Danh mục**. Mỗi danh mục gồm: đường dẫn, tên, biểu tượng, đoạn giới thiệu, các điểm nổi bật và danh sách danh mục con.
 
 - Sửa **tên**, **giới thiệu**, **điểm nổi bật**, **biểu tượng** thoải mái.
-- **Đường dẫn** (của danh mục và danh mục con): chỉ đặt khi tạo mới, dạng chữ thường không dấu nối bằng gạch ngang, ví dụ `bang-tai-xich`. **Không sửa đường dẫn đã có**: làm vậy là đổi địa chỉ trang trên Google, và mọi sản phẩm đang chọn danh mục đó phải chọn lại.
+- **Đường dẫn** (của danh mục và danh mục con): phần địa chỉ trang, dạng chữ thường không dấu nối bằng gạch ngang, ví dụ `bang-tai-xich`. **Sửa được**: địa chỉ của danh mục và mọi sản phẩm trong nó tự đổi theo, link cũ tự chuyển sang link mới. Mỗi danh mục còn có ô **Mã** tự sinh, không đổi; sản phẩm gắn với danh mục qua mã này nên đổi tên hay đường dẫn đều không làm mất sản phẩm.
 - Thứ tự danh mục trong danh sách = thứ tự trên menu website.
 - Xóa một danh mục còn sản phẩm → website sẽ không cập nhật cho đến khi chuyển hết sản phẩm sang danh mục khác.
 - Thanh menu chính: đổi tên danh mục thì tên trên menu đổi theo; xóa danh mục thì mục đó tự ẩn khỏi menu. Danh mục **mới** sẽ hiện ở cây danh mục, chân trang và trang chủ; muốn có thêm trên thanh menu thì nhờ lập trình viên (thêm 1 dòng trong `src/lib/site.ts`).
@@ -119,7 +119,7 @@ Menu bên trái → **Cài đặt**:
 - Danh mục con không thuộc danh mục đã chọn.
 - Mã sản phẩm trùng với sản phẩm khác.
 - Đường dẫn sản phẩm trùng với đường dẫn một danh mục con cùng danh mục.
-- Đổi/xóa đường dẫn danh mục trong khi vẫn còn sản phẩm dùng nó.
+- (Không còn gây lỗi) Xóa danh mục con: sản phẩm của nó tự hiện thẳng dưới danh mục cha. Xóa cả danh mục: sản phẩm của nó tạm ẩn khỏi website cho tới khi được chọn danh mục khác.
 
 Kiểm tra lại các ô trên ở mục vừa sửa, sửa rồi Lưu lại. Nếu không tìm ra, báo người quản trị kỹ thuật kèm tên mục vừa sửa – họ xem được thông báo lỗi ghi rõ file và ô bị sai (ví dụ `content/products/abc.json: trường "sub" ... không thuộc danh mục ...`).
 

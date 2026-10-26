@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps<"/[category]">): Pr
 
 export default async function CategoryPage({ params, searchParams }: PageProps<"/[category]">) {
   const c = getCategory((await params).category);
-  if (!c) notFound();
+  if (!c) notFound(); // đường dẫn cũ đã được src/proxy.ts chuyển hướng trước khi tới đây
 
   return (
     <>

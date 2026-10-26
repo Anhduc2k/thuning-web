@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: PageProps<"/[category]/[slug]
 export default async function Page({ params, searchParams }: PageProps<"/[category]/[slug]">) {
   const { category, slug } = await params;
   const r = resolve(category, slug);
-  if (!r) notFound();
+  if (!r) notFound(); // đường dẫn cũ đã được src/proxy.ts chuyển hướng trước khi tới đây
   const { c, sub, product } = r;
 
   if (sub) {

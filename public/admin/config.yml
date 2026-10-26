@@ -43,16 +43,16 @@ collections:
     fields:
       - { name: name, label: Tên sản phẩm, widget: string }
       - { name: model, label: Mã sản phẩm, widget: string, hint: "Ví dụ THA-120. Không được trùng với sản phẩm khác." }
-      - { name: category, label: Danh mục, widget: relation, collection: categories, value_field: slug, display_fields: [name], search_fields: [name] }
+      - { name: category, label: Danh mục, widget: relation, collection: categories, value_field: id, display_fields: [name], search_fields: [name] }
       - name: sub
         label: Danh mục con
         widget: relation
         required: false
         collection: categories
-        value_field: "subs.*.slug"
+        value_field: "subs.*.id"
         display_fields: ["{{name}} › {{subs.*.name}}"]
         search_fields: ["subs.*.name"]
-        hint: Phải thuộc danh mục đã chọn ở trên (sai thì build báo lỗi).
+        hint: Chọn danh mục con thuộc danh mục ở trên; chọn lệch thì sản phẩm hiện thẳng dưới danh mục.
       - { name: date, label: Ngày đăng, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, default: "{{now}}", hint: "Mới hơn thì hiện trước ở mục Mới nhất." }
       - { name: isNew, label: Gắn nhãn Mới, widget: boolean, default: false }
       - { name: featured, label: Sản phẩm nổi bật, widget: boolean, default: false }
@@ -102,11 +102,12 @@ collections:
     identifier_field: name
     summary: "{{name}}"
     fields:
+      - { name: id, label: Mã danh mục, widget: uuid, use_b32_encoding: true, hint: "Mã nội bộ, tự sinh và không đổi. Sản phẩm liên kết với danh mục qua mã này, nên đổi tên hay đường dẫn đều không làm mất sản phẩm." }
       - name: slug
         label: Đường dẫn
         widget: string
         pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang, ví dụ bang-tai-cong-nghiep"]
-        hint: "Chỉ đặt khi tạo mới, KHÔNG sửa sau đó: đổi đường dẫn là đổi URL của danh mục và mọi sản phẩm trong nó (link cũ trên Google sẽ hỏng, sản phẩm đang chọn danh mục này phải chọn lại)."
+        hint: "Phần URL của danh mục, ví dụ /bang-tai-cong-nghiep. Đổi được: URL danh mục và sản phẩm trong nó đổi theo, link cũ tự chuyển hướng sang link mới."
       - { name: name, label: Tên danh mục, widget: string }
       - name: icon
         label: Biểu tượng
@@ -135,7 +136,8 @@ collections:
         required: false
         summary: "{{fields.name}}"
         fields:
-          - { name: slug, label: Đường dẫn, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang"], hint: "Chỉ đặt khi tạo mới, KHÔNG sửa sau đó (đổi = đổi URL). Không được trùng đường dẫn sản phẩm cùng danh mục." }
+          - { name: id, label: Mã, widget: uuid, use_b32_encoding: true }
+          - { name: slug, label: Đường dẫn, widget: string, pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', "Chỉ chữ thường không dấu, số và dấu gạch ngang"], hint: "Đổi được, link cũ tự chuyển hướng. Không được trùng đường dẫn sản phẩm cùng danh mục." }
           - { name: name, label: Tên, widget: string }
           - name: icon
             label: Biểu tượng

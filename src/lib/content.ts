@@ -39,14 +39,17 @@ export function loadContent(categories: Category[], root = process.cwd()) {
     throw new Error(`${where}: trường "${field}" ${msg}`);
   };
 
+  const key = (x: { id?: string; slug: string }) => x.id ?? x.slug;
   for (const c of categories) {
     const where = `content/categories.json (${c.name || c.slug})`;
+    if (categories.filter((x) => key(x) === key(c)).length > 1) fail(where, "id", `"${key(c)}" bị trùng với danh mục khác`);
     if (!SLUG.test(c.slug ?? "")) fail(where, "slug", "phải không dấu, dạng a-z0-9-");
     if (RESERVED.includes(c.slug)) fail(where, "slug", `trùng đường dẫn có sẵn /${c.slug}`);
     if (categories.filter((x) => x.slug === c.slug).length > 1) fail(where, "slug", "bị trùng với danh mục khác");
     for (const s of c.subs ?? []) {
       if (!SLUG.test(s.slug ?? "")) fail(where, "subs.slug", `"${s.slug}" phải không dấu, dạng a-z0-9-`);
       if (c.subs.filter((x) => x.slug === s.slug).length > 1) fail(where, "subs.slug", `"${s.slug}" bị trùng`);
+      if (c.subs.filter((x) => key(x) === key(s)).length > 1) fail(where, "subs.id", `"${key(s)}" bị trùng`);
     }
   }
 
@@ -75,14 +78,24 @@ export function loadContent(categories: Category[], root = process.cwd()) {
   };
 
   const models = new Map<string, string>();
-  const products: Product[] = raw.products.map((o) => {
+  // Sản phẩm lưu mã danh mục (hoặc đường dẫn, dữ liệu cũ). Danh mục bị xóa → tạm ẩn sản phẩm; danh mục con bị xóa → hiện thẳng dưới danh mục.
+  // Chỉ cảnh báo trong log build, không dừng build: sửa trong CMS là web tự cập nhật.
+  const warn = (msg: string) => console.warn(`[nội dung] ${msg}`);
+  const products = raw.products.flatMap((o): Product[] => {
     const where = `content/products/${o.slug}.json`;
-    const category = str(where, o, "category")!;
-    const c = categories.find((x) => x.slug === category) ?? fail(where, "category", `"${category}" không có trong danh mục`);
-    const sub = str(where, o, "sub", false);
-    if (sub && !c.subs.some((s) => s.slug === sub)) fail(where, "sub", `"${sub}" không thuộc danh mục "${c.name}"`);
+    const ref = str(where, o, "category")!;
+    const c = categories.find((x) => key(x) === ref) ?? categories.find((x) => x.slug === ref);
+    if (!c) {
+      warn(`${where}: danh mục "${ref}" không còn, tạm ẩn sản phẩm (chọn lại danh mục trong CMS để hiện lại)`);
+      return [];
+    }
+    const category = c.slug;
+    const subRef = str(where, o, "sub", false);
+    const s = subRef ? (c.subs.find((x) => key(x) === subRef) ?? c.subs.find((x) => x.slug === subRef)) : undefined;
+    if (subRef && !s) warn(`${where}: danh mục con "${subRef}" không còn trong "${c.name}", sản phẩm hiện thẳng dưới danh mục`);
+    const sub = s?.slug;
     // Sản phẩm và danh mục con dùng chung đường dẫn /<danh-muc>/<slug>.
-    if (c.subs.some((s) => s.slug === o.slug)) fail(where, "tên file", `trùng đường dẫn danh mục con /${category}/${o.slug}, hãy đổi tên file`);
+    if (c.subs.some((x) => x.slug === o.slug)) fail(where, "tên file", `trùng đường dẫn danh mục con /${category}/${o.slug}, hãy đổi tên file`);
     const model = str(where, o, "model")!;
     if (models.has(model)) fail(where, "model", `"${model}" trùng với ${models.get(model)}`);
     models.set(model, where);
@@ -91,7 +104,7 @@ export function loadContent(categories: Category[], root = process.cwd()) {
       const r = (s ?? {}) as Record<string, unknown>;
       return { label: str(where, r, "label")!, value: str(where, r, "value")! };
     });
-    return {
+    return [{
       slug: o.slug,
       name: str(where, o, "name")!,
       model,
@@ -107,7 +120,7 @@ export function loadContent(categories: Category[], root = process.cwd()) {
       specs,
       relatedProducts: refs(where, o, "relatedProducts", slugs.products, "sản phẩm").map((s) => (s === o.slug ? fail(where, "relatedProducts", "không được chọn chính sản phẩm này") : s)),
       relatedPosts: refs(where, o, "relatedPosts", slugs.posts, "bài viết"),
-    };
+    }];
   });
 
   const posts: Post[] = raw.posts.map((o) => {
@@ -124,6 +137,10 @@ export function loadContent(categories: Category[], root = process.cwd()) {
       relatedProducts: refs(where, o, "relatedProducts", slugs.products, "sản phẩm"),
     };
   });
+
+  // Bỏ liên kết tới sản phẩm đang bị ẩn.
+  const shown = new Set(products.map((p) => p.slug));
+  for (const x of [...products, ...posts]) x.relatedProducts = x.relatedProducts?.filter((s) => shown.has(s));
 
   return { products, posts };
 }

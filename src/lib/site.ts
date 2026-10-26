@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import policiesData from "../../content/policies.json";
 import siteData from "../../content/site.json";
-import { getCategory } from "./catalog";
+import { getCategoryById } from "./catalog";
 
 // Thông tin công ty: sửa trong CMS (/admin → Cài đặt → Thông tin công ty) là đổi trên toàn site.
 export const site = siteData;
@@ -12,8 +12,8 @@ export const nav: { href: string; label: string; category?: string }[] = [
   { href: "/", label: "Trang chủ" },
   { href: "/gioi-thieu", label: "Giới thiệu" },
   ...menuCategories.flatMap((slug) => {
-    const c = getCategory(slug);
-    return c ? [{ href: `/${slug}`, label: c.name, ...(c.subs.length && { category: slug }) }] : [];
+    const c = getCategoryById(slug);
+    return c ? [{ href: `/${c.slug}`, label: c.name, ...(c.subs.length && { category: c.slug }) }] : [];
   }),
   { href: "/tin-tuc", label: "Tin tức" },
   { href: "/tuyen-dung", label: "Tuyển dụng" },
