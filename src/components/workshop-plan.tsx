@@ -1,13 +1,33 @@
 import { Barlow_Condensed } from "next/font/google";
 import Link from "next/link";
-import { categories, getCategory } from "@/lib/catalog";
+import { categories, getCategoryById } from "@/lib/catalog";
 import { getProducts } from "@/lib/products";
 
 // Chữ kỹ thuật trên bản vẽ.
 const lettering = Barlow_Condensed({ subsets: ["latin", "vietnamese"], weight: ["500", "600"] });
 
 type Box = { x: number; y: number; w: number; h: number };
-type Zone = { slug: string; box: Box; label: [number, number]; count?: [number, number, "end"?]; small?: boolean; draw: React.ReactNode };
+// `id` = mã danh mục (danh mục có sẵn: đường dẫn gốc), nên đổi tên / đường dẫn trong CMS vẫn đúng khu.
+// `maxW`, `lines`: chỗ dành cho tên danh mục (tên dài thì xuống dòng, vẫn dài thì co chữ hoặc cắt "…").
+type Zone = { id: string; box: Box; label: [number, number]; maxW: number; lines?: 1 | 2; count?: [number, number, "end"?]; small?: boolean; draw: React.ReactNode };
+
+const charW = (size: number) => size * 0.43; // bề rộng trung bình 1 ký tự Barlow Condensed (đo thực tế ~0.41em, chừa dư)
+function fitLines(text: string, maxW: number, size: number, maxLines: number) {
+  const lines = [""];
+  for (const w of text.split(" ")) {
+    const last = lines[lines.length - 1];
+    const cand = last ? `${last} ${w}` : w;
+    if (!last || cand.length * charW(size) <= maxW || lines.length >= maxLines) lines[lines.length - 1] = cand;
+    else lines.push(w);
+  }
+  const max = Math.floor((maxW * 1.35) / charW(size));
+  return lines.map((l) => {
+    const t = l.length > max ? `${l.slice(0, max - 1).trimEnd()}…` : l;
+    // Dài hơn chỗ trống thì thu nhỏ cỡ chữ (không dùng textLength vì sẽ kéo giãn chữ khi ước lượng dư).
+    const w = t.length * charW(size);
+    return { t, size: w > maxW ? Math.floor((size * maxW) / w) : undefined };
+  });
+}
 
 // Nét vẽ: pathLength=1 để CSS vẽ dần từng nét khi tải trang.
 const R = (x: number, y: number, w: number, h: number) => <rect x={x} y={y} width={w} height={h} pathLength={1} />;
@@ -17,9 +37,11 @@ const L = (x1: number, y1: number, x2: number, y2: number) => <line x1={x1} y1={
 // Mặt bằng xưởng: mỗi khu = một danh mục. Danh mục mới tạo trong CMS không có khu riêng ở đây (vẫn hiện ở menu, chân trang).
 const zones: Zone[] = [
   {
-    slug: "thiet-bi-day-nghe",
+    id: "thiet-bi-day-nghe",
     box: { x: 40, y: 40, w: 430, h: 270 },
     label: [54, 70],
+    maxW: 236,
+    lines: 2,
     draw: (
       <>
         {R(300, 54, 150, 28)}
@@ -36,9 +58,10 @@ const zones: Zone[] = [
     ),
   },
   {
-    slug: "co-khi-che-tao-may",
+    id: "co-khi-che-tao-may",
     box: { x: 490, y: 40, w: 270, h: 200 },
     label: [504, 70],
+    maxW: 242,
     draw: (
       <>
         {R(510, 112, 96, 62)}
@@ -51,9 +74,10 @@ const zones: Zone[] = [
     ),
   },
   {
-    slug: "tu-dien-bang-dien",
+    id: "tu-dien-bang-dien",
     box: { x: 490, y: 250, w: 158, h: 90 },
     label: [502, 278],
+    maxW: 134,
     count: [502, 298],
     small: true,
     draw: (
@@ -68,9 +92,10 @@ const zones: Zone[] = [
     ),
   },
   {
-    slug: "thiet-bi-khac",
+    id: "thiet-bi-khac",
     box: { x: 656, y: 250, w: 104, h: 90 },
     label: [666, 278],
+    maxW: 84,
     count: [666, 298],
     small: true,
     draw: (
@@ -81,9 +106,10 @@ const zones: Zone[] = [
     ),
   },
   {
-    slug: "bang-tai-cong-nghiep",
+    id: "bang-tai-cong-nghiep",
     box: { x: 130, y: 356, w: 630, h: 86 },
     label: [144, 384],
+    maxW: 500,
     count: [746, 384, "end"],
     draw: (
       <>
@@ -105,8 +131,10 @@ const zones: Zone[] = [
 export function WorkshopPlan() {
   const products = getProducts();
   const items = zones.flatMap((z) => {
-    const c = getCategory(z.slug);
-    return c ? [{ ...z, name: c.name, n: products.filter((p) => p.category === z.slug).length }] : [];
+    const c = getCategoryById(z.id);
+    if (!c) return [];
+    const size = z.small ? 18 : 21;
+    return [{ ...z, slug: c.slug, name: c.name, size, lines: fitLines(c.name, z.maxW, size, z.lines ?? 1), n: products.filter((p) => p.category === c.slug).length }];
   });
 
   return (
@@ -137,8 +165,12 @@ export function WorkshopPlan() {
               {z.draw}
             </g>
             <g className={z.small ? "zlabel sm" : "zlabel"} aria-hidden>
-              <text className="zname" x={z.label[0]} y={z.label[1]}>{z.name}</text>
-              <text className="zcount" x={(z.count ?? [z.label[0]])[0]} y={(z.count ?? [0, z.label[1] + 20])[1]} textAnchor={z.count?.[2] ?? "start"}>
+              <text className="zname" x={z.label[0]} y={z.label[1]}>
+                {z.lines.map((l, j) => (
+                  <tspan key={j} x={z.label[0]} dy={j ? 22 : 0} style={l.size ? { fontSize: l.size } : undefined}>{l.t}</tspan>
+                ))}
+              </text>
+              <text className="zcount" x={(z.count ?? [z.label[0]])[0]} y={(z.count ?? [0, z.label[1] + 20 + (z.lines.length - 1) * 22])[1]} textAnchor={z.count?.[2] ?? "start"}>
                 {z.n} sản phẩm
               </text>
             </g>
@@ -164,7 +196,7 @@ export function WorkshopPlan() {
       </ul>
       {/* Danh mục tạo thêm trong CMS chưa có khu vẽ sẵn: hiện thành link ngay dưới bản vẽ. */}
       {(() => {
-        const extra = categories.filter((c) => !zones.some((z) => z.slug === c.slug));
+        const extra = categories.filter((c) => !zones.some((z) => z.id === (c.id ?? c.slug)));
         return extra.length > 0 && (
           <ul className="mt-4 flex flex-wrap gap-2">
             {extra.map((c) => (
