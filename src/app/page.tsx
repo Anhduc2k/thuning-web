@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductGrid } from "@/components/catalog";
+import { ProductGrid, Sidebar } from "@/components/catalog";
 import { WorkshopPlan } from "@/components/workshop-plan";
 import { Icon } from "@/components/icons";
 import { categories } from "@/lib/catalog";
@@ -20,7 +20,7 @@ const promises = [
 ] as const;
 
 export default function Home() {
-  const newest = getProducts().filter((p) => p.isNew).slice(0, 8);
+  const newest = getProducts().filter((p) => p.isNew).slice(0, 9);
   const featured = getProducts().filter((p) => (p.featured || p.bestseller) && !p.isNew).slice(0, 8);
   const vocational = categories[0];
 
@@ -48,8 +48,8 @@ export default function Home() {
         </div>
       </section>
 
-      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả thiết bị dạy nghề">
-        <ProductGrid items={newest} />
+      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả thiết bị dạy nghề" aside={<Sidebar />}>
+        <ProductGrid items={newest} cols={3} />
       </Section>
 
       <section className="bg-panel">
@@ -123,9 +123,10 @@ export default function Home() {
   );
 }
 
-function Section({ title, href, more, children }: { title: string; href: string; more: string; children: React.ReactNode }) {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-16">
+// `aside`: cột trái (danh mục sản phẩm) như trang danh mục; trên mobile xuống dưới danh sách.
+function Section({ title, href, more, aside, children }: { title: string; href: string; more: string; aside?: React.ReactNode; children: React.ReactNode }) {
+  const body = (
+    <section className={aside ? "min-w-0" : "mx-auto max-w-7xl px-4 py-16"}>
       <div className="mb-7 flex flex-wrap items-end justify-between gap-3 border-b-2 border-ink pb-3">
         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h2>
         <Link href={href} className="-my-2 py-2 text-sm font-semibold text-brand hover:underline">{more}</Link>
@@ -133,5 +134,6 @@ function Section({ title, href, more, children }: { title: string; href: string;
       {children}
     </section>
   );
+  return aside ? <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 lg:grid-cols-[280px_1fr]">{aside}{body}</div> : body;
 }
 
