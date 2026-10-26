@@ -104,7 +104,7 @@ Menu bên trái → **Cài đặt**:
 - **Thông tin công ty**: tên, địa chỉ, số điện thoại, email, Facebook, YouTube, Zalo, tài khoản ngân hàng, địa điểm bản đồ. Sửa ở đây là đổi trên toàn website (đầu trang, chân trang, trang Liên hệ…). Khi đổi số điện thoại, nhớ sửa luôn ô **Zalo** (link dạng `https://zalo.me/<số>`), vì đó là ô riêng.
   - *Số điện thoại (để gọi)* chỉ gồm chữ số, ví dụ `0986666839`; *Số điện thoại (hiển thị)* là cách viết cho dễ đọc, ví dụ `098.6666.839`.
   - *Địa chỉ website*: chỉ sửa khi đổi tên miền.
-- **Chính sách**: các trang ở chân trang (Hướng dẫn mua hàng, Bảo mật thông tin…). Sửa tiêu đề và nội dung; đoạn đầu tiên dùng làm mô tả trên Google. Không sửa đường dẫn của chính sách đã có.
+- **Hướng dẫn (chân trang)**: các mục trong cột "Hướng dẫn" ở chân trang (Hướng dẫn mua hàng, Bảo mật thông tin…). Thêm, xóa, kéo đổi thứ tự, sửa tiêu đề và nội dung; đoạn đầu tiên dùng làm mô tả trên Google. Không sửa đường dẫn của chính sách đã có.
 
 ---
 

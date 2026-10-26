@@ -174,12 +174,12 @@ collections:
               - { name: account, label: Số tài khoản, widget: string }
           - { name: mapQuery, label: Địa điểm trên bản đồ, widget: string, hint: "Từ khóa tìm trên Google Maps cho trang Liên hệ." }
       - name: policies
-        label: Chính sách
+        label: Hướng dẫn (chân trang)
         file: content/policies.json
         fields:
           - name: policies
-            label: Chính sách
-            label_singular: chính sách
+            label: Các mục trong cột "Hướng dẫn" ở chân trang
+            label_singular: mục hướng dẫn
             widget: list
             root: true
             summary: "{{fields.title}}"
