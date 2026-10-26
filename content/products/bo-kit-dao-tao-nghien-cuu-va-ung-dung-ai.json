@@ -1,10 +1,16 @@
 {
   "name": "Bộ kit đào tạo, nghiên cứu và ứng dụng AI",
   "model": "THA-101",
-  "category": "thiet-bi-day-nghe",
+  "category": "robot-xep-do",
   "sub": "phong-thuc-hanh-tu-dong-hoa",
   "date": "2026-10-21",
   "isNew": true,
   "featured": true,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "",
+  "description": "",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
