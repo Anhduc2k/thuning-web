@@ -1,6 +1,6 @@
 # Hướng dẫn quản trị nội dung (CMS)
 
-Trang quản trị: **https://thuning.edu.vn/admin**
+Trang quản trị: **https://anhduc2k.is-a.dev/admin**
 
 Ở đây bạn sửa được: sản phẩm, bài viết (tin tức), danh mục, thông tin công ty và các trang chính sách. Không cần biết lập trình.
 
@@ -10,7 +10,7 @@ Cách hoạt động, nói ngắn gọn: mỗi lần bấm **Lưu**, nội dung 
 
 ## 1. Đăng nhập
 
-Mở https://thuning.edu.vn/admin bằng **Chrome** hoặc **Edge** (máy tính).
+Mở https://anhduc2k.is-a.dev/admin bằng **Chrome** hoặc **Edge** (máy tính).
 
 Giao diện tự chuyển sang tiếng Việt. Nếu hiện thông báo tiếng Anh "Sveltia CMS is now available in English", bấm **Later** để giữ tiếng Việt. Đổi ngôn ngữ sau này: bấm nút tài khoản góc trên bên phải → Cài đặt.
 
@@ -184,7 +184,7 @@ Mặc định nút "Sign In with GitHub" dùng dịch vụ OAuth của Netlify �
 
 1. Deploy https://github.com/sveltia/sveltia-cms-auth (nút "Deploy to Cloudflare Workers" trong README hoặc `wrangler deploy`). URL dạng `https://sveltia-cms-auth.<subdomain>.workers.dev`.
 2. Tạo GitHub OAuth App tại https://github.com/settings/applications/new, *Authorization callback URL* = `<URL Worker>/callback`; tạo Client Secret.
-3. Trong Cloudflare → Worker → Settings → Variables: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (chọn Encrypt), `ALLOWED_DOMAINS=thuning.edu.vn`.
+3. Trong Cloudflare → Worker → Settings → Variables: `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (chọn Encrypt), `ALLOWED_DOMAINS=anhduc2k.is-a.dev`.
 4. Trong `public/admin/config.yml` bỏ dấu `#` ở dòng `base_url:` dưới `backend`, điền URL Worker, commit.
 
 ### Lỗi "trùng đường dẫn" khi lưu sản phẩm
