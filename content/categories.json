@@ -84,13 +84,14 @@
   {
     "id": "co-khi-che-tao-may",
     "slug": "co-khi-che-tao-may",
-    "name": "Cơ khí chế tạo máy",
+    "name": "Servo, Hộp số",
     "icon": "gear",
-    "intro": "Máy và dây chuyền chế tạo theo bài toán sản xuất cụ thể, từ bản vẽ, gia công, lắp ráp đến chạy thử và chuyển giao vận hành tại xưởng khách hàng.",
+    "intro": "Bộ động cơ đi kèm driver và cáp kết nối; Các loại hộp số như hộp số trục vít NMRV, hộp số mâm xoay, hộp số hành tinh",
     "highlights": [
-      "Thiết kế 3D và duyệt bản vẽ cùng khách hàng",
-      "Gia công CNC, hàn, lắp ráp tại xưởng Bát Tràng",
-      "Chạy thử với sản phẩm thật trước khi bàn giao"
+      "Hỗ trợ kỹ thuật 24/7",
+      "Đầy đủ hóa đơn VAT",
+      "Bảo hành 1 năm",
+      "Hỗ trợ thiết kế gia công cơ khí, mặt bích"
     ],
     "subs": []
   },
