@@ -34,6 +34,12 @@
         "slug": "phong-thuc-hanh-may-dien",
         "name": "Robot dỡ bao cấp liệu từ Pallet",
         "icon": "robot"
+      },
+      {
+        "id": "bvymotfp4jc7tlzf344mb2r3ke",
+        "slug": "robot-ray",
+        "name": "Robot kết hợp ray trượt - xếp palet nhiều vị trí, xếp hàng lên thùng xe tải",
+        "icon": "gear"
       }
     ]
   },
