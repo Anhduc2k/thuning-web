@@ -1,10 +1,16 @@
 {
-  "name": "Bàn thí nghiệm máy biến áp một pha và ba pha",
-  "model": "THA-121",
+  "name": "Robot dỡ bao cấp liệu từ Pallet",
+  "model": "ADSRobot-Xebao",
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-may-dien",
   "date": "2026-10-01",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "Robot dỡ bao cấp liệu từ Pallet - tải 150-300KG",
+  "description": "Robot có khả năng nhận diện vị trí của từng bao trên pallet và thực hiện gắp chính xác, xé bao và cấp liệu vào bồn chứa\n\nVận hành đơn giản, đa dạng ứng dụng",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
