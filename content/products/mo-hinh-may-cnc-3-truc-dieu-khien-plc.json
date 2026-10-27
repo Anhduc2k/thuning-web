@@ -1,10 +1,16 @@
 {
-  "name": "Mô hình máy CNC 3 trục điều khiển PLC",
-  "model": "THA-113",
+  "name": "Robot kết hợp ray trượt",
+  "model": "ADSRobot-Raytruot",
   "category": "thiet-bi-day-nghe",
-  "sub": "phong-thuc-hanh-tu-dong-hoa",
+  "sub": "bvymotfp4jc7tlzf344mb2r3ke",
   "date": "2026-10-09",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "Robot kết hợp ray trượt - xếp nhiều vị trí Pallet, xếp hàng lên thùng xe tải",
+  "description": "Tích hợp thêm ray trượt tăng độ linh hoạt, có thể di chuyển để xếp hàng vào nhiều vị trí Pallet, Xếp hàng lên thùng xe tải,..\n\nDễ dàng vận hành, đa dạng ứng dụng",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
