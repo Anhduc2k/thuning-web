@@ -1,10 +1,16 @@
 {
-  "name": "Bộ module thực hành điện tử tương tự",
-  "model": "THA-107",
+  "name": "Robot xếp pallet tải 250KG",
+  "model": "ADSRobot-250",
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-dien-tu",
   "date": "2026-10-15",
   "isNew": true,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "Robot bốc xếp pallet tải 250KG",
+  "description": "Robot bốc xếp pallet với tải 150KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
