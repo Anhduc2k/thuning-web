@@ -1,7 +1,9 @@
 {
-  "title": "Vì sao trường nghề cần đầu tư thiết bị theo hướng 4.0",
+  "title": "Hướng dẫn truyền thông RS485 biến tần EasyPower",
   "date": "2026-06-20",
-  "topic": "Đào tạo nghề",
-  "excerpt": "Doanh nghiệp tuyển kỹ thuật viên biết làm việc với PLC, robot và dữ liệu. Thiết bị đào tạo cần đi trước nhu cầu đó một bước.",
-  "body": "Nhà máy hiện nay dùng ngày càng nhiều dây chuyền tự động, robot và hệ thống giám sát từ xa. Kỹ thuật viên mới ra trường cần làm quen với các thiết bị này ngay từ khi học.\n\nThiết bị theo hướng 4.0 không nhất thiết đắt đỏ. Một trạm phân loại sản phẩm nhỏ có PLC, cảm biến và camera đã đủ để học viên thực hành trọn một quy trình tự động.\n\nĐiều quan trọng là thiết bị dùng linh kiện công nghiệp phổ biến, để kỹ năng học được chuyển thẳng sang công việc thực tế."
+  "topic": "Truyền thông RS485 biến tần EasyPower",
+  "image": "",
+  "excerpt": "Truyền thông RS485 biến tần EasyPower với PLC, HMI",
+  "body": "Truyền thông RS485 biến tần EasyPower chạy dừng, cài đặt tần số, giám sát các thông số biến tần như điện áp, dòng điện, công suất",
+  "relatedProducts": []
 }
