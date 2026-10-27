@@ -1,10 +1,16 @@
 {
-  "name": "Bộ module thực hành điện tử số",
-  "model": "THA-108",
+  "name": "Robot xếp dỡ tải nặng 400kg",
+  "model": "ADSRobot-400",
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-dien-tu",
   "date": "2026-10-14",
   "isNew": true,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [],
+  "summary": "Robot bốc xếp hàng tải 400KG",
+  "description": "Robot bốc xếp pallet với tải 400KG, dùng cho các ứng dụng tải nặng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
