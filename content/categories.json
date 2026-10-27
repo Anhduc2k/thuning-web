@@ -93,7 +93,20 @@
       "Bảo hành 1 năm",
       "Hỗ trợ thiết kế gia công cơ khí, mặt bích"
     ],
-    "subs": []
+    "subs": [
+      {
+        "id": "26en4ivztndwff5jnqzlxjb6bi",
+        "slug": "hop-so-130",
+        "name": "Hộp số PFDE",
+        "icon": "gear"
+      },
+      {
+        "id": "3j637m2ekraovmyen64nwh7f6y",
+        "slug": "servo-pfde-26",
+        "name": "Servo PFDE - 2,6kW",
+        "icon": ""
+      }
+    ]
   },
   {
     "id": "tu-dien-bang-dien",
