@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ViewTransition } from "react";
 import { categories, SORTS, type Product } from "@/lib/catalog";
 import { listProducts, productIcon } from "@/lib/products";
 import { site } from "@/lib/site";
@@ -11,22 +12,28 @@ export function ProductVisual({ product, className = "", sizes = "300px", priori
   if (img) {
     return (
       <div className={`relative overflow-hidden bg-white ${className}`}>
-        <Image src={img} alt={product.name} fill sizes={sizes} priority={priority} className="object-contain" />
+        <Image src={img} alt={product.name} fill sizes={sizes} priority={priority} className="object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
       </div>
     );
   }
   return (
-    <div className={`bg-blueprint plate relative grid place-items-center text-steel ${className}`} role="img" aria-label={product.name}>
-      <Icon name={productIcon(product)} className="relative size-2/5 max-h-32 stroke-[0.9] transition-colors duration-300 group-hover:text-brand" />
+    <div className={`bg-blueprint plate relative grid place-items-center overflow-hidden text-steel ${className}`} role="img" aria-label={product.name}>
+      <Icon name={productIcon(product)} className="relative size-2/5 max-h-32 stroke-[0.9] transition duration-500 ease-out group-hover:scale-110 group-hover:text-brand" />
     </div>
   );
 }
 
+/** Cùng `name` ở thẻ sản phẩm và ảnh lớn trang chi tiết → khi bấm vào, ảnh "bay" từ lưới sang trang chi tiết.
+ *  Ảnh không có cặp (sản phẩm không được bấm) thì mờ đi / hiện ra cùng nhịp cả trang (lớp .page-fade). */
+export function ProductMorph({ slug, children }: { slug: string; children: React.ReactNode }) {
+  return <ViewTransition name={`product-${slug}`} share="morph" enter="page-fade" exit="page-fade" default="none">{children}</ViewTransition>;
+}
+
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/${product.category}/${product.slug}`} className="group flex flex-col border border-line bg-white hover:border-ink">
+    <Link href={`/${product.category}/${product.slug}`} className="reveal group flex flex-col border border-line bg-white transition duration-300 ease-out hover:-translate-y-1 hover:border-ink hover:shadow-[0_12px_24px_-12px_rgb(21_24_28/0.35)]">
       <div className="relative">
-        <ProductVisual product={product} className="aspect-[4/3]" />
+        <ProductMorph slug={product.slug}><ProductVisual product={product} className="aspect-[4/3]" /></ProductMorph>
         <span className="absolute left-0 top-0 bg-white px-2 py-1 font-mono text-xs text-steel">{product.model}</span>
         {product.isNew && <span className="absolute right-2 top-2 bg-brand px-1.5 py-0.5 text-xs font-semibold text-white">Mới</span>}
       </div>
@@ -76,7 +83,7 @@ export function PageHead({ title, crumbs, children }: { title: string; crumbs: {
 
 export function CategoryTree({ active, activeSub }: { active?: string; activeSub?: string }) {
   return (
-    <nav aria-label="Danh mục sản phẩm" className="border border-line">
+    <nav aria-label="Danh mục sản phẩm" className="tree border border-line">
       <h2 className="bg-ink px-4 py-3 font-semibold text-white">Danh mục sản phẩm</h2>
       <ul className="divide-y divide-line">
         {categories.map((c) => (

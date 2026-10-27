@@ -14,7 +14,7 @@ export function MobileNav({ children }: { children: React.ReactNode }) {
         <Icon name="menu" className="size-5 group-open:hidden" />
         <Icon name="close" className="hidden size-5 group-open:block" />
       </summary>
-      <div className="fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-line bg-white px-4 py-5 md:top-25">
+      <div className="drop-in fixed inset-x-0 bottom-0 top-16 overflow-y-auto border-t border-line bg-white px-4 py-5 md:top-25">
         {children}
         <ul className="divide-y divide-line">
           {nav.map((item) => {

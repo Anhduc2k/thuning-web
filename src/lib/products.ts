@@ -43,7 +43,8 @@ export function listProducts(opts: { category?: string; sub?: string; q?: string
 
 // Biên tập viên chọn sẵn trong CMS thì dùng danh sách đó, không thì lấy cùng danh mục con rồi cùng danh mục.
 export function relatedProducts(p: Product, n = 8) {
-  if (p.relatedProducts?.length) return p.relatedProducts.map((s) => getProduct(s)!);
+  // Bỏ chính nó (CMS cho chọn): cùng một ảnh hiện 2 lần trên trang làm hiệu ứng chuyển trang bị hủy.
+  if (p.relatedProducts?.length) return p.relatedProducts.filter((s) => s !== p.slug).map((s) => getProduct(s)!);
   const same = getProducts().filter((x) => x.slug !== p.slug && x.category === p.category);
   return [...same.filter((x) => x.sub === p.sub), ...same.filter((x) => x.sub !== p.sub)].slice(0, n);
 }

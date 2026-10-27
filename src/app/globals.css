@@ -117,6 +117,98 @@ body {
 }
 @keyframes plan-draw { from { stroke-dashoffset: 1; } }
 
+/* ---------- Chuyển động ----------
+   Nguyên tắc: trạng thái cuối luôn là mặc định (hiệu ứng chỉ chạy "từ" trạng thái ẩn), nên trình duyệt không hỗ trợ
+   hoặc người dùng bật "giảm chuyển động" vẫn thấy đủ nội dung. Không dùng thư viện JS. */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  interpolate-size: allow-keywords; /* cho phép chuyển động tới height: auto (mở danh mục con) */
+}
+html {
+  scroll-behavior: smooth; /* chỉ cho link #neo; khi chuyển trang Next tạm tắt nhờ data-scroll-behavior ở app/layout.tsx */
+  scroll-padding-top: 7rem; /* nhảy tới #bao-gia không bị header che */
+}
+@layer base {
+  a, button, summary, input { transition: color 0.15s, background-color 0.15s, border-color 0.15s; }
+}
+
+/* Chữ mở đầu trang chủ hiện lần lượt (--d: độ trễ), cùng nhịp với nét vẽ mặt bằng xưởng. */
+.rise { animation: rise 0.7s var(--ease-out) var(--d, 0s) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } }
+
+/* Hiện dần khi cuộn tới: dùng animation-timeline của trình duyệt (Chrome, Edge, Safari 26), không cần JS. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 70%;
+  }
+  /* Header đổ bóng nhẹ khi trang đã cuộn xuống. */
+  .site-header {
+    animation: header-lift linear both;
+    animation-timeline: scroll();
+    animation-range: 0 120px;
+  }
+}
+@keyframes reveal { from { opacity: 0; transform: translateY(28px) scale(0.98); } }
+@keyframes header-lift { to { box-shadow: 0 6px 20px -12px rgb(21 24 28 / 0.35); } }
+
+/* Ô tìm kiếm, menu mobile: hiện ra khi mở <details>. */
+.drop-in { animation: drop-in 0.22s var(--ease-out); }
+@keyframes drop-in { from { opacity: 0; transform: translateY(-8px); } }
+.fade-in { animation: fade-in 0.35s ease-out; }
+@keyframes fade-in { from { opacity: 0; } }
+
+/* Ảnh lớn trang chi tiết: kính lúp theo con trỏ. data-zoom, --zx/--zy do components/gallery.tsx đặt khi chuột nằm trên phần ảnh thật. */
+.zoom img { transition: transform 0.45s var(--ease-out), transform-origin 0.12s ease-out; transform-origin: var(--zx, 50%) var(--zy, 50%); }
+.zoom[data-zoom]:has(img) { cursor: zoom-in; }
+.zoom[data-zoom] img { transform: scale(2); }
+/* Chưa có ảnh: biểu tượng to lên, nghiêng nhẹ và đổi màu. */
+.zoom svg { transition: transform 0.45s var(--ease-out), color 0.3s; }
+.zoom[data-zoom] svg { transform: scale(1.12) rotate(-4deg); color: var(--color-brand); }
+
+/* Danh mục sản phẩm (cột trái): mở/đóng danh mục con trượt mượt. */
+.tree details::details-content {
+  height: 0;
+  overflow: clip;
+  transition: height 0.3s var(--ease-out), content-visibility 0.3s allow-discrete;
+}
+.tree details[open]::details-content { height: auto; }
+
+/* Nút gọi: vòng sóng lan ra định kỳ để gây chú ý. */
+.ring-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-brand);
+  z-index: -1;
+  animation: ring-pulse 2.8s ease-out infinite;
+}
+@keyframes ring-pulse {
+  0% { opacity: 0.55; transform: scale(1); }
+  45%, 100% { opacity: 0; transform: scale(1.5, 1.9); }
+}
+
+/* Chuyển trang (app/template.tsx). Header và nút liên hệ có tên riêng để đứng yên, phần còn lại (root) mờ rồi trượt lên. */
+::view-transition { pointer-events: none; } /* bấm trong lúc chuyển vẫn ăn */
+.site-header { view-transition-name: site-header; }
+.floating { view-transition-name: floating; }
+/* Header, nút liên hệ giống nhau ở mọi trang: đứng yên, không mờ chồng 2 bản. */
+::view-transition-group(site-header), ::view-transition-group(floating), ::view-transition-new(site-header), ::view-transition-new(floating) { animation: none; }
+::view-transition-old(site-header), ::view-transition-old(floating) { display: none; }
+/* Trang cũ tắt nhanh, trang mới đợi trang cũ gần tắt hẳn rồi mới trượt lên, để hai trang không chồng lên nhau. */
+::view-transition-old(root), ::view-transition-old(.page-fade) { animation: 0.12s ease-in both vt-out; }
+::view-transition-new(root), ::view-transition-new(.page-fade) { animation: 0.3s var(--ease-out) 0.1s both vt-in; }
+::view-transition-group(.page-fade) { animation: none; }
+::view-transition-group(site-header), ::view-transition-group(floating) { z-index: 1; }
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(14px); } }
+/* Ảnh sản phẩm bay từ lưới sang trang chi tiết. */
+::view-transition-group(.morph) { animation-duration: 0.45s; animation-timing-function: var(--ease-out); }
+::view-transition-image-pair(.morph) { animation: vt-blur 0.45s; }
+@keyframes vt-blur { 40% { filter: blur(3px); } }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -125,4 +217,8 @@ body {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+  .ring-pulse::before { display: none; }
 }

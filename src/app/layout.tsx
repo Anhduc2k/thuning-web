@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${font.variable} antialiased`}>
+    <html lang="vi" data-scroll-behavior="smooth" className={`${font.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col font-sans">
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:p-3">
           Bỏ qua menu

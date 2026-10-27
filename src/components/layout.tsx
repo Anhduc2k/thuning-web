@@ -40,7 +40,7 @@ export function Header() {
   const catHrefs = new Set(categories.map((c) => `/${c.slug}`));
   const pages = nav.filter((item) => item.href !== "/" && !catHrefs.has(item.href));
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white">
+    <header className="site-header sticky top-0 z-40 border-b border-line bg-white">
       <div className="hidden bg-ink text-[13px] text-white/75 md:block">
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-6 px-4">
           <span className="flex items-center gap-1.5"><Icon name="pin" className="size-3.5" />{site.address}</span>
@@ -65,9 +65,9 @@ export function Header() {
                 {i === 0 && (
                   <li className="group">
                     <button type="button" aria-haspopup="true" className="flex items-center gap-1 whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 group-focus-within:text-brand group-hover:text-brand">
-                      Sản phẩm<Icon name="chevron" className="size-3 rotate-90 opacity-60" />
+                      Sản phẩm<Icon name="chevron" className="size-3 rotate-90 opacity-60 transition-transform duration-200 group-focus-within:-rotate-90 group-hover:-rotate-90" />
                     </button>
-                    <div className="invisible absolute right-0 top-full w-[38rem] columns-2 gap-10 border border-line bg-white p-6 opacity-0 shadow-lg transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                    <div className="invisible absolute right-0 top-full w-[38rem] columns-2 gap-10 border border-line bg-white p-6 translate-y-2 opacity-0 shadow-lg transition duration-200 ease-out group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
                       {categories.map((c) => (
                         <div key={c.slug} className="mb-5 break-inside-avoid">
                           <Link href={`/${c.slug}`} className="flex items-center gap-2 font-semibold hover:text-brand">
@@ -98,7 +98,7 @@ export function Header() {
             <Icon name="search" className="size-5 group-open/search:hidden" />
             <Icon name="close" className="hidden size-5 group-open/search:block" />
           </summary>
-          <div className="absolute right-0 top-full mt-3 w-96 border border-line bg-white p-3 shadow-lg">
+          <div className="drop-in absolute right-0 top-full mt-3 w-96 border border-line bg-white p-3 shadow-lg">
             <SearchForm id="q-desktop" />
           </div>
         </details>
@@ -163,11 +163,11 @@ export function Footer() {
 
 export function FloatingContact() {
   return (
-    <div className="fixed bottom-4 right-4 z-40 flex flex-col items-end gap-2">
-      <a href={site.zalo} target="_blank" rel="noopener" className="grid size-12 place-items-center rounded-full bg-[#0068ff] text-xs font-bold text-white shadow-lg hover:scale-105">
+    <div className="floating fixed bottom-4 right-4 z-40 flex flex-col items-end gap-2">
+      <a href={site.zalo} target="_blank" rel="noopener" className="grid size-12 place-items-center rounded-full bg-[#0068ff] text-xs font-bold text-white shadow-lg transition-transform hover:scale-110">
         Zalo
       </a>
-      <a href={`tel:${site.phone}`} className="flex size-12 items-center justify-center gap-2 rounded-full bg-brand font-semibold text-white shadow-lg hover:bg-brand-dark sm:w-auto sm:pl-4 sm:pr-5">
+      <a href={`tel:${site.phone}`} className="ring-pulse relative flex size-12 items-center justify-center gap-2 rounded-full bg-brand font-semibold text-white shadow-lg hover:bg-brand-dark sm:w-auto sm:pl-4 sm:pr-5">
         <Icon name="phone" className="size-5" />
         <span className="hidden sm:inline">{site.phoneDisplay}</span>
         <span className="sr-only sm:hidden">Gọi ngay</span>

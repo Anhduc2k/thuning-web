@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { Listing, ListingFallback, PageHead, ProductGrid, ProductVisual, Sidebar } from "@/components/catalog";
-import { Gallery } from "@/components/gallery";
+import { Listing, ListingFallback, PageHead, ProductGrid, ProductMorph, ProductVisual, Sidebar } from "@/components/catalog";
+import { Gallery, Zoom } from "@/components/gallery";
 import { Icon } from "@/components/icons";
 import { LeadForm } from "@/components/lead-form";
 import { categories, getCategory, subName } from "@/lib/catalog";
@@ -113,9 +113,13 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="grid gap-10 lg:grid-cols-2">
           {p.images && p.images.length > 1 ? (
-            <Gallery images={p.images} alt={p.name} />
+            <Gallery images={p.images} alt={p.name} slug={p.slug} />
           ) : (
-            <ProductVisual product={p} className="aspect-square border border-line" sizes="(min-width:1024px) 600px, 100vw" priority />
+            <ProductMorph slug={p.slug}>
+              <Zoom className="self-start">
+                <ProductVisual product={p} className="aspect-square border border-line" sizes="(min-width:1024px) 1200px, 100vw" priority />
+              </Zoom>
+            </ProductMorph>
           )}
 
           <div>
