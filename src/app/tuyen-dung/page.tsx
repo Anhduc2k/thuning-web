@@ -15,7 +15,7 @@ export default function CareersPage() {
   return (
     <>
       <PageHead title="Tuyển dụng" crumbs={[{ label: "Tuyển dụng" }]}>
-        <p className="mt-4 max-w-2xl leading-relaxed text-white/70">Làm việc trực tiếp tại xưởng, trên thiết bị thật, cùng đội ngũ kỹ thuật lâu năm.</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-steel">Làm việc trực tiếp tại xưởng, trên thiết bị thật, cùng đội ngũ kỹ thuật lâu năm.</p>
       </PageHead>
       <div className="mx-auto max-w-7xl px-4 py-12">
         <h2 className="text-2xl font-bold tracking-tight">Các bộ phận thường xuyên tuyển</h2>

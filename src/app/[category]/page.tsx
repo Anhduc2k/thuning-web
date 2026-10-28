@@ -21,7 +21,7 @@ export default async function CategoryPage({ params, searchParams }: PageProps<"
   return (
     <>
       <PageHead title={c.name} crumbs={[{ label: c.name }]}>
-        <p className="mt-4 max-w-2xl leading-relaxed text-white/70">{c.intro}</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-steel">{c.intro}</p>
       </PageHead>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[280px_1fr]">
         <JsonLd data={breadcrumbLd([{ name: c.name, path: `/${c.slug}` }])} />

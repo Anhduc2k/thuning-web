@@ -1,6 +1,7 @@
 // Không import alias ở file này để chạy được bằng `npm test`.
 export type LeadKind = "order" | "contact";
-export type LeadState = { ok?: boolean; message?: string; errors?: Record<string, string> };
+// values: trả lại những gì khách đã nhập, vì React xoá trắng form sau mỗi lần gửi.
+export type LeadState = { ok?: boolean; message?: string; errors?: Record<string, string>; values?: Record<string, string> };
 
 const str = (v: FormDataEntryValue | null, max: number) => String(v ?? "").trim().slice(0, max);
 

@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #15181c;
-  --color-steel: #5a636e;
-  --color-line: #dce0e4;
-  --color-panel: #eef1f3;
-  --color-brand: #d2241a;
-  --color-brand-dark: #a81b13;
-  --color-signal: #f4b400;
+  /* Bộ màu riêng: cam an toàn (vỏ robot, nút dừng khẩn) + than chì. Cam đủ tương phản 4.5:1 với nền trắng cả 2 chiều. */
+  --color-ink: #16212b;
+  --color-steel: #5b6875;
+  --color-line: #dce1e6;
+  --color-panel: #eef1f4;
+  --color-brand: #cc4a0a;
+  --color-brand-dark: #a33a08;
+  --color-signal: #ffc21a;
   --color-paper: #edf1f2;
   --color-drafting: #2c5a85;
   --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
@@ -40,13 +41,6 @@ body {
   inset: 10px;
   border: 1px solid rgb(90 99 110 / 0.22);
   border-radius: 2px;
-}
-.bg-blueprint-dark {
-  background-color: var(--color-ink);
-  background-image:
-    linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 :focus-visible {
@@ -151,7 +145,7 @@ html {
   }
 }
 @keyframes reveal { from { opacity: 0; transform: translateY(28px) scale(0.98); } }
-@keyframes header-lift { to { box-shadow: 0 6px 20px -12px rgb(21 24 28 / 0.35); } }
+@keyframes header-lift { to { box-shadow: 0 6px 20px -12px rgb(22 33 43 / 0.35); } }
 
 /* Ô tìm kiếm, menu mobile: hiện ra khi mở <details>. */
 .drop-in { animation: drop-in 0.22s var(--ease-out); }

@@ -41,14 +41,14 @@ export function Header() {
   const pages = nav.filter((item) => item.href !== "/" && !catHrefs.has(item.href));
   return (
     <header className="site-header sticky top-0 z-40 border-b border-line bg-white">
-      <div className="hidden bg-ink text-[13px] text-white/75 md:block">
+      <div className="hidden border-b border-line bg-panel text-[13px] text-steel md:block">
         <div className="mx-auto flex h-9 max-w-7xl items-center justify-between gap-6 px-4">
           <span className="flex items-center gap-1.5"><Icon name="pin" className="size-3.5" />{site.address}</span>
           <div className="flex items-center gap-5">
-            <a href={`tel:${site.phone}`} className="flex items-center gap-1.5 font-semibold text-white hover:text-signal">
+            <a href={`tel:${site.phone}`} className="flex items-center gap-1.5 font-semibold text-brand hover:text-brand-dark">
               <Icon name="phone" className="size-3.5" />Hotline / Zalo {site.phoneDisplay}
             </a>
-            <a href={`mailto:${site.email}`} className="hover:text-white">{site.email}</a>
+            <a href={`mailto:${site.email}`} className="hover:text-ink">{site.email}</a>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="mt-20 bg-ink text-sm text-white/70">
+    <footer className="mt-20 border-t-[3px] border-brand bg-ink text-sm text-white/70">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Logo light />

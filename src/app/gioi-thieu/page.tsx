@@ -19,7 +19,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHead title={`Về ${site.name}`} crumbs={[{ label: "Giới thiệu" }]}>
-        <p className="mt-4 max-w-2xl leading-relaxed text-white/70">{site.legalName}. {site.tagline}.</p>
+        <p className="mt-4 max-w-2xl leading-relaxed text-steel">{site.legalName}. {site.tagline}.</p>
       </PageHead>
 
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 lg:grid-cols-[1fr_380px]">

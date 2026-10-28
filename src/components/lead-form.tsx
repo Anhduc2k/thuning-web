@@ -42,14 +42,15 @@ export function LeadForm({ kind, product, submitLabel, dark = false }: { kind: L
               {f.label}{f.required && <span className="text-brand"> *</span>}
             </label>
             {f.area ? (
-              <textarea id={id} name={f.name} rows={4} className={input} aria-invalid={!!err} aria-describedby={err ? `${id}-err` : undefined} />
+              <textarea id={id} name={f.name} rows={4} defaultValue={state.values?.[f.name]} className={input} aria-invalid={!!err} aria-describedby={err ? `${id}-err` : undefined} />
             ) : (
-              <input id={id} name={f.name} type={f.type ?? "text"} className={input} aria-invalid={!!err} aria-describedby={err ? `${id}-err` : undefined} autoComplete={f.name === "name" ? "name" : f.type === "tel" ? "tel" : f.type === "email" ? "email" : undefined} />
+              <input id={id} name={f.name} type={f.type ?? "text"} defaultValue={state.values?.[f.name]} className={input} aria-invalid={!!err} aria-describedby={err ? `${id}-err` : undefined} autoComplete={f.name === "name" ? "name" : f.type === "tel" ? "tel" : f.type === "email" ? "email" : undefined} />
             )}
             {err && <p id={`${id}-err`} className={`mt-1 text-sm ${dark ? "text-signal" : "text-brand"}`}>{err}</p>}
           </div>
         );
       })}
+      {state.message && <p role="alert" className={`text-sm font-medium ${dark ? "text-signal" : "text-brand"}`}>{state.message}</p>}
       <button disabled={pending} className="mt-1 h-11 rounded-md bg-brand px-6 font-semibold text-white hover:bg-brand-dark disabled:opacity-60">
         {pending ? "Đang gửi…" : submitLabel}
       </button>

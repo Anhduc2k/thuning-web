@@ -25,7 +25,7 @@ export default async function PostPage({ params }: PageProps<"/tin-tuc/[slug]">)
   return (
     <>
       <PageHead title={p.title} crumbs={[{ href: "/tin-tuc", label: "Tin tức" }, { label: p.topic }]}>
-        <p className="mt-4 text-white/60"><time dateTime={p.date}>{formatDate(p.date)}</time> · {p.topic}</p>
+        <p className="mt-4 text-steel"><time dateTime={p.date}>{formatDate(p.date)}</time> · {p.topic}</p>
       </PageHead>
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-12 lg:grid-cols-[1fr_320px]">
         <JsonLd data={{

@@ -31,7 +31,7 @@ export function ProductMorph({ slug, children }: { slug: string; children: React
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`/${product.category}/${product.slug}`} className="reveal group flex flex-col border border-line bg-white transition duration-300 ease-out hover:-translate-y-1 hover:border-ink hover:shadow-[0_12px_24px_-12px_rgb(21_24_28/0.35)]">
+    <Link href={`/${product.category}/${product.slug}`} className="reveal group flex flex-col border border-line bg-white transition duration-300 ease-out hover:-translate-y-1 hover:border-ink hover:shadow-[0_12px_24px_-12px_rgb(22_33_43/0.35)]">
       <div className="relative">
         <ProductMorph slug={product.slug}><ProductVisual product={product} className="aspect-[4/3]" /></ProductMorph>
         <span className="absolute left-0 top-0 bg-white px-2 py-1 font-mono text-xs text-steel">{product.model}</span>
@@ -55,13 +55,13 @@ export function ProductGrid({ items, cols = 4 }: { items: Product[]; cols?: 3 | 
 
 export function Breadcrumb({ items }: { items: { href?: string; label: string }[] }) {
   return (
-    <nav aria-label="Đường dẫn" className="text-sm text-white/60">
+    <nav aria-label="Đường dẫn" className="text-sm text-steel">
       <ol className="flex flex-wrap items-center gap-1.5">
-        <li><Link href="/" className="hover:text-white">Trang chủ</Link></li>
+        <li><Link href="/" className="hover:text-ink">Trang chủ</Link></li>
         {items.map((it) => (
           <li key={it.label} className="flex items-center gap-1.5">
             <Icon name="chevron" className="size-3" />
-            {it.href ? <Link href={it.href} className="hover:text-white">{it.label}</Link> : <span aria-current="page" className="text-white">{it.label}</span>}
+            {it.href ? <Link href={it.href} className="hover:text-ink">{it.label}</Link> : <span aria-current="page" className="font-medium text-ink">{it.label}</span>}
           </li>
         ))}
       </ol>
@@ -71,10 +71,12 @@ export function Breadcrumb({ items }: { items: { href?: string; label: string }[
 
 export function PageHead({ title, crumbs, children }: { title: string; crumbs: { href?: string; label: string }[]; children?: React.ReactNode }) {
   return (
-    <div className="bg-blueprint-dark text-white">
+    // Giấy can bản vẽ như hero trang chủ; vạch cam dưới tiêu đề.
+    <div className="bg-drafting border-b border-drafting/20 text-ink">
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-14">
         <Breadcrumb items={crumbs} />
         <h1 className="mt-4 max-w-3xl text-3xl font-bold tracking-tight md:text-[2.5rem] md:leading-tight">{title}</h1>
+        <span aria-hidden className="mt-4 block h-1 w-14 bg-brand" />
         {children}
       </div>
     </div>
@@ -84,7 +86,7 @@ export function PageHead({ title, crumbs, children }: { title: string; crumbs: {
 export function CategoryTree({ active, activeSub }: { active?: string; activeSub?: string }) {
   return (
     <nav aria-label="Danh mục sản phẩm" className="tree border border-line">
-      <h2 className="bg-ink px-4 py-3 font-semibold text-white">Danh mục sản phẩm</h2>
+      <h2 className="border-b border-l-4 border-line border-l-brand px-4 py-3 font-bold">Danh mục sản phẩm</h2>
       <ul className="divide-y divide-line">
         {categories.map((c) => (
           <li key={c.slug}>
