@@ -1,9 +1,18 @@
 {
-  "name": "Máy hàn quả lọc",
-  "model": "CK-148",
+  "name": "Hộp số mâm xoay Servo 750W/Step86",
+  "model": "LHY090-L1",
   "category": "co-khi-che-tao-may",
+  "sub": "26en4ivztndwff5jnqzlxjb6bi",
   "date": "2026-09-04",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [
+    "/uploads/pasted-image-1793359516942.webp"
+  ],
+  "summary": "",
+  "description": "Mặt bích vào 80 cho servo 750W\n\ntrục vào 19mm",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
