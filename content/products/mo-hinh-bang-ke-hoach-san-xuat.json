@@ -1,9 +1,18 @@
 {
-  "name": "Mô hình bảng kế hoạch sản xuất",
-  "model": "TB-157",
-  "category": "thiet-bi-khac",
+  "name": "Bộ Servo 2,6KW PDFE",
+  "model": "Servo-1.5",
+  "category": "co-khi-che-tao-may",
+  "sub": "3j637m2ekraovmyen64nwh7f6y",
   "date": "2026-08-26",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [
+    "/uploads/pasted-image-1793363095944.webp"
+  ],
+  "summary": "",
+  "description": "",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
