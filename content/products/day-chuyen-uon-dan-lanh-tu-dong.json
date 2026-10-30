@@ -1,9 +1,18 @@
 {
-  "name": "Dây chuyền uốn dàn lạnh tủ đông",
-  "model": "CK-146",
+  "name": "Hộp số Servo PGA-130 - mặt bích 130",
+  "model": "PGA-130",
   "category": "co-khi-che-tao-may",
+  "sub": "26en4ivztndwff5jnqzlxjb6bi",
   "date": "2026-09-06",
   "isNew": false,
   "featured": true,
-  "bestseller": false
+  "bestseller": false,
+  "images": [
+    "/uploads/pasted-image-1793359214604.webp"
+  ],
+  "summary": "",
+  "description": "trục vào 22mm trục ra 25mm, rãnh then  8mm",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
