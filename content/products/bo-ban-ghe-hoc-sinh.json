@@ -12,24 +12,7 @@
   ],
   "summary": "",
   "description": "",
-  "specs": [
-    {
-      "label": "Công suất",
-      "value": "2,6kw"
-    },
-    {
-      "label": "Điện áp vào",
-      "value": "220V"
-    },
-    {
-      "label": "Momen",
-      "value": "10Nm"
-    },
-    {
-      "label": "Max RPM:",
-      "value": "2500"
-    }
-  ],
+  "specs": [],
   "relatedProducts": [],
   "relatedPosts": []
 }
