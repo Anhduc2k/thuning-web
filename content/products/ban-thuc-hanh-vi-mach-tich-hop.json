@@ -7,7 +7,9 @@
   "isNew": true,
   "featured": false,
   "bestseller": false,
-  "images": [],
+  "images": [
+    "/uploads/pasted-image-1793361792255.webp"
+  ],
   "summary": "Robot xếp pallet tải 150KG",
   "description": "Robot bốc xếp pallet với tải 75KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
   "specs": [],
