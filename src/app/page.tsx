@@ -38,7 +38,7 @@ export default function Home() {
             </p>
             <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--d": ".24s" } as React.CSSProperties}>
               <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
-                Xem thiết bị dạy nghề
+                Xem các dòng Robot
               </Link>
               <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-ink/25 bg-white/60 px-6 font-semibold text-ink hover:border-ink">
                 <Icon name="phone" className="size-4" />Gọi {site.phoneDisplay}
@@ -58,7 +58,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Trang bị trọn một phòng thực hành</h2>
             <p className="mt-4 max-w-md leading-relaxed text-steel">
-              Chúng tôi khảo sát phòng học, đề xuất danh mục thiết bị theo chương trình đào tạo, lắp đặt và tập huấn giáo viên. Chọn nghề để xem thiết bị tương ứng.
+         
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-3 xl:grid-cols-5">
