@@ -1,5 +1,5 @@
 {
-  "name": "Robot Xếp Bao xuống Pallet - Tải 75kg",
+  "name": "Robot Cột Xếp Bao xuống Pallet - Tải 75kg",
   "model": "ADSRobot-75",
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-vi-mach-tich-hop",
@@ -8,7 +8,7 @@
   "featured": false,
   "bestseller": false,
   "images": [
-    "/uploads/pasted-image-1793361792255.webp"
+    "/uploads/pasted-image-1793362219977.webp"
   ],
   "summary": "Robot xếp pallet tải 150KG",
   "description": "Robot bốc xếp pallet với tải 75KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
