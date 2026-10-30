@@ -31,10 +31,10 @@ export default function Home() {
           {/* Mở đầu: chữ hiện lần lượt cùng lúc mặt bằng xưởng được vẽ (globals.css: .rise, .plan). */}
           <div>
             <h1 className="rise text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-ink md:text-[3rem]">
-              Thiết bị thực hành do chính xưởng của chúng tôi thiết kế và chế tạo
+              Giải pháp Robot do các kỹ sư Việt Nam thiết kế và lập trình
             </h1>
             <p className="rise mt-5 max-w-xl text-lg leading-relaxed text-steel" style={{ "--d": ".12s" } as React.CSSProperties}>
-              Bàn thực hành, mô hình đào tạo cho trường nghề và máy móc, băng tải theo yêu cầu cho nhà máy. Sản xuất tại Bát Tràng, Hà Nội, lắp đặt toàn quốc.
+              Cung cấp giải pháp Robot Bốc xếp - Dỡ pallet được sản xuất trực tiếp tại Việt Nam, lắp đặt và bàn giao toàn quốc
             </p>
             <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--d": ".24s" } as React.CSSProperties}>
               <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
