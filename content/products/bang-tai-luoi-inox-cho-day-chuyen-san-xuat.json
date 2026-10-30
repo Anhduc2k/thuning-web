@@ -1,10 +1,18 @@
 {
-  "name": "Băng tải lưới inox cho dây chuyền sản xuất",
-  "model": "BT-138",
+  "name": "Biến tần EasyPower EP800 4KW",
+  "model": "EP800-4",
   "category": "bang-tai-cong-nghiep",
   "sub": "bang-tai-luoi-inox",
   "date": "2026-09-14",
   "isNew": false,
   "featured": false,
-  "bestseller": false
+  "bestseller": false,
+  "images": [
+    "/uploads/easypower-inverter-showcase-1.webp"
+  ],
+  "summary": "",
+  "description": "",
+  "specs": [],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
