@@ -9,9 +9,9 @@ export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, về trang chủ`}>
       {/* Thay bằng logo thật: <Image src="/logo.svg" .../> */}
-      <span className="grid size-10 place-items-center bg-brand text-lg font-extrabold leading-none text-white">Thư</span>
+      <span className="grid size-10 place-items-center bg-brand text-lg font-extrabold leading-none text-white">ADS</span>
       <span className="leading-tight">
-        <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>Thư Ning</span>
+        <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>Giải Pháp Tự Động Hóa ADS</span>
         <span className={`block whitespace-nowrap text-xs ${light ? "text-white/60" : "text-steel"}`}>Robot Xếp Dỡ Pallet - Cung cấp thiết bị - Dự án Tự động hóa</span>
       </span>
     </Link>
