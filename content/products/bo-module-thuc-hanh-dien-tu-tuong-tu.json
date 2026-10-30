@@ -1,5 +1,5 @@
 {
-  "name": "Robot xếp pallet tải 250KG",
+  "name": "Robot Cột xếp pallet tải 250KG",
   "model": "ADSRobot-250",
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-dien-tu",
@@ -7,7 +7,9 @@
   "isNew": true,
   "featured": false,
   "bestseller": false,
-  "images": [],
+  "images": [
+    "/uploads/pasted-image-1793362219977.webp"
+  ],
   "summary": "Robot bốc xếp pallet tải 250KG",
   "description": "Robot bốc xếp pallet với tải 150KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
   "specs": [],
