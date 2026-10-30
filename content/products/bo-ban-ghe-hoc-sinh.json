@@ -1,21 +1,33 @@
 {
-  "name": "Bộ bàn ghế học sinh updated",
-  "model": "TB-156",
+  "name": "Bộ Servo 2,6KW PDFE",
+  "model": "Servo-2.6",
   "category": "thiet-bi-khac",
-  "sub": "",
+  "sub": "3j637m2ekraovmyen64nwh7f6y",
   "date": "2026-08-27",
   "isNew": false,
   "featured": false,
   "bestseller": false,
   "images": [
-    "/uploads/b22e8eed-a8d7-40f8-b89c-ca8226403c2c.webp"
+    "/uploads/pasted-image-1793360831666.webp"
   ],
   "summary": "",
   "description": "",
   "specs": [
     {
-      "label": "Test thông số",
-      "value": "220V/50Hz"
+      "label": "Công suất",
+      "value": "2,6kw"
+    },
+    {
+      "label": "Điện áp vào",
+      "value": "220V"
+    },
+    {
+      "label": "Momen",
+      "value": "10Nm"
+    },
+    {
+      "label": "Max RPM:",
+      "value": "2500"
     }
   ],
   "relatedProducts": [],
