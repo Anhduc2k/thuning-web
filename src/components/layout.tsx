@@ -12,7 +12,7 @@ export function Logo({ light = false }: { light?: boolean }) {
       <span className="grid size-10 place-items-center bg-brand text-lg font-extrabold leading-none text-white">Thư</span>
       <span className="leading-tight">
         <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>Thư Ning</span>
-        <span className={`block whitespace-nowrap text-xs ${light ? "text-white/60" : "text-steel"}`}>Tự động hóa · Thiết bị dạy nghề</span>
+        <span className={`block whitespace-nowrap text-xs ${light ? "text-white/60" : "text-steel"}`}>Robot Xếp Dỡ Pallet - Cung cấp thiết bị - Dự án Tự động hóa</span>
       </span>
     </Link>
   );
