@@ -7,7 +7,9 @@
   "isNew": false,
   "featured": false,
   "bestseller": false,
-  "images": [],
+  "images": [
+    "/uploads/pasted-image-1793362386769.webp"
+  ],
   "summary": "Robot kết hợp ray trượt - xếp nhiều vị trí Pallet, xếp hàng lên thùng xe tải",
   "description": "Tích hợp thêm ray trượt tăng độ linh hoạt, có thể di chuyển để xếp hàng vào nhiều vị trí Pallet, Xếp hàng lên thùng xe tải,..\n\nDễ dàng vận hành, đa dạng ứng dụng",
   "specs": [],
