@@ -67,23 +67,26 @@ export function Header() {
                     <button type="button" aria-haspopup="true" className="flex items-center gap-1 whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 group-focus-within:text-brand group-hover:text-brand">
                       Sản phẩm<Icon name="chevron" className="size-3 rotate-90 opacity-60 transition-transform duration-200 group-focus-within:-rotate-90 group-hover:-rotate-90" />
                     </button>
-                    <div className="invisible absolute right-0 top-full w-[38rem] columns-2 gap-10 border border-line bg-white p-6 translate-y-2 opacity-0 shadow-lg transition duration-200 ease-out group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                      {categories.map((c) => (
-                        <div key={c.slug} className="mb-5 break-inside-avoid">
-                          <Link href={`/${c.slug}`} className="flex items-center gap-2 font-semibold hover:text-brand">
-                            <Icon name={c.icon} className="size-5 shrink-0 text-brand" />{c.name}
-                          </Link>
-                          {c.subs.length > 0 && (
-                            <ul className="mt-2 space-y-0.5 border-l border-line pl-7">
-                              {c.subs.map((s) => (
-                                <li key={s.slug}>
-                                  <Link href={`/${c.slug}/${s.slug}`} className="block py-1 text-sm text-steel first-letter:uppercase hover:text-brand">{s.name.replace(/^Phòng thực hành /, "")}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      ))}
+                    {/* Header dính đầu trang nên menu dài hơn màn hình thì cuộn bên trong (không giới hạn chiều cao ở lớp chia cột, nếu không cột sẽ tràn sang ngang). */}
+                    <div className="invisible absolute right-0 top-full max-h-[calc(100dvh-7rem)] w-[38rem] overflow-y-auto overscroll-contain border border-line bg-white translate-y-2 opacity-0 shadow-lg transition duration-200 ease-out group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+                      <div className="columns-2 gap-10 p-6">
+                        {categories.map((c) => (
+                          <div key={c.slug} className="mb-5 break-inside-avoid">
+                            <Link href={`/${c.slug}`} className="flex items-center gap-2 font-semibold hover:text-brand">
+                              <Icon name={c.icon} className="size-5 shrink-0 text-brand" />{c.name}
+                            </Link>
+                            {c.subs.length > 0 && (
+                              <ul className="mt-2 space-y-0.5 border-l border-line pl-7">
+                                {c.subs.map((s) => (
+                                  <li key={s.slug}>
+                                    <Link href={`/${c.slug}/${s.slug}`} className="block py-1 text-sm text-steel first-letter:uppercase hover:text-brand">{s.name.replace(/^Phòng thực hành /, "")}</Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </li>
                 )}

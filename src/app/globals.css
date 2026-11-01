@@ -89,7 +89,6 @@ body {
 .plan .hatch-line { stroke: var(--color-brand); stroke-width: 1.4; opacity: 0.22; }
 .plan .zname { fill: var(--color-ink); font-size: 21px; font-weight: 600; stroke: none; }
 .plan .zcount { fill: var(--color-steel); font-size: 15px; font-weight: 500; stroke: none; }
-.plan .sm .zname { font-size: 18px; }
 .plan .zone:hover .hit, .plan .zone:focus-visible .hit { fill: url(#hatch); stroke: var(--color-brand); stroke-width: 2.4; stroke-dasharray: none; }
 .plan .zone:hover .zname, .plan .zone:focus-visible .zname { fill: var(--color-brand); }
 .plan .zone:hover .ln > *, .plan .zone:hover .ln g > * { stroke: var(--color-ink); }

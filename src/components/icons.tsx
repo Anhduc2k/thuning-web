@@ -11,7 +11,7 @@ const base = {
   "aria-hidden": true,
 };
 
-const paths: Record<IconName | "phone" | "mail" | "pin" | "search" | "menu" | "chevron" | "truck" | "chat" | "shield" | "tag" | "clock" | "close", React.ReactNode> = {
+export const paths: Record<IconName | "phone" | "mail" | "pin" | "search" | "menu" | "chevron" | "truck" | "chat" | "shield" | "tag" | "clock" | "close", React.ReactNode> = {
   chip: <><rect x="6" y="6" width="12" height="12" rx="1" /><rect x="9.5" y="9.5" width="5" height="5" /><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3" /></>,
   conveyor: <><rect x="2.5" y="10" width="19" height="5" rx="2.5" /><circle cx="5" cy="12.5" r="1" /><circle cx="19" cy="12.5" r="1" /><path d="M7 7h4v3H7zM13 6h4v4h-4zM6 15l-1 5M18 15l1 5" /></>,
   gear: <><circle cx="12" cy="12" r="3" /><path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1M18.7 18.7l-2.1-2.1M7.4 7.4 5.3 5.3" /><circle cx="12" cy="12" r="6.5" /></>,
