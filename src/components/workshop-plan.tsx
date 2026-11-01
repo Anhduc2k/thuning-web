@@ -213,7 +213,7 @@ export function WorkshopPlan() {
           </ul>
         );
       })()}
-      <figcaption className="mt-3 text-sm text-steel">Chọn một khu trên mặt bằng xưởng để xem thiết bị.</figcaption>
+      <figcaption className="mt-3 text-center text-sm text-steel">Chọn một khu trên mặt bằng xưởng để xem thiết bị.</figcaption>
     </figure>
   );
 }
