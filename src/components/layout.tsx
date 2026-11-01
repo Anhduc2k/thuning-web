@@ -4,6 +4,7 @@ import { categories } from "@/lib/catalog";
 import { nav, policies, site } from "@/lib/site";
 import { Icon } from "./icons";
 import { MobileNav } from "./mobile-nav";
+import { ProductsMenu } from "./products-menu";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -63,7 +64,7 @@ export function Header() {
                   <Link href={item.href} className="block whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 hover:text-brand">{item.label}</Link>
                 </li>
                 {i === 0 && (
-                  <li className="group">
+                  <ProductsMenu>
                     <button type="button" aria-haspopup="true" className="flex items-center gap-1 whitespace-nowrap px-3 py-5 text-[14px] font-medium text-ink/80 group-focus-within:text-brand group-hover:text-brand">
                       Sản phẩm<Icon name="chevron" className="size-3 rotate-90 opacity-60 transition-transform duration-200 group-focus-within:-rotate-90 group-hover:-rotate-90" />
                     </button>
@@ -88,7 +89,7 @@ export function Header() {
                         ))}
                       </div>
                     </div>
-                  </li>
+                  </ProductsMenu>
                 )}
               </Fragment>
             ))}
