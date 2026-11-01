@@ -2,6 +2,7 @@ import { Barlow_Condensed } from "next/font/google";
 import Link from "next/link";
 import { categories, getCategoryById } from "@/lib/catalog";
 import { getProducts } from "@/lib/products";
+import { PlanSlider } from "@/components/plan-slider";
 
 // Chữ kỹ thuật trên bản vẽ.
 const lettering = Barlow_Condensed({ subsets: ["latin", "vietnamese"], weight: ["500", "600"] });
@@ -30,6 +31,18 @@ function fitLines(text: string, maxW: number, size: number, maxLines: number) {
 }
 
 // Nét vẽ: pathLength=1 để CSS vẽ dần từng nét khi tải trang.
+// Khung nhìn của một slide: bao quanh khu, cùng tỉ lệ cho mọi slide để khung không đổi kích thước.
+const RATIO = 16 / 10;
+// `minW`: khu nhỏ không bị phóng quá to (chữ to gấp ba) so với các khu lớn.
+function frame(b: Box, pad = 24, minW = 440) {
+  let w = b.w + pad * 2;
+  let h = b.h + pad * 2;
+  if (w / h > RATIO) h = w / RATIO;
+  else w = h * RATIO;
+  if (w < minW) [w, h] = [minW, minW / RATIO];
+  return `${b.x + b.w / 2 - w / 2} ${b.y + b.h / 2 - h / 2} ${w} ${h}`;
+}
+
 const R = (x: number, y: number, w: number, h: number) => <rect x={x} y={y} width={w} height={h} pathLength={1} />;
 const C = (cx: number, cy: number, r: number) => <circle cx={cx} cy={cy} r={r} pathLength={1} />;
 const L = (x1: number, y1: number, x2: number, y2: number) => <line x1={x1} y1={y1} x2={x2} y2={y2} pathLength={1} />;
@@ -139,50 +152,40 @@ export function WorkshopPlan() {
 
   return (
     <figure className="plan">
-      <svg viewBox="0 -12 800 492" className={`${lettering.className} block w-full`} role="group" aria-label="Mặt bằng xưởng, mỗi khu là một nhóm thiết bị">
+      {/* Mẫu gạch chéo dùng chung cho mọi slide (id chỉ khai báo một lần trong trang). */}
+      <svg className="absolute size-0" aria-hidden>
         <defs>
           <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
             <line x1="0" y1="0" x2="0" y2="8" className="hatch-line" />
           </pattern>
         </defs>
-
-        {/* Kích thước tổng (mm) và tường xưởng, chừa cửa ra vào ở góc dưới trái. */}
-        <g className="dim" aria-hidden>
-          <line x1="20" y1="10" x2="780" y2="10" />
-          <line x1="20" y1="4" x2="20" y2="16" />
-          <line x1="780" y1="4" x2="780" y2="16" />
-          <text x="400" y="4" textAnchor="middle">38 000</text>
-        </g>
-        <g className="ln wall" aria-hidden style={{ "--d": "0s" } as React.CSSProperties}>
-          <path d="M110 460 H780 V20 H20 V460 H50" pathLength={1} />
-        </g>
-        <path d="M50 460 A60 60 0 0 1 110 400" className="door" aria-hidden />
-
-        {items.map((z, i) => (
-          <Link key={z.slug} href={`/${z.slug}`} className="zone" aria-label={`${z.name}, ${z.n} sản phẩm`}>
-            <rect className="hit" x={z.box.x} y={z.box.y} width={z.box.w} height={z.box.h} />
-            <g className="ln" aria-hidden style={{ "--d": `${0.25 + i * 0.18}s` } as React.CSSProperties}>
-              {z.draw}
-            </g>
-            <g className={z.small ? "zlabel sm" : "zlabel"} aria-hidden>
-              <text className="zname" x={z.label[0]} y={z.label[1]}>
-                {z.lines.map((l, j) => (
-                  <tspan key={j} x={z.label[0]} dy={j ? 22 : 0} style={l.size ? { fontSize: l.size } : undefined}>{l.t}</tspan>
-                ))}
-              </text>
-              <text className="zcount" x={(z.count ?? [z.label[0]])[0]} y={(z.count ?? [0, z.label[1] + 20 + (z.lines.length - 1) * 22])[1]} textAnchor={z.count?.[2] ?? "start"}>
-                {z.n} sản phẩm
-              </text>
-            </g>
-            <g className="callout" aria-hidden>
-              <circle cx={z.box.x + z.box.w / 2} cy={z.box.y + z.box.h / 2} r="26" />
-              <text x={z.box.x + z.box.w / 2} y={z.box.y + z.box.h / 2 + 11} textAnchor="middle">{i + 1}</text>
-            </g>
-          </Link>
-        ))}
       </svg>
 
-      {/* Màn hình nhỏ: chữ trên bản vẽ quá bé nên dùng số chú dẫn + bảng chú thích. */}
+      {/* Mỗi khu một slide: cùng toạ độ bản vẽ gốc, chỉ cắt khung nhìn (viewBox) quanh khu đó. */}
+      <PlanSlider labels={items.map((z) => `${z.name}, ${z.n} sản phẩm`)}>
+        {items.map((z) => (
+          <svg key={z.slug} viewBox={frame(z.box)} className={`${lettering.className} block w-full`}>
+            <Link href={`/${z.slug}`} className="zone" aria-label={`${z.name}, ${z.n} sản phẩm`}>
+              <rect className="hit" x={z.box.x} y={z.box.y} width={z.box.w} height={z.box.h} />
+              <g className="ln" aria-hidden style={{ "--d": "0.1s" } as React.CSSProperties}>
+                {z.draw}
+              </g>
+              <g className={z.small ? "zlabel sm" : "zlabel"} aria-hidden>
+                <text className="zname" x={z.label[0]} y={z.label[1]}>
+                  {z.lines.map((l, j) => (
+                    <tspan key={j} x={z.label[0]} dy={j ? 22 : 0} style={l.size ? { fontSize: l.size } : undefined}>{l.t}</tspan>
+                  ))}
+                </text>
+                <text className="zcount" x={(z.count ?? [z.label[0]])[0]} y={(z.count ?? [0, z.label[1] + 20 + (z.lines.length - 1) * 22])[1]} textAnchor={z.count?.[2] ?? "start"}>
+                  {z.n} sản phẩm
+                </text>
+              </g>
+            </Link>
+          </svg>
+        ))}
+      </PlanSlider>
+
+      {/* Màn hình nhỏ: thêm danh sách các khu để chọn nhanh, không phải chờ slide. */}
       <ul className="mt-4 grid gap-px border border-drafting/25 bg-drafting/25 sm:hidden">
         {items.map((z, i) => (
           <li key={z.slug}>
