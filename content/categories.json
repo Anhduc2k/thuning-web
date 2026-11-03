@@ -140,9 +140,12 @@
     "slug": "thiet-bi-khac",
     "name": "Thiết bị khác",
     "icon": "box",
-    "intro": "Thiết bị phụ trợ cho phòng học và xưởng thực hành.",
+    "intro": "Các thiết bị khác phục vụ ngành tự động hóa như cảm biến, PLC, HMI, Board PLC, ...",
+    "heroTitle": "Thiết bị khác",
+    "heroText": "Các thiết bị khác phục vụ ngành tự động hóa như cảm biến, PLC, HMI, Board PLC, ...",
     "highlights": [
-      "Đồng bộ với bàn thực hành và nội thất phòng học"
+      "Chất lượng cao, bảo hành dài",
+      "Hỗ trợ Kỹ thuật"
     ],
     "subs": []
   }
