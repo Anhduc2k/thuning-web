@@ -1,24 +1,25 @@
 "use client";
 
 import { Children, useEffect, useState } from "react";
+import { useSlide } from "@/components/hero-slides";
 import { Icon } from "@/components/icons";
 
-const DELAY = 4000; // ms mỗi slide
+const DELAY = 5000; // ms mỗi slide
 
 /** Trình chiếu các khu của mặt bằng xưởng (components/workshop-plan.tsx): tự chuyển sau 4s,
  *  dừng khi rê chuột / focus vào, không tự chạy khi người dùng bật "giảm chuyển động". */
 export function PlanSlider({ children, labels }: { children: React.ReactNode; labels: string[] }) {
   const slides = Children.toArray(children);
-  const [i, setI] = useState(0);
+  const [i, setI] = useSlide(); // dùng chung với chữ mở đầu trang chủ (HeroText)
   const [paused, setPaused] = useState(false);
   const go = (n: number) => setI((n + slides.length) % slides.length);
 
   // Phụ thuộc vào `i`: bấm chuyển tay thì đếm lại 4s từ đầu.
   useEffect(() => {
     if (paused || slides.length < 2 || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const t = setTimeout(() => setI((n) => (n + 1) % slides.length), DELAY);
+    const t = setTimeout(() => setI((i + 1) % slides.length), DELAY);
     return () => clearTimeout(t);
-  }, [i, paused, slides.length]);
+  }, [i, setI, paused, slides.length]);
 
   return (
     <div

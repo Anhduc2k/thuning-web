@@ -6,6 +6,8 @@ export type Category = {
   name: string;
   icon: IconName;
   intro: string;
+  heroTitle?: string; // tiêu đề đầu trang chủ khi slide mặt bằng xưởng hiện danh mục này
+  heroText?: string; // mô tả dưới tiêu đề đó
   highlights: string[];
   subs: { id?: string; slug: string; name: string; icon?: IconName }[];
 };

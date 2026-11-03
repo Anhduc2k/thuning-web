@@ -128,6 +128,8 @@ collections:
           - { label: "Bông tuyết", value: snow }
           - { label: "Giọt nước", value: drop }
       - { name: intro, label: Giới thiệu, widget: text, hint: "Hiện đầu trang danh mục và trong mô tả sản phẩm." }
+      - { name: heroTitle, label: Tiêu đề trang chủ, widget: string, required: false, hint: "Tiêu đề lớn ở đầu trang chủ khi slide mặt bằng xưởng đang hiện danh mục này. Để trống thì dùng tiêu đề chung." }
+      - { name: heroText, label: Mô tả trang chủ, widget: text, required: false, hint: "Đoạn mô tả dưới tiêu đề trang chủ, đổi theo slide của danh mục này. Để trống thì dùng mô tả chung." }
       - { name: highlights, label: Điểm nổi bật, label_singular: điểm nổi bật, widget: list, field: { name: text, label: Nội dung, widget: string } }
       - name: subs
         label: Danh mục con
