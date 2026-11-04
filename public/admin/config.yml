@@ -130,6 +130,7 @@ collections:
       - { name: intro, label: Giới thiệu, widget: text, hint: "Hiện đầu trang danh mục và trong mô tả sản phẩm." }
       - { name: heroTitle, label: Tiêu đề trang chủ, widget: string, required: false, hint: "Tiêu đề lớn ở đầu trang chủ khi slide mặt bằng xưởng đang hiện danh mục này. Để trống thì dùng tiêu đề chung." }
       - { name: heroText, label: Mô tả trang chủ, widget: text, required: false, hint: "Đoạn mô tả dưới tiêu đề trang chủ, đổi theo slide của danh mục này. Để trống thì dùng mô tả chung." }
+      - { name: slideImage, label: Ảnh slide trang chủ, widget: image, required: false, choose_url: false, hint: "Ảnh hiện ở slide của danh mục này trên trang chủ. Nên dùng ảnh ngang tỉ lệ 16:10 (ví dụ 1600×1000px). Để trống thì hiện hình vẽ mặt bằng xưởng như cũ." }
       - { name: highlights, label: Điểm nổi bật, label_singular: điểm nổi bật, widget: list, field: { name: text, label: Nội dung, widget: string } }
       - name: subs
         label: Danh mục con

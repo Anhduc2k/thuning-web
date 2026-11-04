@@ -8,6 +8,7 @@ export type Category = {
   intro: string;
   heroTitle?: string; // tiêu đề đầu trang chủ khi slide mặt bằng xưởng hiện danh mục này
   heroText?: string; // mô tả dưới tiêu đề đó
+  slideImage?: string; // ảnh slide trang chủ trong /uploads; trống thì vẽ mặt bằng xưởng
   highlights: string[];
   subs: { id?: string; slug: string; name: string; icon?: IconName }[];
 };
