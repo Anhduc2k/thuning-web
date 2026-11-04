@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { createContext, Fragment, useContext, useState } from "react";
 
 // Slide đang hiện của mặt bằng xưởng, dùng chung giữa PlanSlider và chữ mở đầu trang chủ.
@@ -53,4 +54,10 @@ export function HeroText({ slides, fallback }: { slides: Partial<Text>[]; fallba
       </div>
     </div>
   );
+}
+
+/** Nút "Xem danh mục" đầu trang chủ: dẫn tới danh mục của slide đang hiện. */
+export function HeroLink({ hrefs, className, children }: { hrefs: string[]; className?: string; children: React.ReactNode }) {
+  const [i] = useSlide();
+  return <Link href={hrefs[i] ?? hrefs[0] ?? "/"} className={className}>{children}</Link>;
 }

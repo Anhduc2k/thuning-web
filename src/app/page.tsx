@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ProductGrid, Sidebar } from "@/components/catalog";
 import { WorkshopPlan } from "@/components/workshop-plan";
-import { HeroSlides, HeroText } from "@/components/hero-slides";
+import { HeroLink, HeroSlides, HeroText } from "@/components/hero-slides";
 import { Icon } from "@/components/icons";
 import { categories } from "@/lib/catalog";
 import { getProducts } from "@/lib/products";
@@ -42,9 +42,10 @@ export default function Home() {
               />
             </div>
             <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--d": ".24s" } as React.CSSProperties}>
-              <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
-                Xem các dòng Robot
-              </Link>
+              {/* Dẫn tới danh mục của slide đang hiện. */}
+              <HeroLink hrefs={categories.map((c) => `/${c.slug}`)} className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
+                Xem danh mục
+              </HeroLink>
               <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-ink/25 bg-white/60 px-6 font-semibold text-ink hover:border-ink">
                 <Icon name="phone" className="size-4" />Gọi {site.phoneDisplay}
               </a>

@@ -139,15 +139,11 @@ export function WorkshopPlan() {
 
       <PlanSlider labels={items.map((c) => `${c.name}, ${c.n} sản phẩm`)}>
         {items.map((c, i) => c.slideImage ? (
-          // Có ảnh slide (CMS: Danh mục → Ảnh slide trang chủ): hiện ảnh cùng khung 480×300, tên + số sản phẩm đè ở dưới.
+          // Có ảnh slide (CMS: Danh mục → Ảnh slide trang chủ): chỉ hiện ảnh, cùng khung 480×300 (tên danh mục vẫn có trong aria-label cho trình đọc màn hình).
           // Lề 3.333% = 16/480 của khung nét đứt, để ảnh trùng đúng vị trí khung của slide vẽ.
           <div key={c.slug} className="aspect-[480/300]" style={{ padding: "3.333%" }}>
           <Link href={`/${c.slug}`} aria-label={`${c.name}, ${c.n} sản phẩm`} className="group relative block size-full overflow-hidden rounded-sm border border-drafting/40 bg-paper outline-none focus-visible:ring-2 focus-visible:ring-brand">
             <Image src={c.slideImage} alt="" fill sizes="(min-width:1024px) 720px, 100vw" priority={i === 0} className="object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
-            <div aria-hidden className={`${lettering.className} absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 via-ink/50 to-transparent px-5 pb-4 pt-12 text-white`}>
-              <div className="text-xl font-semibold leading-tight md:text-2xl group-hover:underline">{c.name}</div>
-              <div className="mt-1 text-sm font-medium text-white/80 md:text-base">{c.n} sản phẩm</div>
-            </div>
           </Link>
           </div>
         ) : (
