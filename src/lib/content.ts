@@ -77,6 +77,9 @@ export function loadContent(categories: Category[], root = process.cwd()) {
     return v;
   };
 
+  // Ảnh slide trang chủ của danh mục (tùy chọn): phải là ảnh đã tải lên.
+  for (const c of categories) if (c.slideImage) image(`content/categories.json (${c.name || c.slug})`, "slideImage", c.slideImage);
+
   const models = new Map<string, string>();
   // Sản phẩm lưu mã danh mục (hoặc đường dẫn, dữ liệu cũ). Danh mục bị xóa → tạm ẩn sản phẩm; danh mục con bị xóa → hiện thẳng dưới danh mục.
   // Chỉ cảnh báo trong log build, không dừng build: sửa trong CMS là web tự cập nhật.

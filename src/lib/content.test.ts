@@ -84,3 +84,11 @@ test("đổi đường dẫn danh mục: sản phẩm tra theo id, nhận đư�
   assert.equal(products[0].sub, "con-moi");
   assert.throws(site({ sp: product }, { bai: post }, [...cats, { ...cats[0], slug: "khac" }]), /"id" "cu" bị trùng/);
 });
+
+test("ảnh slide trang chủ của danh mục: tùy chọn, phải nằm trong /uploads và tồn tại", () => {
+  const withImg = (v: string) => categories.map((c: object, i: number) => (i ? c : { ...c, slideImage: v }));
+  assert.doesNotThrow(site({ sp: product }, { bai: post }, withImg("/uploads/a.jpg")));
+  assert.doesNotThrow(site({ sp: product }, { bai: post }, withImg("")));
+  assert.throws(site({ sp: product }, { bai: post }, withImg("https://x.vn/a.jpg")), /"slideImage" .*phải là ảnh tải lên/);
+  assert.throws(site({ sp: product }, { bai: post }, withImg("/uploads/khong-co.jpg")), /"slideImage" không thấy file/);
+});
