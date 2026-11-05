@@ -141,12 +141,13 @@
   },
   {
     "id": "thiet-bi-khac",
-    "slug": "thiet-bi-khac",
-    "name": "Thiết bị khác",
-    "icon": "box",
-    "intro": "Các thiết bị khác phục vụ ngành tự động hóa như cảm biến, PLC, HMI, Board PLC, ...",
-    "heroTitle": "Thiết bị khác",
-    "heroText": "Các thiết bị khác phục vụ ngành tự động hóa như cảm biến, PLC, HMI, Board PLC, ...",
+    "slug": "che-tao-may",
+    "name": "Chế tạo máy",
+    "icon": "conveyor",
+    "intro": "Chế tạo máy móc tự động hóa phục vụ sản xuất công nghiệp",
+    "heroTitle": "Chế tạo máy",
+    "heroText": "Chế tạo máy móc tự động hóa phục vụ sản xuất công nghiệp",
+    "slideImage": "/uploads/pasted-image-1793868677747.webp",
     "highlights": [
       "Chất lượng cao, bảo hành dài",
       "Hỗ trợ Kỹ thuật"
