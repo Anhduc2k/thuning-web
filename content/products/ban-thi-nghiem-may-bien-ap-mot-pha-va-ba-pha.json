@@ -7,7 +7,9 @@
   "isNew": false,
   "featured": false,
   "bestseller": false,
-  "images": [],
+  "images": [
+    "/uploads/pasted-image-1793850405931.webp"
+  ],
   "summary": "Robot dỡ bao cấp liệu từ Pallet - tải 150-300KG",
   "description": "Robot có khả năng nhận diện vị trí của từng bao trên pallet và thực hiện gắp chính xác, xé bao và cấp liệu vào bồn chứa\n\nVận hành đơn giản, đa dạng ứng dụng",
   "specs": [],
