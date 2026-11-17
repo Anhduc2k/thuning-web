@@ -56,14 +56,14 @@ export default function Home() {
       </section>
       </HeroSlides>
 
-      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả thiết bị dạy nghề" aside={<Sidebar />}>
+      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả sản phẩm mới" aside={<Sidebar />}>
         <ProductGrid items={newest} cols={3} />
       </Section>
 
       <section className="bg-panel">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Trang bị trọn một phòng thực hành</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl"></h2>
             <p className="mt-4 max-w-md leading-relaxed text-steel">
          
             </p>
@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section title="Sản phẩm nổi bật" href="/bang-tai-cong-nghiep" more="Xem băng tải công nghiệp">
+      <Section title="Sản phẩm nổi bật" href="/bang-tai-cong-nghiep" more="Xem sản phẩm nổi bật">
         <ProductGrid items={featured} />
       </Section>
 
