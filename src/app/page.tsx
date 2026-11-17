@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ProductGrid, Sidebar } from "@/components/catalog";
 import { WorkshopPlan } from "@/components/workshop-plan";
+import { HeroLink, HeroSlides, HeroText } from "@/components/hero-slides";
 import { Icon } from "@/components/icons";
 import { categories } from "@/lib/catalog";
 import { getProducts } from "@/lib/products";
@@ -26,20 +27,25 @@ export default function Home() {
 
   return (
     <>
+      <HeroSlides>
       <section className="bg-drafting border-b border-drafting/20">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:py-16 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-14">
           {/* Mở đầu: chữ hiện lần lượt cùng lúc mặt bằng xưởng được vẽ (globals.css: .rise, .plan). */}
           <div>
-            <h1 className="rise text-[2.1rem] font-extrabold leading-[1.12] tracking-tight text-ink md:text-[3rem]">
-              Giải pháp Robot do các kỹ sư Việt Nam thiết kế và lập trình
-            </h1>
-            <p className="rise mt-5 max-w-xl text-lg leading-relaxed text-steel" style={{ "--d": ".12s" } as React.CSSProperties}>
-              Cung cấp giải pháp Robot Bốc xếp - Dỡ pallet được sản xuất trực tiếp tại Việt Nam, lắp đặt và bàn giao toàn quốc
-            </p>
+            <div className="rise">
+              <HeroText
+                slides={categories.map((c) => ({ title: c.heroTitle, text: c.heroText }))}
+                fallback={{
+                  title: "Giải pháp Robot do các kỹ sư Việt Nam thiết kế và lập trình",
+                  text: "Cung cấp giải pháp Robot Bốc xếp - Dỡ pallet được sản xuất trực tiếp tại Việt Nam, lắp đặt và bàn giao toàn quốc",
+                }}
+              />
+            </div>
             <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--d": ".24s" } as React.CSSProperties}>
-              <Link href="/thiet-bi-day-nghe" className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
-                Xem các dòng Robot
-              </Link>
+              {/* Dẫn tới danh mục của slide đang hiện. */}
+              <HeroLink hrefs={categories.map((c) => `/${c.slug}`)} className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
+                Xem danh mục
+              </HeroLink>
               <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-ink/25 bg-white/60 px-6 font-semibold text-ink hover:border-ink">
                 <Icon name="phone" className="size-4" />Gọi {site.phoneDisplay}
               </a>
@@ -48,15 +54,16 @@ export default function Home() {
           <WorkshopPlan />
         </div>
       </section>
+      </HeroSlides>
 
-      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả sản phẩm mới" aside={<Sidebar />}>
+      <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả thiết bị dạy nghề" aside={<Sidebar />}>
         <ProductGrid items={newest} cols={3} />
       </Section>
 
       <section className="bg-panel">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl"></h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Trang bị trọn một phòng thực hành</h2>
             <p className="mt-4 max-w-md leading-relaxed text-steel">
          
             </p>
@@ -77,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Section title="Sản phẩm nổi bật" href="/bang-tai-cong-nghiep" more="Xem sản phẩm nổi bật">
+      <Section title="Sản phẩm nổi bật" href="/bang-tai-cong-nghiep" more="Xem băng tải công nghiệp">
         <ProductGrid items={featured} />
       </Section>
 
