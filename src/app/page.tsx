@@ -15,7 +15,7 @@ export const metadata = {
 
 const promises = [
   { icon: "truck", title: "Giao hàng toàn quốc", text: "Đóng kiện, vận chuyển và lắp đặt tại chỗ" },
-  { icon: "chat", title: "Tư vấn cấu hình miễn phí", text: "Theo chương trình đào tạo hoặc dây chuyền thực tế" },
+  { icon: "chat", title: "Tư vấn cấu hình miễn phí", text: "Theo dây chuyền thực tế" },
   { icon: "tag", title: "Giá trực tiếp từ xưởng", text: "Tự thiết kế, tự sản xuất, không qua trung gian" },
   { icon: "shield", title: "Bảo hành dài hạn", text: "Linh kiện công nghiệp, có sẵn vật tư thay thế" },
 ] as const;

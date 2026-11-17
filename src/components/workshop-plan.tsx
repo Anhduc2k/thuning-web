@@ -180,7 +180,7 @@ export function WorkshopPlan() {
           </li>
         ))}
       </ul>
-      <figcaption className="mt-3 text-center text-sm text-steel">Chọn một khu trên mặt bằng xưởng để xem thiết bị.</figcaption>
+      <figcaption className="mt-3 text-center text-sm text-steel">Chọn để xem chi tiết danh mục</figcaption>
     </figure>
   );
 }
