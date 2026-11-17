@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ProductGrid, Sidebar } from "@/components/catalog";
 import { WorkshopPlan } from "@/components/workshop-plan";
@@ -22,7 +23,6 @@ const promises = [
 
 export default function Home() {
   const newest = getProducts().filter((p) => p.isNew).slice(0, 9);
-  const featured = getProducts().filter((p) => (p.featured || p.bestseller) && !p.isNew).slice(0, 8);
   const vocational = categories[0];
 
   return (
@@ -61,32 +61,50 @@ export default function Home() {
       </Section>
 
       <section className="bg-panel">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl"></h2>
-            <p className="mt-4 max-w-md leading-relaxed text-steel">
-         
-            </p>
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          {/* Tiêu đề + mô tả lấy từ danh mục đầu tiên (CMS), cùng kiểu vạch đen với các mục khác. */}
+          <div className="reveal mb-8 flex flex-wrap items-end justify-between gap-x-8 gap-y-4 border-b-2 border-ink pb-4">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand">Giải pháp robot</p>
+              <h2 className="mt-1 text-2xl font-bold tracking-tight md:text-3xl">{vocational.name}</h2>
+              <p className="mt-3 leading-relaxed text-steel">{vocational.intro}</p>
+            </div>
+            <Link href={`/${vocational.slug}`} className="group -my-2 inline-flex items-center gap-1 py-2 text-sm font-semibold text-brand hover:underline">
+              Xem tất cả giải pháp<Icon name="chevron" className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
           </div>
-          <ul className="grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-3 xl:grid-cols-5">
-            {vocational.subs.map((s) => (
-              <li key={s.slug}>
-                <Link href={`/${vocational.slug}/${s.slug}`} className="group flex h-full flex-col gap-4 bg-white p-5 transition-colors duration-300 hover:bg-ink hover:text-white">
-                  <Icon name={s.icon || "chip"} className="size-9 stroke-[1.3] text-brand transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110" />
-                  <span>
-                    <span className="block font-semibold leading-snug first-letter:uppercase">{s.name.replace("Phòng thực hành ", "")}</span>
-                    <span className="text-sm text-steel group-hover:text-white/60">{getProducts().filter((p) => p.sub === s.slug).length} thiết bị</span>
-                  </span>
-                </Link>
-              </li>
-            ))}
+          <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-5">
+            {vocational.subs.map((s, i) => {
+              const items = getProducts().filter((p) => p.sub === s.slug);
+              // Ảnh đại diện: ảnh đầu của sản phẩm đầu tiên có ảnh; không có thì dùng biểu tượng trên nền giấy can.
+              const image = items.find((p) => p.images?.length)?.images?.[0];
+              return (
+                <li key={s.slug} className="reveal">
+                  <Link href={`/${vocational.slug}/${s.slug}`} className="group flex h-full flex-col overflow-hidden border border-line bg-white transition duration-300 hover:-translate-y-1 hover:border-brand hover:shadow-lg">
+                    <div className="relative aspect-[4/3] overflow-hidden border-b border-line">
+                      {image ? (
+                        <Image src={image} alt="" fill sizes="(min-width:1280px) 250px, (min-width:768px) 33vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      ) : (
+                        <div className="bg-drafting grid h-full place-items-center">
+                          <Icon name={s.icon || "robot"} className="size-14 stroke-[1.2] text-drafting transition-transform duration-300 group-hover:scale-110" />
+                        </div>
+                      )}
+                      <span className="absolute left-0 top-0 bg-white px-2 py-1 font-mono text-xs text-steel">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-4">
+                      <h3 className="font-semibold leading-snug first-letter:uppercase group-hover:text-brand">{s.name}</h3>
+                      <p className="mt-auto flex items-center justify-between pt-4 text-sm text-steel">
+                        {items.length} thiết bị
+                        <Icon name="chevron" className="size-3.5 text-brand transition-transform group-hover:translate-x-1" />
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
-
-      <Section title="Sản phẩm nổi bật" href="/bang-tai-cong-nghiep" more="Xem sản phẩm nổi bật">
-        <ProductGrid items={featured} />
-      </Section>
 
       <section className="border-y border-line">
         <ul className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -107,6 +125,11 @@ export default function Home() {
           {getPosts().slice(0, 3).map((p) => (
             <article key={p.slug} className="reveal">
               <Link href={`/tin-tuc/${p.slug}`} className="group block">
+                {p.image && (
+                  <div className="relative mb-4 aspect-video overflow-hidden bg-panel">
+                    <Image src={p.image} alt="" fill sizes="(min-width:768px) 400px, 100vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                  </div>
+                )}
                 <p className="text-sm text-steel"><time dateTime={p.date}>{formatDate(p.date)}</time> · {p.topic}</p>
                 <h3 className="mt-2 text-lg font-semibold leading-snug group-hover:text-brand">{p.title}</h3>
                 <p className="mt-2 line-clamp-3 leading-relaxed text-steel">{p.excerpt}</p>
