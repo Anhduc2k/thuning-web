@@ -5,13 +5,13 @@
   "sub": "phong-thuc-hanh-dien-tu",
   "date": "2026-10-15",
   "isNew": true,
-  "featured": false,
-  "bestseller": false,
+  "featured": true,
+  "bestseller": true,
   "images": [
     "/uploads/pasted-image-1793362219977.webp"
   ],
   "summary": "Robot bốc xếp pallet tải 250KG",
-  "description": "Robot bốc xếp pallet với tải 150KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
+  "description": "Robot bốc xếp pallet với tải 250KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
   "specs": [],
   "relatedProducts": [],
   "relatedPosts": []
