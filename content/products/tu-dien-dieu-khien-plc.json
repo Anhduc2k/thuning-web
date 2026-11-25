@@ -2,10 +2,15 @@
   "name": "Tủ điện điều khiển PLC",
   "model": "TD-153",
   "category": "tu-dien-bang-dien",
+  "sub": "",
   "date": "2026-08-30",
   "isNew": false,
   "featured": false,
   "bestseller": false,
+  "images": [],
+  "summary": "",
+  "description": "Lập trình máy móc và dây chuyền tự động hóa, Thiết kế thi công tủ điện động lực, tủ điều khiển.",
+  "highlights": [],
   "specs": [
     {
       "label": "Nhà sản xuất",
@@ -14,14 +19,8 @@
     {
       "label": "Xuất xứ",
       "value": "Việt Nam"
-    },
-    {
-      "label": "Tình trạng",
-      "value": "Mới 100%"
-    },
-    {
-      "label": "Tiêu chuẩn",
-      "value": "ISO 9001:2015, ISO 14001:2015"
     }
-  ]
+  ],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
