@@ -10,44 +10,41 @@
     "slideImage": "/uploads/pasted-image-1794841319958.webp",
     "highlights": [
       {
-        "text": "Được sản xuất và làm chủ công nghệ trực tiếp tại Việt Nam"
+        "text": "Được sản xuất và làm chủ công nghệ trực tiếp tại Việt Nam",
+        "icon": ""
       },
       {
-        "text": "Linh kiện công nghiệp, bền bỉ và dễ dàng thay thế"
+        "text": "Linh kiện công nghiệp, bền bỉ và dễ dàng thay thế",
+        "icon": ""
       },
       {
-        "text": "Dễ dàng sử dụng, vận hành"
+        "text": "Dễ dàng sử dụng, vận hành",
+        "icon": ""
       }
     ],
     "subs": [
       {
         "id": "phong-thuc-hanh-dien-tu",
-        "slug": "phong-thuc-hanh-dien-tu",
+        "slug": "rb150",
         "name": "Robot Xếp Bao xuống Pallet - Tải 150kg - 300kg",
         "icon": "robot"
       },
       {
         "id": "phong-thuc-hanh-vi-mach-tich-hop",
-        "slug": "phong-thuc-hanh-vi-mach-tich-hop",
+        "slug": "rb75",
         "name": "Robot Xếp Bao xuống Pallet - Tải 75kg",
         "icon": "robot"
       },
       {
-        "id": "phong-thuc-hanh-khi-nen-thuy-luc",
-        "slug": "phong-thuc-hanh-khi-nen-thuy-luc",
-        "name": "Robot Xếp Thùng Carton xuống Pallet - Tải 50kg",
-        "icon": "robot"
-      },
-      {
         "id": "phong-thuc-hanh-may-dien",
-        "slug": "phong-thuc-hanh-may-dien",
+        "slug": "rbdb",
         "name": "Robot dỡ bao cấp liệu từ Pallet",
         "icon": "robot"
       },
       {
         "id": "bvymotfp4jc7tlzf344mb2r3ke",
         "slug": "robot-ray",
-        "name": "Robot kết hợp ray trượt - xếp palet nhiều vị trí, xếp hàng lên thùng xe tải",
+        "name": "Robot kết hợp ray trượt - xếp dỡ palet nhiều vị trí",
         "icon": "gear"
       }
     ]
