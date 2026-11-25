@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -191,6 +192,11 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
               {posts.map((o) => (
                 <li key={o.slug}>
                   <Link href={`/tin-tuc/${o.slug}`} className="group block">
+                    {o.image && (
+                      <div className="relative mb-3 aspect-video overflow-hidden bg-panel">
+                        <Image src={o.image} alt="" fill sizes="(min-width:768px) 400px, 100vw" className="object-cover transition-transform duration-300 group-hover:scale-105" />
+                      </div>
+                    )}
                     <p className="text-sm text-steel"><time dateTime={o.date}>{formatDate(o.date)}</time> · {o.topic}</p>
                     <h3 className="mt-1 font-semibold leading-snug group-hover:text-brand">{o.title}</h3>
                   </Link>
