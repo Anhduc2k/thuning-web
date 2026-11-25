@@ -116,23 +116,27 @@
     "slideImage": "/uploads/pasted-image-1793850696434.webp",
     "highlights": [
       {
-        "text": "Hỗ trợ kỹ thuật 24/7"
+        "text": "Hỗ trợ kỹ thuật 24/7",
+        "icon": ""
       },
       {
-        "text": "Đầy đủ hóa đơn VAT"
+        "text": "Đầy đủ hóa đơn VAT",
+        "icon": ""
       },
       {
-        "text": "Bảo hành 1 năm"
+        "text": "Bảo hành 1 năm",
+        "icon": ""
       },
       {
-        "text": "Hỗ trợ thiết kế gia công cơ khí, mặt bích"
+        "text": "Hỗ trợ thiết kế gia công cơ khí, mặt bích",
+        "icon": ""
       }
     ],
     "subs": [
       {
         "id": "26en4ivztndwff5jnqzlxjb6bi",
         "slug": "hop-so-130",
-        "name": "Hộp số Servo - Hộp số Step 86",
+        "name": "Hộp số Servo - Hộp số Step",
         "icon": "gear"
       },
       {
