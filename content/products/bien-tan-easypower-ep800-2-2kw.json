@@ -11,15 +11,12 @@
     "/uploads/easypower-inverter-showcase-1.webp"
   ],
   "summary": "",
-  "description": "",
+  "description": "Biến Tần EasyPower đầy đủ các cấp công suất, Bảo hành 2 năm mọi lỗi, tải nặng hoạt động bền bỉ trong môi trường khắc nghiệt\n\nLiên hệ để được tư vấn phương án phù hợp với nhu cầu của đơn vị bạn.",
+  "highlights": [],
   "specs": [
     {
       "label": "Nhà sản xuất",
-      "value": "Công ty TNHH Giải pháp Tự Động Hoá ADS"
-    },
-    {
-      "label": "Xuất xứ",
-      "value": "Việt Nam"
+      "value": "EasyPower Inverter"
     },
     {
       "label": "Tình trạng",
@@ -31,5 +28,8 @@
     }
   ],
   "relatedProducts": [],
-  "relatedPosts": []
+  "relatedPosts": [
+    "chon-bang-tai-cho-day-chuyen-thuc-pham",
+    "vi-sao-truong-nghe-can-dau-tu-thiet-bi-theo-chuan-4-0"
+  ]
 }
