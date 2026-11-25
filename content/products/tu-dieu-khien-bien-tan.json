@@ -2,10 +2,15 @@
   "name": "Tủ điều khiển biến tần",
   "model": "TD-155",
   "category": "tu-dien-bang-dien",
+  "sub": "",
   "date": "2026-08-28",
   "isNew": false,
   "featured": false,
   "bestseller": false,
+  "images": [],
+  "summary": "",
+  "description": "Tủ biến tần đầy đủ các cấp công suất",
+  "highlights": [],
   "specs": [
     {
       "label": "Nhà sản xuất",
@@ -18,10 +23,8 @@
     {
       "label": "Tình trạng",
       "value": "Mới 100%"
-    },
-    {
-      "label": "Tiêu chuẩn",
-      "value": "ISO 9001:2015, ISO 14001:2015"
     }
-  ]
+  ],
+  "relatedProducts": [],
+  "relatedPosts": []
 }
