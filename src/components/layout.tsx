@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { categories } from "@/lib/catalog";
@@ -9,8 +10,7 @@ import { ProductsMenu } from "./products-menu";
 export function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, về trang chủ`}>
-      {/* Thay bằng logo thật: <Image src="/logo.svg" .../> */}
-      <span className="grid size-10 place-items-center bg-brand text-lg font-extrabold leading-none text-white">ADS</span>
+      <Image src="/logo.png" alt="" width={40} height={40} className="size-10 bg-white object-contain" priority />
       <span className="leading-tight">
         <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>Giải Pháp Tự Động Hóa ADS</span>
         <span className={`block whitespace-nowrap text-xs ${light ? "text-white/60" : "text-steel"}`}>Robot Xếp Dỡ Pallet - Cung cấp thiết bị - Dự án Tự động hóa</span>
