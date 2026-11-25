@@ -48,7 +48,7 @@
   },
   {
     "id": "bang-tai-cong-nghiep",
-    "slug": "bang-tai-cong-nghiep",
+    "slug": "bien-tan-easypower",
     "name": "Biến Tần EasyPower",
     "icon": "chip",
     "intro": "Biến Tần EasyPower đầy đủ các cấp công suất, Bảo hành 2 năm mọi lỗi, tải nặng hoạt động bền bỉ trong môi trường khắc nghiệt",
@@ -63,31 +63,31 @@
     "subs": [
       {
         "id": "bang-tai-cao-su",
-        "slug": "bang-tai-cao-su",
+        "slug": "ep800-1-5kw",
         "name": "Biến tần EasyPower EP800 - 1.5kW",
         "icon": ""
       },
       {
         "id": "bang-tai-con-lan",
-        "slug": "bang-tai-con-lan",
+        "slug": "ep800-2-2kw",
         "name": "Biến tần EasyPower EP800 - 2.2kW",
         "icon": ""
       },
       {
         "id": "bang-tai-luoi-inox",
-        "slug": "bang-tai-luoi-inox",
+        "slug": "ep800-4kw",
         "name": "Biến tần EasyPower EP800 - 4kW",
         "icon": ""
       },
       {
         "id": "bang-tai-pvc",
-        "slug": "bang-tai-pvc",
+        "slug": "ep800-11kw",
         "name": "Biến tần EasyPower EP800 - 11kW",
         "icon": ""
       },
       {
         "id": "bang-tai-xich",
-        "slug": "bang-tai-xich",
+        "slug": "ep800-55kw",
         "name": "Biến tần EasyPower EP800 - 55kW",
         "icon": ""
       }
