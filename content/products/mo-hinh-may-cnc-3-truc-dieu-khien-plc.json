@@ -12,7 +12,24 @@
   ],
   "summary": "Robot kết hợp ray trượt - xếp nhiều vị trí Pallet, xếp hàng lên thùng xe tải",
   "description": "Tích hợp thêm ray trượt tăng độ linh hoạt, có thể di chuyển để xếp hàng vào nhiều vị trí Pallet, Xếp hàng lên thùng xe tải,..\n\nDễ dàng vận hành, đa dạng ứng dụng",
-  "specs": [],
+  "specs": [
+    {
+      "label": "Nhà sản xuất",
+      "value": "Công ty TNHH Giải pháp Tự Động Hoá ADS"
+    },
+    {
+      "label": "Xuất xứ",
+      "value": "Việt Nam"
+    },
+    {
+      "label": "Tình trạng",
+      "value": "Mới 100%"
+    },
+    {
+      "label": "Tiêu chuẩn",
+      "value": "ISO 9001:2015, ISO 14001:2015"
+    }
+  ],
   "relatedProducts": [],
   "relatedPosts": []
 }

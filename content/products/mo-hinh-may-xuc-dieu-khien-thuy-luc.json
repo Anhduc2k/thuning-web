@@ -10,7 +10,24 @@
   "images": [],
   "summary": "Robot xếp pallet thùng carton tải nhẹ 50KG",
   "description": "Robot bốc xếp thùng Carton lên pallet với tải nhẹ 50KG, đa dạng ứng dụng\n\nGiao diện tiếng Việt, dễ dàng teaching, vận hành hàng ngày đơn giản",
-  "specs": [],
+  "specs": [
+    {
+      "label": "Nhà sản xuất",
+      "value": "Công ty TNHH Giải pháp Tự Động Hoá ADS"
+    },
+    {
+      "label": "Xuất xứ",
+      "value": "Việt Nam"
+    },
+    {
+      "label": "Tình trạng",
+      "value": "Mới 100%"
+    },
+    {
+      "label": "Tiêu chuẩn",
+      "value": "ISO 9001:2015, ISO 14001:2015"
+    }
+  ],
   "relatedProducts": [],
   "relatedPosts": []
 }

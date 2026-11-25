@@ -71,10 +71,7 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
   const specs: [string, string][] = [
     ["Mã sản phẩm", p.model],
     ["Danh mục", subLabel ?? c.name],
-    ["Nhà sản xuất", site.legalName],
-    ["Xuất xứ", "Việt Nam"],
-    ["Tình trạng", "Mới 100%"],
-    ["Tiêu chuẩn", "ISO 9001:2015, ISO 14001:2015"],
+    // Các dòng còn lại nhập trong CMS (Thông số kỹ thuật) của từng sản phẩm.
     ...(p.specs ?? []).map((s): [string, string] => [s.label, s.value]),
   ];
   const posts = (p.relatedPosts ?? []).map((s) => getPost(s)!);
