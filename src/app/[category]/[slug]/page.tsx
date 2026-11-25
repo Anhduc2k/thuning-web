@@ -68,6 +68,7 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
 
   const p = product!;
   const subLabel = subName(c, p.sub);
+  const highlights = p.highlights?.length ? p.highlights : (c.highlights ?? []);
   const specs: [string, string][] = [
     ["Mã sản phẩm", p.model],
     ["Danh mục", subLabel ?? c.name],
@@ -138,13 +139,14 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
               </a>
             </div>
 
-            <ul className="mt-6 grid gap-3 border-y border-line py-5 text-sm sm:grid-cols-2">
-              {(p.highlights?.length ? p.highlights : c.highlights).map((h) => {
-                const { text, icon } = typeof h === "string" ? { text: h, icon: undefined } : h;
-                return <li key={text} className="flex gap-2.5"><Icon name={iconOr(icon, "shield")} className="size-5 shrink-0 text-brand" />{text}</li>;
-              })}
-              {site.productNote && <li className="flex gap-2.5"><Icon name={iconOr(site.productNoteIcon, "truck")} className="size-5 shrink-0 text-brand" />{site.productNote}</li>}
-            </ul>
+            {highlights.length > 0 && (
+              <ul className="mt-6 grid gap-3 border-y border-line py-5 text-sm sm:grid-cols-2">
+                {highlights.map((h) => {
+                  const { text, icon } = typeof h === "string" ? { text: h, icon: undefined } : h;
+                  return <li key={text} className="flex gap-2.5"><Icon name={iconOr(icon, "shield")} className="size-5 shrink-0 text-brand" />{text}</li>;
+                })}
+              </ul>
+            )}
 
             <h2 className="mt-6 font-semibold">Thông số chung</h2>
             <dl className="mt-3 divide-y divide-line border border-line text-sm">

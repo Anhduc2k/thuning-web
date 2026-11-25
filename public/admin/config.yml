@@ -208,8 +208,6 @@ collections:
           - { name: name, label: Tên ngắn, widget: string, hint: "Hiện ở logo, tiêu đề trang." }
           - { name: legalName, label: Tên pháp lý, widget: string }
           - { name: tagline, label: Khẩu hiệu, widget: string }
-          - { name: productNote, label: Dòng cuối điểm nổi bật sản phẩm, widget: string, required: false, hint: "Hiện kèm icon xe tải ở mọi trang sản phẩm, ví dụ: Giao hàng và lắp đặt toàn quốc. Để trống thì ẩn." }
-          - { name: productNoteIcon, label: Icon dòng cuối, widget: select, required: false, default: truck, options: *icons }
           - { name: address, label: Địa chỉ, widget: string }
           - { name: phone, label: Số điện thoại (để gọi), widget: string, pattern: ['^[0-9]{9,11}$', "Chỉ chữ số, ví dụ 0986666839"] }
           - { name: phoneDisplay, label: Số điện thoại (hiển thị), widget: string, hint: "Ví dụ 098.6666.839" }
