@@ -14,18 +14,22 @@
   "description": "",
   "highlights": [
     {
-      "text": "Thư Ning 1",
+      "text": "Tải nặng bền bỉ",
+      "icon": ""
+    },
+    {
+      "text": "2 màn hình theo dõi thông số",
+      "icon": ""
+    },
+    {
+      "text": "Giao hàng và lắp đặt toàn quốc",
       "icon": ""
     }
   ],
   "specs": [
     {
-      "label": "Nhà sản xuất test Thư Ning",
-      "value": "Công ty TNHH Giải pháp Tự Động Hoá ADS"
-    },
-    {
-      "label": "Xuất xứ",
-      "value": "Việt Nam"
+      "label": "Nhà sản xuất",
+      "value": "EasyPower Inverter"
     },
     {
       "label": "Tình trạng",
