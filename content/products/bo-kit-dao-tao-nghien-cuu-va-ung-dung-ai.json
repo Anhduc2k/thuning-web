@@ -4,9 +4,9 @@
   "category": "thiet-bi-day-nghe",
   "sub": "phong-thuc-hanh-dien-tu",
   "date": "2026-10-21",
-  "isNew": true,
-  "featured": true,
-  "bestseller": true,
+  "isNew": false,
+  "featured": false,
+  "bestseller": false,
   "images": [
     "/uploads/pasted-image-1793363608098.webp"
   ],
