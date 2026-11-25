@@ -60,6 +60,41 @@ collections:
       - { name: images, label: Ảnh sản phẩm, widget: image, multiple: true, required: false, choose_url: false, hint: "Ảnh đầu tiên là ảnh đại diện. Nên dùng ảnh vuông, nền trắng, rộng 1200–1600px (JPG/PNG/WebP)." }
       - { name: summary, label: Mô tả ngắn, widget: text, required: false, hint: "1–2 câu, hiện dưới tên sản phẩm và trên Google." }
       - { name: description, label: Mô tả chi tiết, widget: markdown, required: false, hint: "Để trống thì hiện đoạn giới thiệu chung của danh mục." }
+      - name: highlights
+        label: Điểm nổi bật
+        label_singular: điểm nổi bật
+        widget: list
+        required: false
+        summary: "{{fields.text}}"
+        hint: Hiện dưới nút báo giá. Để trống thì dùng Điểm nổi bật của danh mục.
+        fields:
+          - { name: text, label: Nội dung, widget: string }
+          - name: icon
+            label: Icon
+            widget: select
+            required: false
+            hint: Để trống thì dùng icon khiên.
+            options: &icons
+              - { label: "Khiên (mặc định)", value: shield }
+              - { label: "Xe tải", value: truck }
+              - { label: "Vi mạch", value: chip }
+              - { label: "Băng tải", value: conveyor }
+              - { label: "Bánh răng", value: gear }
+              - { label: "Tủ điện", value: cabinet }
+              - { label: "Hộp", value: box }
+              - { label: "Sóng điện tử", value: wave }
+              - { label: "Robot", value: robot }
+              - { label: "Đồng hồ áp suất", value: gauge }
+              - { label: "Động cơ", value: motor }
+              - { label: "Ô tô", value: car }
+              - { label: "Tia điện", value: bolt }
+              - { label: "Bóng đèn", value: bulb }
+              - { label: "Bông tuyết", value: snow }
+              - { label: "Giọt nước", value: drop }
+              - { label: "Thẻ giá", value: tag }
+              - { label: "Đồng hồ", value: clock }
+              - { label: "Điện thoại", value: phone }
+              - { label: "Tin nhắn", value: chat }
       - name: specs
         label: Thông số kỹ thuật
         label_singular: thông số
@@ -136,7 +171,15 @@ collections:
       - { name: heroTitle, label: Tiêu đề trang chủ, widget: string, required: false, hint: "Tiêu đề lớn ở đầu trang chủ khi slide mặt bằng xưởng đang hiện danh mục này. Để trống thì dùng tiêu đề chung." }
       - { name: heroText, label: Mô tả trang chủ, widget: text, required: false, hint: "Đoạn mô tả dưới tiêu đề trang chủ, đổi theo slide của danh mục này. Để trống thì dùng mô tả chung." }
       - { name: slideImage, label: Ảnh slide trang chủ, widget: image, required: false, choose_url: false, hint: "Ảnh hiện ở slide của danh mục này trên trang chủ. Nên dùng ảnh ngang tỉ lệ 16:10 (ví dụ 1600×1000px). Để trống thì hiện hình vẽ mặt bằng xưởng như cũ." }
-      - { name: highlights, label: Điểm nổi bật, label_singular: điểm nổi bật, widget: list, field: { name: text, label: Nội dung, widget: string } }
+      - name: highlights
+        label: Điểm nổi bật
+        label_singular: điểm nổi bật
+        widget: list
+        summary: "{{fields.text}}"
+        hint: Hiện ở trang sản phẩm thuộc danh mục này (sản phẩm có Điểm nổi bật riêng thì dùng của sản phẩm).
+        fields:
+          - { name: text, label: Nội dung, widget: string }
+          - { name: icon, label: Icon, widget: select, required: false, hint: "Để trống thì dùng icon khiên.", options: *icons }
       - name: subs
         label: Danh mục con
         label_singular: danh mục con
@@ -165,6 +208,8 @@ collections:
           - { name: name, label: Tên ngắn, widget: string, hint: "Hiện ở logo, tiêu đề trang." }
           - { name: legalName, label: Tên pháp lý, widget: string }
           - { name: tagline, label: Khẩu hiệu, widget: string }
+          - { name: productNote, label: Dòng cuối điểm nổi bật sản phẩm, widget: string, required: false, hint: "Hiện kèm icon xe tải ở mọi trang sản phẩm, ví dụ: Giao hàng và lắp đặt toàn quốc. Để trống thì ẩn." }
+          - { name: productNoteIcon, label: Icon dòng cuối, widget: select, required: false, default: truck, options: *icons }
           - { name: address, label: Địa chỉ, widget: string }
           - { name: phone, label: Số điện thoại (để gọi), widget: string, pattern: ['^[0-9]{9,11}$', "Chỉ chữ số, ví dụ 0986666839"] }
           - { name: phoneDisplay, label: Số điện thoại (hiển thị), widget: string, hint: "Ví dụ 098.6666.839" }

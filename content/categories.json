@@ -9,9 +9,15 @@
     "heroText": "Cung cấp giải pháp Robot Bốc xếp - Dỡ pallet được sản xuất trực tiếp tại Việt Nam, lắp đặt và bàn giao toàn quốc",
     "slideImage": "/uploads/pasted-image-1794841319958.webp",
     "highlights": [
-      "Được sản xuất và làm chủ công nghệ trực tiếp tại Việt Nam",
-      "Linh kiện công nghiệp, bền bỉ và dễ dàng thay thế",
-      "Dễ dàng sử dụng, vận hành"
+      {
+        "text": "Được sản xuất và làm chủ công nghệ trực tiếp tại Việt Nam"
+      },
+      {
+        "text": "Linh kiện công nghiệp, bền bỉ và dễ dàng thay thế"
+      },
+      {
+        "text": "Dễ dàng sử dụng, vận hành"
+      }
     ],
     "subs": [
       {
@@ -56,9 +62,15 @@
     "heroText": "Biến Tần EasyPower đầy đủ các cấp công suất, Bảo hành 2 năm mọi lỗi, tải nặng hoạt động bền bỉ trong môi trường khắc nghiệt",
     "slideImage": "/uploads/pasted-image-1793852026926.webp",
     "highlights": [
-      "Tải nặng bền bỉ",
-      "2 màn hình theo dõi thông số",
-      "Màn hình có thể tháo rời, tặng kèm cáp kết nối và khay lắp mặt tủ điện"
+      {
+        "text": "Tải nặng bền bỉ"
+      },
+      {
+        "text": "2 màn hình theo dõi thông số"
+      },
+      {
+        "text": "Màn hình có thể tháo rời, tặng kèm cáp kết nối và khay lắp mặt tủ điện"
+      }
     ],
     "subs": [
       {
@@ -103,10 +115,18 @@
     "heroText": "Bộ động cơ đi kèm driver và cáp kết nối; Các loại hộp số như hộp số trục vít NMRV, hộp số mâm xoay, hộp số hành tinh",
     "slideImage": "/uploads/pasted-image-1793850696434.webp",
     "highlights": [
-      "Hỗ trợ kỹ thuật 24/7",
-      "Đầy đủ hóa đơn VAT",
-      "Bảo hành 1 năm",
-      "Hỗ trợ thiết kế gia công cơ khí, mặt bích"
+      {
+        "text": "Hỗ trợ kỹ thuật 24/7"
+      },
+      {
+        "text": "Đầy đủ hóa đơn VAT"
+      },
+      {
+        "text": "Bảo hành 1 năm"
+      },
+      {
+        "text": "Hỗ trợ thiết kế gia công cơ khí, mặt bích"
+      }
     ],
     "subs": [
       {
@@ -133,9 +153,15 @@
     "heroText": "Lập trình máy móc và dây chuyền tự động hóa,  Thiết kế thi công tủ điện động lực, tủ điều khiển.",
     "slideImage": "/uploads/pasted-image-1794841771198.webp",
     "highlights": [
-      "Đi dây có đánh số, đầu cos và máng dây gọn gàng",
-      "Kiểm tra cách điện và chạy thử không tải trước khi giao",
-      "Bàn giao bản vẽ nguyên lý và sơ đồ đấu nối"
+      {
+        "text": "Đi dây có đánh số, đầu cos và máng dây gọn gàng"
+      },
+      {
+        "text": "Kiểm tra cách điện và chạy thử không tải trước khi giao"
+      },
+      {
+        "text": "Bàn giao bản vẽ nguyên lý và sơ đồ đấu nối"
+      }
     ],
     "subs": []
   },
@@ -149,8 +175,12 @@
     "heroText": "Chế tạo máy móc tự động hóa phục vụ sản xuất công nghiệp",
     "slideImage": "/uploads/pasted-image-1793868677747.webp",
     "highlights": [
-      "Chất lượng cao, bảo hành dài",
-      "Hỗ trợ Kỹ thuật"
+      {
+        "text": "Chất lượng cao, bảo hành dài"
+      },
+      {
+        "text": "Hỗ trợ Kỹ thuật"
+      }
     ],
     "subs": []
   }

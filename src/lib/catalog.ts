@@ -9,9 +9,12 @@ export type Category = {
   heroTitle?: string; // tiêu đề đầu trang chủ khi slide mặt bằng xưởng hiện danh mục này
   heroText?: string; // mô tả dưới tiêu đề đó
   slideImage?: string; // ảnh slide trang chủ trong /uploads; trống thì vẽ mặt bằng xưởng
-  highlights: string[];
+  highlights: Highlight[];
   subs: { id?: string; slug: string; name: string; icon?: IconName }[];
 };
+
+// Điểm nổi bật: dữ liệu cũ là chuỗi, mới là { text, icon }; icon trống/lạ thì dùng khiên.
+export type Highlight = string | { text: string; icon?: string };
 
 export type IconName = "chip" | "conveyor" | "gear" | "cabinet" | "box" | "wave" | "robot" | "gauge" | "motor" | "car" | "bolt" | "bulb" | "snow" | "drop";
 
@@ -28,6 +31,7 @@ export type Product = {
   images?: string[]; // đường dẫn trong /public, ví dụ "/uploads/plc-s7-1200.jpg"; ảnh đầu = ảnh đại diện
   summary?: string; // mô tả ngắn dưới tên + meta description
   description?: string; // Markdown, mục "Mô tả sản phẩm"
+  highlights?: Highlight[]; // điểm nổi bật riêng; trống thì dùng của danh mục
   specs?: { label: string; value: string }[]; // thêm vào "Thông số chung"
   relatedProducts?: string[]; // slug, thay cho danh sách tự động
   relatedPosts?: string[]; // slug bài viết

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { Listing, ListingFallback, PageHead, ProductGrid, ProductMorph, ProductVisual, Sidebar } from "@/components/catalog";
 import { Gallery, Zoom } from "@/components/gallery";
-import { Icon } from "@/components/icons";
+import { Icon, iconOr } from "@/components/icons";
 import { LeadForm } from "@/components/lead-form";
 import { categories, getCategory, subName } from "@/lib/catalog";
 import { renderMarkdown } from "@/lib/markdown";
@@ -139,10 +139,11 @@ export default async function Page({ params, searchParams }: PageProps<"/[catego
             </div>
 
             <ul className="mt-6 grid gap-3 border-y border-line py-5 text-sm sm:grid-cols-2">
-              {c.highlights.map((h) => (
-                <li key={h} className="flex gap-2.5"><Icon name="shield" className="size-5 shrink-0 text-brand" />{h}</li>
-              ))}
-              <li className="flex gap-2.5"><Icon name="truck" className="size-5 shrink-0 text-brand" />Giao hàng và lắp đặt toàn quốc</li>
+              {(p.highlights?.length ? p.highlights : c.highlights).map((h) => {
+                const { text, icon } = typeof h === "string" ? { text: h, icon: undefined } : h;
+                return <li key={text} className="flex gap-2.5"><Icon name={iconOr(icon, "shield")} className="size-5 shrink-0 text-brand" />{text}</li>;
+              })}
+              {site.productNote && <li className="flex gap-2.5"><Icon name={iconOr(site.productNoteIcon, "truck")} className="size-5 shrink-0 text-brand" />{site.productNote}</li>}
             </ul>
 
             <h2 className="mt-6 font-semibold">Thông số chung</h2>

@@ -45,3 +45,7 @@ export type AnyIcon = keyof typeof paths;
 export function Icon({ name, className = "size-5" }: P & { name: AnyIcon }) {
   return <svg {...base} className={className}>{paths[name]}</svg>;
 }
+
+// Icon nhập từ CMS là chuỗi tự do: không có trong bộ icon thì dùng icon dự phòng.
+export const iconOr = (name: string | undefined, fallback: AnyIcon): AnyIcon =>
+  name && name in paths ? (name as AnyIcon) : fallback;

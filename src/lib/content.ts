@@ -120,6 +120,11 @@ export function loadContent(categories: Category[], root = process.cwd()) {
       images: list(where, o, "images").map((v) => image(where, "images", v)),
       summary: str(where, o, "summary", false),
       description: str(where, o, "description", false),
+      highlights: list(where, o, "highlights").map((v) => {
+        if (typeof v === "string") return { text: v.trim() };
+        const r = (v ?? {}) as Record<string, unknown>;
+        return { text: str(where, r, "text")!.trim(), icon: str(where, r, "icon", false) };
+      }).filter((h) => h.text),
       specs,
       relatedProducts: refs(where, o, "relatedProducts", slugs.products, "sản phẩm").map((s) => (s === o.slug ? fail(where, "relatedProducts", "không được chọn chính sản phẩm này") : s)),
       relatedPosts: refs(where, o, "relatedPosts", slugs.posts, "bài viết"),
