@@ -9,11 +9,11 @@ import { ProductsMenu } from "./products-menu";
 
 export function Logo({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name}, về trang chủ`}>
-      <Image src="/logo.png" alt="" width={40} height={40} className="size-10 bg-white object-contain" priority />
-      <span className="leading-tight">
+    <Link href="/" className="flex min-w-0 items-center gap-2.5" aria-label={`${site.name}, về trang chủ`}>
+      <Image src="/logo.png" alt="" width={40} height={40} className="size-10 shrink-0 bg-white object-contain" priority />
+      <span className="min-w-0 leading-tight">
         <span className={`block text-[15px] font-extrabold tracking-tight ${light ? "text-white" : "text-ink"}`}>Giải Pháp Tự Động Hóa ADS</span>
-        <span className={`block whitespace-nowrap text-xs ${light ? "text-white/60" : "text-steel"}`}>Robot Xếp Dỡ Pallet - Cung cấp thiết bị - Dự án Tự động hóa</span>
+        <span className={`block text-xs sm:whitespace-nowrap ${light ? "text-white/60" : "text-steel"}`}>Robot Xếp Dỡ Pallet - Cung cấp thiết bị - Dự án Tự động hóa</span>
       </span>
     </Link>
   );

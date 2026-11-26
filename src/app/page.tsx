@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProductGrid, Sidebar } from "@/components/catalog";
-import { WorkshopPlan } from "@/components/workshop-plan";
-import { HeroLink, HeroSlides, HeroText } from "@/components/hero-slides";
+import { BannerSlider } from "@/components/banner-slider";
 import { Icon } from "@/components/icons";
 import { categories } from "@/lib/catalog";
 import { getProducts } from "@/lib/products";
@@ -21,40 +20,35 @@ const promises = [
   { icon: "shield", title: "Bảo hành dài hạn", text: "Linh kiện công nghiệp, có sẵn vật tư thay thế" },
 ] as const;
 
+// Banner trang chủ (public/uploads/banner), mỗi ảnh dẫn tới danh mục tương ứng.
+const banners = [
+  { src: "/uploads/banner/banner-1.jpg", href: "/robot-xep-do", alt: "Giải pháp Robot xếp dỡ Pallet do kỹ sư Việt Nam thiết kế" },
+  { src: "/uploads/banner/banner-2.jpg", href: "/bien-tan-easypower", alt: "Biến tần EasyPower – tải nặng bền bỉ" },
+  { src: "/uploads/banner/banner-3.jpg", href: "/co-khi-che-tao-may", alt: "Hộp số servo" },
+  { src: "/uploads/banner/banner-4.jpg", href: "/che-tao-may", alt: "Chế tạo máy" },
+  { src: "/uploads/banner/banner-5.jpg", href: "/tu-dien-bang-dien", alt: "Tủ điện, bảng điện" },
+];
+
 export default function Home() {
   const newest = getProducts().filter((p) => p.isNew).slice(0, 9);
   const vocational = categories[0];
 
   return (
     <>
-      <HeroSlides>
-      <section className="bg-drafting border-b border-drafting/20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 md:py-16 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-14">
-          {/* Mở đầu: chữ hiện lần lượt cùng lúc mặt bằng xưởng được vẽ (globals.css: .rise, .plan). */}
-          <div>
-            <div className="rise">
-              <HeroText
-                slides={categories.map((c) => ({ title: c.heroTitle, text: c.heroText }))}
-                fallback={{
-                  title: "Giải pháp Robot do các kỹ sư Việt Nam thiết kế và lập trình",
-                  text: "Cung cấp giải pháp Robot Bốc xếp - Dỡ pallet được sản xuất trực tiếp tại Việt Nam, lắp đặt và bàn giao toàn quốc",
-                }}
-              />
-            </div>
-            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--d": ".24s" } as React.CSSProperties}>
-              {/* Dẫn tới danh mục của slide đang hiện. */}
-              <HeroLink hrefs={categories.map((c) => `/${c.slug}`)} className="inline-flex h-12 items-center rounded-md bg-brand px-6 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg active:translate-y-0">
-                Xem danh mục
-              </HeroLink>
-              <a href={`tel:${site.phone}`} className="inline-flex h-12 items-center gap-2 rounded-md border border-ink/25 bg-white/60 px-6 font-semibold text-ink hover:border-ink">
-                <Icon name="phone" className="size-4" />Gọi {site.phoneDisplay}
-              </a>
-            </div>
-          </div>
-          <WorkshopPlan />
-        </div>
+      <BannerSlider banners={banners} />
+      <section className="border-b border-line">
+        <ul className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
+          {promises.map((p) => (
+            <li key={p.title} className="reveal flex gap-4">
+              <Icon name={p.icon} className="size-8 shrink-0 text-brand" />
+              <div>
+                <h3 className="font-semibold">{p.title}</h3>
+                <p className="mt-0.5 text-sm text-steel">{p.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </section>
-      </HeroSlides>
 
       <Section title="Sản phẩm mới" href="/thiet-bi-day-nghe" more="Xem tất cả sản phẩm mới" aside={<Sidebar />}>
         <ProductGrid items={newest} cols={3} />
@@ -104,20 +98,6 @@ export default function Home() {
             })}
           </ul>
         </div>
-      </section>
-
-      <section className="border-y border-line">
-        <ul className="mx-auto grid max-w-7xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
-          {promises.map((p) => (
-            <li key={p.title} className="reveal flex gap-4">
-              <Icon name={p.icon} className="size-8 shrink-0 text-brand" />
-              <div>
-                <h3 className="font-semibold">{p.title}</h3>
-                <p className="mt-0.5 text-sm text-steel">{p.text}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <Section title="Tin tức và hướng dẫn" href="/tin-tuc" more="Xem tất cả bài viết">
