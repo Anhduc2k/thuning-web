@@ -38,6 +38,7 @@ export const organizationLd = {
   url: site.url,
   telephone: site.phone,
   email: site.email,
+  ...(site.taxCode && { taxID: site.taxCode }),
   address: { "@type": "PostalAddress", streetAddress: site.address, addressCountry: "VN" },
   sameAs: [site.facebook, site.youtube],
 };

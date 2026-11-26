@@ -207,6 +207,7 @@ collections:
         fields:
           - { name: name, label: Tên ngắn, widget: string, hint: "Hiện ở logo, tiêu đề trang." }
           - { name: legalName, label: Tên pháp lý, widget: string }
+          - { name: taxCode, label: Mã số thuế, widget: string, required: false, pattern: ['^[0-9]{10}(-[0-9]{3})?$', "10 chữ số, chi nhánh thêm -3 số, ví dụ 0109876543 hoặc 0109876543-001"], hint: "Hiện ở chân trang, dưới tên công ty. Để trống thì ẩn." }
           - { name: tagline, label: Khẩu hiệu, widget: string }
           - { name: address, label: Địa chỉ, widget: string }
           - { name: phone, label: Số điện thoại (để gọi), widget: string, pattern: ['^[0-9]{9,11}$', "Chỉ chữ số, ví dụ 0986666839"] }

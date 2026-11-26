@@ -120,7 +120,11 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <Logo light />
-          <p className="mt-5 max-w-sm leading-relaxed">{site.legalName}. {site.tagline}.</p>
+          <div className="mt-5 max-w-sm leading-relaxed">
+            <p className="text-white">{site.legalName}</p>
+            {site.taxCode && <p className="mt-0.5 text-white">Mã số thuế: {site.taxCode}</p>}
+            {site.tagline && <p className="mt-2">{site.tagline}</p>}
+          </div>
           <ul className="mt-5 space-y-2.5">
             <li className="flex gap-2"><Icon name="pin" className="mt-0.5 size-4 shrink-0 text-brand" />{site.address}</li>
             <li><a href={`tel:${site.phone}`} className="flex gap-2 hover:text-white"><Icon name="phone" className="size-4 text-brand" />{site.phoneDisplay}</a></li>
