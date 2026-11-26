@@ -15,9 +15,9 @@ export const metadata = {
 };
 
 const promises = [
-  { icon: "truck", title: "Giao hàng toàn quốc", text: "Đóng kiện, vận chuyển và lắp đặt tại chỗ" },
+  { icon: "truck", title: "Giao hàng toàn quốc", text: "Đóng kiện, vận chuyển và lắp đặt toàn quốc" },
   { icon: "chat", title: "Tư vấn cấu hình miễn phí", text: "Theo dây chuyền thực tế" },
-  { icon: "tag", title: "Giá trực tiếp từ xưởng", text: "Tự thiết kế, tự sản xuất, không qua trung gian" },
+  { icon: "tag", title: "Hỗ trợ 24/7", text: "Kỹ sư giỏi giàu kinh nghiệm hỗ trợ 24/7" },
   { icon: "shield", title: "Bảo hành dài hạn", text: "Linh kiện công nghiệp, có sẵn vật tư thay thế" },
 ] as const;
 
