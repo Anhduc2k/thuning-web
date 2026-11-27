@@ -43,6 +43,8 @@ export async function generateMetadata({ params }: PageProps<"/[category]/[slug]
     p.summary ||
     `${p.name} (mã ${p.model}) – ${subName(r.c, p.sub) ?? r.c.name}. Sản xuất tại Việt Nam, giao hàng và lắp đặt toàn quốc. Gọi ${site.phoneDisplay} để nhận báo giá.`,
     path,
+    "website",
+    p.images?.[0],
   );
 }
 

@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.name} – ${site.tagline}`, template: `%s | ${site.name}` },
   description: `${site.legalName}: ${site.tagline}. Thiết kế, chế tạo và lắp đặt tại xưởng, giao hàng toàn quốc.`,
-  openGraph: { type: "website", locale: "vi_VN", siteName: site.name },
+  openGraph: { type: "website", locale: "vi_VN", siteName: site.name, images: ["/logo.png"] },
+  verification: { google: "A-EBYsaUojeynS1sktRcCHRFoJMhL9QEZK8Pt3dwn_c" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

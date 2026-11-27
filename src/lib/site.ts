@@ -19,13 +19,21 @@ export const nav: { href: string; label: string; category?: string }[] = [
 // Chính sách ở chân trang (/chinh-sach/<slug>); `body` là Markdown.
 export const policies: Record<string, { title: string; body: string }> = Object.fromEntries(policiesData.map(({ slug, ...p }) => [slug, p]));
 
-/** Metadata cho một trang: canonical + Open Graph. Next gộp metadata kiểu nông nên mỗi trang phải tự đặt đủ openGraph. */
-export function pageMeta(title: string, description: string, path: string, type: "website" | "article" = "website"): Metadata {
+
+export function pageMeta(
+  title: string,
+  description: string,
+  path: string,
+  type: "website" | "article" = "website",
+  image?: string,
+): Metadata {
+  const images = [image ?? "/logo.png"];
   return {
     title,
     description,
     alternates: { canonical: path },
-    openGraph: { type, locale: "vi_VN", siteName: site.name, title, description, url: path },
+    openGraph: { type, locale: "vi_VN", siteName: site.name, title, description, url: path, images },
+    twitter: { card: image ? "summary_large_image" : "summary", title, description, images },
   };
 }
 
@@ -36,6 +44,8 @@ export const organizationLd = {
   name: site.legalName,
   alternateName: site.name,
   url: site.url,
+  logo: `${site.url}/logo.png`,
+  image: `${site.url}/logo.png`,
   telephone: site.phone,
   email: site.email,
   ...(site.taxCode && { taxID: site.taxCode }),

@@ -13,7 +13,7 @@ export const generateStaticParams = () => getPosts().map((p) => ({ slug: p.slug 
 
 export async function generateMetadata({ params }: PageProps<"/tin-tuc/[slug]">): Promise<Metadata> {
   const p = getPost((await params).slug);
-  return p ? pageMeta(p.title, p.excerpt, `/tin-tuc/${p.slug}`, "article") : {};
+  return p ? pageMeta(p.title, p.excerpt, `/tin-tuc/${p.slug}`, "article", p.image) : {};
 }
 
 export default async function PostPage({ params }: PageProps<"/tin-tuc/[slug]">) {
