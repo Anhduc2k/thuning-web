@@ -23,10 +23,10 @@ const promises = [
 // Banner trang chủ (public/uploads/banner), mỗi ảnh dẫn tới danh mục tương ứng.
 const banners = [
   { src: "/uploads/banner/banner-1.jpg", href: "/robot-xep-do", alt: "Giải pháp Robot xếp dỡ Pallet do kỹ sư Việt Nam thiết kế" },
-  { src: "/uploads/banner/banner-2.jpg", href: "/bien-tan-easypower", alt: "Biến tần EasyPower – tải nặng bền bỉ" },
-  { src: "/uploads/banner/banner-3.jpg", href: "/co-khi-che-tao-may", alt: "Hộp số servo" },
+  { src: "/uploads/banner/banner-2.png", href: "/tu-dien-bang-dien", alt: "Tủ điện, bảng điện" },
+  { src: "/uploads/banner/banner-3.jpg", href: "/bien-tan-easypower", alt: "Biến tần EasyPower – tải nặng bền bỉ" },
   { src: "/uploads/banner/banner-4.jpg", href: "/che-tao-may", alt: "Chế tạo máy" },
-  { src: "/uploads/banner/banner-5.jpg", href: "/tu-dien-bang-dien", alt: "Tủ điện, bảng điện" },
+  { src: "/uploads/banner/banner-5.png", href: "/co-khi-che-tao-may", alt: "Hộp số servo" },
 ];
 
 export default function Home() {
